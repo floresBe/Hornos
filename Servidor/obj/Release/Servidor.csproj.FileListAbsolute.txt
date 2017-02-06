@@ -1,0 +1,10 @@
+C:\Users\walabi\Documents\BDMuestras\Servidor\bin\Release\Servidor.dll.config
+C:\Users\walabi\Documents\BDMuestras\Servidor\bin\Release\Servidor.dll
+C:\Users\walabi\Documents\BDMuestras\Servidor\bin\Release\Servidor.pdb
+C:\Users\walabi\Documents\BDMuestras\Servidor\bin\Release\EntityFramework.dll
+C:\Users\walabi\Documents\BDMuestras\Servidor\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\walabi\Documents\BDMuestras\Servidor\bin\Release\EntityFramework.xml
+C:\Users\walabi\Documents\BDMuestras\Servidor\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\walabi\Documents\BDMuestras\Servidor\obj\Release\Servidor.dll
+C:\Users\walabi\Documents\BDMuestras\Servidor\obj\Release\Servidor.pdb
+C:\Users\walabi\Documents\BDMuestras\Servidor\obj\Release\Servidor.csprojResolveAssemblyReference.cache

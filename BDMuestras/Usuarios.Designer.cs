@@ -1,0 +1,326 @@
+﻿namespace BDMuestras
+{
+    partial class Usuarios
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
+            this.label5 = new System.Windows.Forms.Label();
+            this.textBoxNoEmpleado = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.buttonGuardar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxaMaterno = new System.Windows.Forms.TextBox();
+            this.textBoxApaterno = new System.Windows.Forms.TextBox();
+            this.textBoxNombre = new System.Windows.Forms.TextBox();
+            this.PmalasLabel = new System.Windows.Forms.Label();
+            this.PiezasLabel = new System.Windows.Forms.Label();
+            this.ParteLabel = new System.Windows.Forms.Label();
+            this.textBoxContrasena = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.comboBoxTurno = new System.Windows.Forms.ComboBox();
+            this.comboBoxNivel = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxRcontrasena = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(44, 15);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(236, 37);
+            this.label5.TabIndex = 71;
+            this.label5.Text = "Capturar Datos";
+            // 
+            // textBoxNoEmpleado
+            // 
+            this.textBoxNoEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNoEmpleado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxNoEmpleado.Location = new System.Drawing.Point(52, 97);
+            this.textBoxNoEmpleado.Name = "textBoxNoEmpleado";
+            this.textBoxNoEmpleado.Size = new System.Drawing.Size(263, 31);
+            this.textBoxNoEmpleado.TabIndex = 1;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(46, 69);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(147, 25);
+            this.label4.TabIndex = 70;
+            this.label4.Text = "No. Empleado";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.BackColor = System.Drawing.Color.Red;
+            this.buttonCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonCancelar.BackgroundImage")));
+            this.buttonCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCancelar.Location = new System.Drawing.Point(256, 545);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(59, 50);
+            this.buttonCancelar.TabIndex = 10;
+            this.buttonCancelar.UseVisualStyleBackColor = false;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            // 
+            // buttonGuardar
+            // 
+            this.buttonGuardar.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonGuardar.BackgroundImage")));
+            this.buttonGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonGuardar.Location = new System.Drawing.Point(182, 545);
+            this.buttonGuardar.Name = "buttonGuardar";
+            this.buttonGuardar.Size = new System.Drawing.Size(59, 50);
+            this.buttonGuardar.TabIndex = 9;
+            this.buttonGuardar.UseVisualStyleBackColor = false;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(48, 317);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 25);
+            this.label1.TabIndex = 67;
+            this.label1.Text = "Turno";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxaMaterno
+            // 
+            this.textBoxaMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxaMaterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxaMaterno.Location = new System.Drawing.Point(53, 283);
+            this.textBoxaMaterno.Name = "textBoxaMaterno";
+            this.textBoxaMaterno.Size = new System.Drawing.Size(263, 31);
+            this.textBoxaMaterno.TabIndex = 4;
+            // 
+            // textBoxApaterno
+            // 
+            this.textBoxApaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxApaterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxApaterno.Location = new System.Drawing.Point(53, 221);
+            this.textBoxApaterno.Name = "textBoxApaterno";
+            this.textBoxApaterno.Size = new System.Drawing.Size(263, 31);
+            this.textBoxApaterno.TabIndex = 3;
+            // 
+            // textBoxNombre
+            // 
+            this.textBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxNombre.Location = new System.Drawing.Point(53, 159);
+            this.textBoxNombre.Name = "textBoxNombre";
+            this.textBoxNombre.Size = new System.Drawing.Size(263, 31);
+            this.textBoxNombre.TabIndex = 2;
+            // 
+            // PmalasLabel
+            // 
+            this.PmalasLabel.AutoSize = true;
+            this.PmalasLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PmalasLabel.ForeColor = System.Drawing.Color.White;
+            this.PmalasLabel.Location = new System.Drawing.Point(48, 255);
+            this.PmalasLabel.Name = "PmalasLabel";
+            this.PmalasLabel.Size = new System.Drawing.Size(174, 25);
+            this.PmalasLabel.TabIndex = 66;
+            this.PmalasLabel.Text = "Apellido Materno";
+            this.PmalasLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // PiezasLabel
+            // 
+            this.PiezasLabel.AutoSize = true;
+            this.PiezasLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PiezasLabel.ForeColor = System.Drawing.Color.White;
+            this.PiezasLabel.Location = new System.Drawing.Point(48, 193);
+            this.PiezasLabel.Name = "PiezasLabel";
+            this.PiezasLabel.Size = new System.Drawing.Size(170, 25);
+            this.PiezasLabel.TabIndex = 65;
+            this.PiezasLabel.Text = "Apellido Paterno";
+            this.PiezasLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // ParteLabel
+            // 
+            this.ParteLabel.AutoSize = true;
+            this.ParteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ParteLabel.ForeColor = System.Drawing.Color.White;
+            this.ParteLabel.Location = new System.Drawing.Point(48, 131);
+            this.ParteLabel.Name = "ParteLabel";
+            this.ParteLabel.Size = new System.Drawing.Size(87, 25);
+            this.ParteLabel.TabIndex = 64;
+            this.ParteLabel.Text = "Nombre";
+            this.ParteLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxContrasena
+            // 
+            this.textBoxContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxContrasena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxContrasena.Location = new System.Drawing.Point(53, 421);
+            this.textBoxContrasena.Name = "textBoxContrasena";
+            this.textBoxContrasena.PasswordChar = '*';
+            this.textBoxContrasena.Size = new System.Drawing.Size(263, 31);
+            this.textBoxContrasena.TabIndex = 7;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(48, 393);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(123, 25);
+            this.label2.TabIndex = 73;
+            this.label2.Text = "Contraseña";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // comboBoxTurno
+            // 
+            this.comboBoxTurno.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxTurno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.comboBoxTurno.FormattingEnabled = true;
+            this.comboBoxTurno.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.comboBoxTurno.Location = new System.Drawing.Point(53, 345);
+            this.comboBoxTurno.Name = "comboBoxTurno";
+            this.comboBoxTurno.Size = new System.Drawing.Size(113, 33);
+            this.comboBoxTurno.TabIndex = 5;
+            // 
+            // comboBoxNivel
+            // 
+            this.comboBoxNivel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBoxNivel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.comboBoxNivel.FormattingEnabled = true;
+            this.comboBoxNivel.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3"});
+            this.comboBoxNivel.Location = new System.Drawing.Point(202, 345);
+            this.comboBoxNivel.Name = "comboBoxNivel";
+            this.comboBoxNivel.Size = new System.Drawing.Size(113, 33);
+            this.comboBoxNivel.TabIndex = 6;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(197, 317);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 25);
+            this.label3.TabIndex = 76;
+            this.label3.Text = "Nivel";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxRcontrasena
+            // 
+            this.textBoxRcontrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxRcontrasena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.textBoxRcontrasena.Location = new System.Drawing.Point(53, 485);
+            this.textBoxRcontrasena.Name = "textBoxRcontrasena";
+            this.textBoxRcontrasena.PasswordChar = '*';
+            this.textBoxRcontrasena.Size = new System.Drawing.Size(263, 31);
+            this.textBoxRcontrasena.TabIndex = 8;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(48, 457);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(198, 25);
+            this.label6.TabIndex = 78;
+            this.label6.Text = "Repetir Contraseña";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Usuarios
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DimGray;
+            this.ClientSize = new System.Drawing.Size(359, 617);
+            this.Controls.Add(this.textBoxRcontrasena);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comboBoxNivel);
+            this.Controls.Add(this.comboBoxTurno);
+            this.Controls.Add(this.textBoxContrasena);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.textBoxNoEmpleado);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.buttonCancelar);
+            this.Controls.Add(this.buttonGuardar);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxaMaterno);
+            this.Controls.Add(this.textBoxApaterno);
+            this.Controls.Add(this.textBoxNombre);
+            this.Controls.Add(this.PmalasLabel);
+            this.Controls.Add(this.PiezasLabel);
+            this.Controls.Add(this.ParteLabel);
+            this.Name = "Usuarios";
+            this.Text = "Usuarios";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Usuarios_FormClosed);
+            this.Load += new System.EventHandler(this.Usuarios_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox textBoxNoEmpleado;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button buttonCancelar;
+        private System.Windows.Forms.Button buttonGuardar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBoxaMaterno;
+        private System.Windows.Forms.TextBox textBoxApaterno;
+        private System.Windows.Forms.TextBox textBoxNombre;
+        private System.Windows.Forms.Label PmalasLabel;
+        private System.Windows.Forms.Label PiezasLabel;
+        private System.Windows.Forms.Label ParteLabel;
+        private System.Windows.Forms.TextBox textBoxContrasena;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox comboBoxTurno;
+        private System.Windows.Forms.ComboBox comboBoxNivel;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxRcontrasena;
+        private System.Windows.Forms.Label label6;
+    }
+}

@@ -1,0 +1,9 @@
+C:\Users\walabi\Documents\BDMuestras\Servicio\bin\Release\Servicio.dll.config
+C:\Users\walabi\Documents\BDMuestras\Servicio\bin\Release\Servicio.dll
+C:\Users\walabi\Documents\BDMuestras\Servicio\bin\Release\Servicio.pdb
+C:\Users\walabi\Documents\BDMuestras\Servicio\bin\Release\EntityFramework.dll
+C:\Users\walabi\Documents\BDMuestras\Servicio\bin\Release\EntityFramework.SqlServer.dll
+C:\Users\walabi\Documents\BDMuestras\Servicio\bin\Release\EntityFramework.xml
+C:\Users\walabi\Documents\BDMuestras\Servicio\bin\Release\EntityFramework.SqlServer.xml
+C:\Users\walabi\Documents\BDMuestras\Servicio\obj\Release\Servicio.dll
+C:\Users\walabi\Documents\BDMuestras\Servicio\obj\Release\Servicio.pdb

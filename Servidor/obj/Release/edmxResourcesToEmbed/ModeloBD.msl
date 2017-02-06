@@ -1,0 +1,127 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MuestrasHornosModelStoreContainer" CdmEntityContainer="MuestrasHornosEntities">
+    <EntitySetMapping Name="Ciclos">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.Ciclo">
+        <MappingFragment StoreEntitySet="Ciclos">
+          <ScalarProperty Name="Horno" ColumnName="Horno" />
+          <ScalarProperty Name="No_Ciclo" ColumnName="No_Ciclo" />
+          <ScalarProperty Name="PK_Usuario" ColumnName="PK_Usuario" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Defectos">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.Defecto">
+        <MappingFragment StoreEntitySet="Defectos">
+          <ScalarProperty Name="PK_Defecto" ColumnName="PK_Defecto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lotes">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.Lote">
+        <MappingFragment StoreEntitySet="Lotes">
+          <ScalarProperty Name="PK_Lote" ColumnName="PK_Lote" />
+          <ScalarProperty Name="Horno" ColumnName="Horno" />
+          <ScalarProperty Name="No_Ciclo" ColumnName="No_Ciclo" />
+          <ScalarProperty Name="PK_Usuario" ColumnName="PK_Usuario" />
+          <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Muestras">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.Muestra">
+        <MappingFragment StoreEntitySet="Muestras">
+          <ScalarProperty Name="PK_Muestra" ColumnName="PK_Muestra" />
+          <ScalarProperty Name="PK_Sensor" ColumnName="PK_Sensor" />
+          <ScalarProperty Name="Horno" ColumnName="Horno" />
+          <ScalarProperty Name="No_Ciclo" ColumnName="No_Ciclo" />
+          <ScalarProperty Name="Hora" ColumnName="Hora" />
+          <ScalarProperty Name="Dato" ColumnName="Dato" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Piezas">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.Pieza">
+        <MappingFragment StoreEntitySet="Piezas">
+          <ScalarProperty Name="Lote" ColumnName="Lote" />
+          <ScalarProperty Name="No_Serie" ColumnName="No_Serie" />
+          <ScalarProperty Name="No_Parte" ColumnName="No_Parte" />
+          <ScalarProperty Name="PK_Defecto" ColumnName="PK_Defecto" />
+          <ScalarProperty Name="Aprobada" ColumnName="Aprobada" />
+          <ScalarProperty Name="Rebraze" ColumnName="Rebraze" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PruebaPiezas">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.PruebaPieza">
+        <MappingFragment StoreEntitySet="PruebaPieza">
+          <ScalarProperty Name="PK_PruebaP" ColumnName="PK_PruebaP" />
+          <ScalarProperty Name="PK_Prueba" ColumnName="PK_Prueba" />
+          <ScalarProperty Name="FechaPrueba" ColumnName="FechaPrueba" />
+          <ScalarProperty Name="FechaCaptura" ColumnName="FechaCaptura" />
+          <ScalarProperty Name="Aprobada" ColumnName="Aprobada" />
+          <ScalarProperty Name="Defecto" ColumnName="Defecto" />
+          <ScalarProperty Name="No_Serie" ColumnName="No_Serie" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pruebas">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.Prueba">
+        <MappingFragment StoreEntitySet="Pruebas">
+          <ScalarProperty Name="PK_Prueba" ColumnName="PK_Prueba" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sensores">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.Sensore">
+        <MappingFragment StoreEntitySet="Sensores">
+          <ScalarProperty Name="PK_Sensor" ColumnName="PK_Sensor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="PK_Tipo" ColumnName="PK_Tipo" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TipoSensors">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.TipoSensor">
+        <MappingFragment StoreEntitySet="TipoSensor">
+          <ScalarProperty Name="PK_TipoSensor" ColumnName="PK_TipoSensor" />
+          <ScalarProperty Name="Magnitud" ColumnName="Magnitud" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.Usuario">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="PK_Usuario" ColumnName="PK_Usuario" />
+          <ScalarProperty Name="No_Empleado" ColumnName="No_Empleado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="aPaterno" ColumnName="aPaterno" />
+          <ScalarProperty Name="aMaterno" ColumnName="aMaterno" />
+          <ScalarProperty Name="Turno" ColumnName="Turno" />
+          <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParteCicloes">
+      <EntityTypeMapping TypeName="MuestrasHornosModel.ParteCiclo">
+        <MappingFragment StoreEntitySet="ParteCiclo">
+          <ScalarProperty Name="Horno" ColumnName="Horno" />
+          <ScalarProperty Name="No_Ciclo" ColumnName="No_Ciclo" />
+          <ScalarProperty Name="No_Serie" ColumnName="No_Serie" />
+          <ScalarProperty Name="Piezas_Entrantes" ColumnName="Piezas_Entrantes" />
+          <ScalarProperty Name="Piezas_Rebraze" ColumnName="Piezas_Rebraze" />
+          <ScalarProperty Name="Piezas_Malas" ColumnName="Piezas_Malas" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

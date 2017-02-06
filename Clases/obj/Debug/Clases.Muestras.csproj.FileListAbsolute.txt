@@ -1,0 +1,17 @@
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\Clases.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\Clases.pdb
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\DevExpress.Xpo.v16.1.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\DevExpress.Data.v16.1.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\DevExpress.Xpo.v16.1.xml
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\DevExpress.Data.v16.1.xml
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\de\DevExpress.Xpo.v16.1.resources.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\es\DevExpress.Xpo.v16.1.resources.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\ja\DevExpress.Xpo.v16.1.resources.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\ru\DevExpress.Xpo.v16.1.resources.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\de\DevExpress.Data.v16.1.resources.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\es\DevExpress.Data.v16.1.resources.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\ja\DevExpress.Data.v16.1.resources.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\bin\Debug\ru\DevExpress.Data.v16.1.resources.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\obj\Debug\Clases.Muestras.csprojResolveAssemblyReference.cache
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\obj\Debug\Clases.dll
+C:\Users\aale\documents\visual studio 2015\Projects\BDMuestras\Clases\obj\Debug\Clases.pdb
