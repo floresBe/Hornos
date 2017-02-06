@@ -160,14 +160,20 @@ namespace Servicio
                                    where c.Horno.Contains(horno)
                                    orderby c.No_Ciclo
                                    select c.No_Ciclo;
-                    List<int> ciclos = consulta.ToList();                   
-                    ultimo = ciclos.Last<int>();                    
+                    List<int> ciclos = consulta.ToList();
+                    if (ciclos.Count > 0) {
+                        ultimo = ciclos.Last<int>();
+                    }else
+                    {
+                        return 0;
+                    }
+                                        
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al buscar el ultimo ciclo.");
-                return 0;
+                
             }
             return ultimo;
         }
