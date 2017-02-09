@@ -40,14 +40,14 @@
             this.labelCiclo = new System.Windows.Forms.Label();
             this.listBoxMuestrasTemp = new System.Windows.Forms.ListBox();
             this.chartMuestras = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.serialPortMuestras = new System.IO.Ports.SerialPort(this.components);
+            serialPortMuestras = new System.IO.Ports.SerialPort(this.components);
             this.listBoxMuestrasPress = new System.Windows.Forms.ListBox();
             this.TemporizadorHora = new System.Windows.Forms.Timer(this.components);
             this.timerMuestreo = new System.Windows.Forms.Timer(this.components);
             this.labelReporte = new System.Windows.Forms.Label();
             this.labelConfiguración = new System.Windows.Forms.Label();
-            this.listBoxAmbiente = new System.Windows.Forms.ListBox();
-            this.serialPortAmbiente = new System.IO.Ports.SerialPort(this.components);
+            listBoxAmbiente = new System.Windows.Forms.ListBox();
+            serialPortAmbiente = new System.IO.Ports.SerialPort(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.IconoAtencion = new System.Windows.Forms.PictureBox();
@@ -160,7 +160,7 @@
             // 
             // serialPortMuestras
             // 
-            this.serialPortMuestras.PortName = "COM3";
+            serialPortMuestras.PortName = "COM3";
             // 
             // listBoxMuestrasPress
             // 
@@ -210,19 +210,19 @@
             // 
             // listBoxAmbiente
             // 
-            this.listBoxAmbiente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.listBoxAmbiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxAmbiente.ForeColor = System.Drawing.SystemColors.ControlDark;
-            this.listBoxAmbiente.FormattingEnabled = true;
-            this.listBoxAmbiente.ItemHeight = 29;
-            this.listBoxAmbiente.Location = new System.Drawing.Point(460, 605);
-            this.listBoxAmbiente.Name = "listBoxAmbiente";
-            this.listBoxAmbiente.Size = new System.Drawing.Size(875, 89);
-            this.listBoxAmbiente.TabIndex = 38;
+            listBoxAmbiente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            listBoxAmbiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            listBoxAmbiente.ForeColor = System.Drawing.SystemColors.ControlDark;
+            listBoxAmbiente.FormattingEnabled = true;
+            listBoxAmbiente.ItemHeight = 29;
+            listBoxAmbiente.Location = new System.Drawing.Point(460, 605);
+            listBoxAmbiente.Name = "listBoxAmbiente";
+            listBoxAmbiente.Size = new System.Drawing.Size(875, 89);
+            listBoxAmbiente.TabIndex = 38;
             // 
             // serialPortAmbiente
             // 
-            this.serialPortAmbiente.PortName = "COM6";
+            serialPortAmbiente.PortName = "COM6";
             // 
             // label1
             // 
@@ -313,9 +313,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(18, 335);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(408, 31);
+            this.label3.Size = new System.Drawing.Size(412, 31);
             this.label3.TabIndex = 42;
-            this.label3.Text = "Nombre             Hora        Presión";
+            this.label3.Text = "Nombre             Hora            Vacio";
             // 
             // labelMaquina
             // 
@@ -365,7 +365,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1369, 726);
+            this.ClientSize = new System.Drawing.Size(1356, 726);
             this.Controls.Add(this.labelPro);
             this.Controls.Add(this.labelPromedio);
             this.Controls.Add(this.pictureCorriendo);
@@ -374,7 +374,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.listBoxAmbiente);
+            this.Controls.Add(listBoxAmbiente);
             this.Controls.Add(this.IconoAtencion);
             this.Controls.Add(this.labelConfiguración);
             this.Controls.Add(this.labelReporte);
@@ -395,6 +395,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Toma de Muestras";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MonitoreoContinuo_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MonitoreoContinuo_FormClosed);
             this.Load += new System.EventHandler(this.MonitoreoContinuo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartMuestras)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -413,7 +414,6 @@
         private System.Windows.Forms.Label labelMaqTitulo;
         private System.Windows.Forms.Label labelFechaHora;
         private System.Windows.Forms.Button buttonImprimirInforme;
-        private System.IO.Ports.SerialPort serialPortMuestras;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer TemporizadorHora;
         private System.Windows.Forms.Timer timerMuestreo;
@@ -425,8 +425,6 @@
         private System.Windows.Forms.Label labelReporte;
         private System.Windows.Forms.Label labelConfiguración;
         private System.Windows.Forms.PictureBox IconoAtencion;
-        private System.IO.Ports.SerialPort serialPortAmbiente;
-        public System.Windows.Forms.ListBox listBoxAmbiente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
@@ -435,5 +433,8 @@
         public System.Windows.Forms.PictureBox pictureCorriendo;
         private System.Windows.Forms.Label labelPromedio;
         private System.Windows.Forms.Label labelPro;
+        private static System.IO.Ports.SerialPort serialPortMuestras;
+        private static System.IO.Ports.SerialPort serialPortAmbiente;
+        public static System.Windows.Forms.ListBox listBoxAmbiente;
     }
 }

@@ -1735,14 +1735,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Hornos.exe" size="452608">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Hornos.exe" size="453120">
       <assemblyIdentity name="Hornos" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>J9s7qS3bVQpnwSn2ilyWDsJpXFC6GTjOI1a5a4crQUM=</dsig:DigestValue>
+        <dsig:DigestValue>SpLhb2EfE798hZYiRizS0e7Xw+Zqo9QM4S4zFhROFYc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1754,7 +1754,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ixJTGS+2eAJZigvEuZED/6AveZ06mIISZsM3mlH/Rmg=</dsig:DigestValue>
+        <dsig:DigestValue>Z+j1+Bk+8Ddalu5eIab0dKlLJ3GSFhpuHv5Mw3wOrE4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1770,13 +1770,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Hornos.exe.config" size="1715">
+  <file name="Hornos.exe.config" size="1730">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>nLJvX6cwPTRIxmzjLcC6X9N+MNp6Rxov7aaxXH2zRY0=</dsig:DigestValue>
+      <dsig:DigestValue>NxkLtnY/2I2CjNISDZjLUvHk88yWRI52b1H/UcquB8w=</dsig:DigestValue>
     </hash>
   </file>
   <file name="images.ico" size="99678">
