@@ -58,7 +58,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelMaquina = new System.Windows.Forms.Label();
             this.pictureCorriendo = new System.Windows.Forms.PictureBox();
-            this.labelPromedio = new System.Windows.Forms.Label();
+            labelPromedio = new System.Windows.Forms.Label();
             this.labelPro = new System.Windows.Forms.Label();
             this.timerDatosRecibidos = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartMuestras)).BeginInit();
@@ -341,14 +341,14 @@
             // 
             // labelPromedio
             // 
-            this.labelPromedio.AutoSize = true;
-            this.labelPromedio.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelPromedio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labelPromedio.Location = new System.Drawing.Point(1235, 496);
-            this.labelPromedio.Name = "labelPromedio";
-            this.labelPromedio.Size = new System.Drawing.Size(74, 31);
-            this.labelPromedio.TabIndex = 45;
-            this.labelPromedio.Text = "0000";
+            labelPromedio.AutoSize = true;
+            labelPromedio.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            labelPromedio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            labelPromedio.Location = new System.Drawing.Point(1235, 496);
+            labelPromedio.Name = "labelPromedio";
+            labelPromedio.Size = new System.Drawing.Size(74, 31);
+            labelPromedio.TabIndex = 45;
+            labelPromedio.Text = "0000";
             // 
             // labelPro
             // 
@@ -372,7 +372,7 @@
             this.BackColor = System.Drawing.Color.DarkGray;
             this.ClientSize = new System.Drawing.Size(1354, 726);
             this.Controls.Add(this.labelPro);
-            this.Controls.Add(this.labelPromedio);
+            this.Controls.Add(labelPromedio);
             this.Controls.Add(this.pictureCorriendo);
             this.Controls.Add(this.labelMaquina);
             this.Controls.Add(this.label3);
@@ -436,7 +436,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelMaquina;
         public System.Windows.Forms.PictureBox pictureCorriendo;
-        private System.Windows.Forms.Label labelPromedio;
+        private static System.Windows.Forms.Label labelPromedio;
         private System.Windows.Forms.Label labelPro;
         private System.Windows.Forms.Timer timerDatosRecibidos;
         private static System.IO.Ports.SerialPort serialPortMuestras;

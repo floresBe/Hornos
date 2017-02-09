@@ -93,7 +93,7 @@ namespace BDMuestras
                     break;
             }
             timerMuestreo.Start();
-
+            timerDatosRecibidos.Start();
         }
         /// <summary>
         /// Evento de recibir datos desde puerto serial del horno
@@ -121,6 +121,7 @@ namespace BDMuestras
                 catch (Exception) { MessageBox.Show("Al Leer linea"); }
                 try
                 {
+                    valoresHorno = null;
                     valoresHorno = datosHorno.Split(',');
                 }
                 catch (Exception)
@@ -220,44 +221,9 @@ namespace BDMuestras
             {
                 MessageBox.Show("Error al tomar fecha.");
             }
-            if (datosHornoRecibidos)
-            {
-                DatosHornoRecibidos();
-                try
-                {
-                    if (encendido)
-                    {
-                        pictureCorriendo.Visible = true;
-                        pictureDetenido.Visible = false;
-                    }
-                    else
-                    {
-                        pictureCorriendo.Visible = false;
-                        pictureDetenido.Visible = true;
-                    }
-                    if (Program.ciclosVacios)
-                        IconoAtencion.Visible = true;
-                    else
-                        IconoAtencion.Visible = false;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Error al cambiar etiquetas.");
-                }
-            }
-            try
-            {
-                labelPromedio.Text = promedio.ToString();
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error al mostrar promedio.");
-            }
+            
 
-            if (datosAmbienteRecibidos)
-            {
-                DatosAmbienteRecibidos();
-            }
+            
             if (puertoAmbienteAbierto)
             {
                 serialPortAmbiente.Write("1");
@@ -329,7 +295,6 @@ namespace BDMuestras
             Program.ciclosVacios = parteCiclo.ciclosVacios();
             try
             {
-
                 status = valoresHorno[30].ToString();
             }
             catch (Exception ex)
@@ -441,6 +406,7 @@ namespace BDMuestras
         /// </summary>
         private static void GraficarMuestras()
         {
+            
             sensor = new cSensor();
             muestra = new cMuestra(); 
             string nombreSerie = string.Empty;
@@ -482,7 +448,9 @@ namespace BDMuestras
                 {
                     promedio = Convert.ToInt32(valoresHorno[31]);
                     muestra.Insertar(32, Program.horno, Program.noCiclo, sHora, promedio.ToString());
-                }
+                }                 
+                    labelPromedio.Text = promedio.ToString();      
+                
             }
             catch (Exception)
             {
@@ -528,7 +496,7 @@ namespace BDMuestras
             }
             catch (Exception ex)
             {
-                //MessageBox.Show("Verifique que el puerto de comunicación con el ambiente este correctamente conectado. (COM 6)");
+                MessageBox.Show("Verifique que el puerto de comunicación con el ambiente este correctamente conectado. (COM 6)");
                 puertoAmbienteAbierto = false;
                 return;
             }
@@ -540,7 +508,35 @@ namespace BDMuestras
 
         private void timerDatosRecibidos_Tick(object sender, EventArgs e)
         {
-
+            if (datosHornoRecibidos)
+            {
+                DatosHornoRecibidos();
+                try
+                {
+                    if (encendido)
+                    {
+                        pictureCorriendo.Visible = true;
+                        pictureDetenido.Visible = false;
+                    }
+                    else
+                    {
+                        pictureCorriendo.Visible = false;
+                        pictureDetenido.Visible = true;
+                    }
+                    if (Program.ciclosVacios)
+                        IconoAtencion.Visible = true;
+                    else
+                        IconoAtencion.Visible = false;
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Error al cambiar etiquetas.");
+                }
+                if (datosAmbienteRecibidos)
+                {
+                    DatosAmbienteRecibidos();
+                }
+            }
         }
     }
 }
