@@ -273,6 +273,7 @@ namespace BDMuestras
             chartMuestras.ChartAreas[0].AxisY.Title = "Temperatura (Fº)";
             chartMuestras.ChartAreas[0].AxisY2.Title = "Vacío (MiliTorrs)";
             chartMuestras.ChartAreas[0].AxisY2.Enabled = AxisEnabled.True;
+           // chartMuestras.ChartAreas[0].AxisY2.Interval = 20;
             chartMuestras.ChartAreas[0].AxisX.Title = "Hora";
             chartMuestras.Series.Clear();
             foreach (string snsr in sensores)
