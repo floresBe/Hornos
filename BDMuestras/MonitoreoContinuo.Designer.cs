@@ -60,6 +60,7 @@
             this.pictureCorriendo = new System.Windows.Forms.PictureBox();
             this.labelPromedio = new System.Windows.Forms.Label();
             this.labelPro = new System.Windows.Forms.Label();
+            this.timerDatosRecibidos = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartMuestras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IconoAtencion)).BeginInit();
@@ -360,12 +361,16 @@
             this.labelPro.TabIndex = 46;
             this.labelPro.Text = "Promedio";
             // 
+            // timerDatosRecibidos
+            // 
+            this.timerDatosRecibidos.Tick += new System.EventHandler(this.timerDatosRecibidos_Tick);
+            // 
             // MonitoreoContinuo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1356, 726);
+            this.ClientSize = new System.Drawing.Size(1354, 726);
             this.Controls.Add(this.labelPro);
             this.Controls.Add(this.labelPromedio);
             this.Controls.Add(this.pictureCorriendo);
@@ -433,6 +438,7 @@
         public System.Windows.Forms.PictureBox pictureCorriendo;
         private System.Windows.Forms.Label labelPromedio;
         private System.Windows.Forms.Label labelPro;
+        private System.Windows.Forms.Timer timerDatosRecibidos;
         private static System.IO.Ports.SerialPort serialPortMuestras;
         private static System.IO.Ports.SerialPort serialPortAmbiente;
         public static System.Windows.Forms.ListBox listBoxAmbiente;

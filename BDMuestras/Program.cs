@@ -38,6 +38,7 @@ namespace BDMuestras
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             sesion = 0;
+            noCiclo = 0;
             tiempoMuestreo = 1;
             ObtenerPrimerCiclo();
             VentanaInicio = new IniciarSesion();
@@ -46,6 +47,7 @@ namespace BDMuestras
 
         private static void ObtenerPrimerCiclo()
         {
+            horno = "I0";
             ciclo = new cCiclo();
             string[] fecha = null;
             string f = string.Empty;
@@ -74,11 +76,19 @@ namespace BDMuestras
             ciclo = null;
         }
         public static void ObtenerNuevoCiclo()
-
         {
-            ultimo = ciclo.ObtenerUltimo(horno);
-            noCiclo = ultimo++;
-            GenerarNombre();
+            ciclo = new cCiclo();
+            try
+            {
+                ultimo = ciclo.ObtenerUltimo(horno);
+                noCiclo = 1 + ultimo;
+                GenerarNombre();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("obtenerNuevo");
+            }
+            ciclo = null;
         }
         public static void GenerarNombre()
         {
@@ -87,7 +97,7 @@ namespace BDMuestras
             {
                 horno = horno + "00";
             }
-            if (noCiclo > 10 && noCiclo < 100)
+            if (noCiclo >= 10 && noCiclo < 100)
             {
                 horno = horno + "0";
             }

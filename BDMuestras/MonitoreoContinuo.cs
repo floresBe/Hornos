@@ -132,10 +132,11 @@ namespace BDMuestras
                 {
                     datosHornoRecibidos = true;
                 }//Cierra if comprobacion de todos los datos recibidos
-                else if (valoresHorno.Length > 40 && datosHornoDesocupados == true)
+                else if (valoresHorno.Length > 33 || datosHornoDesocupados)
                 {
                     valoresHorno = null;
                     datosHorno = string.Empty;
+                    datosHornoRecibidos = false;
                 }
             }
             catch (Exception ex)
@@ -342,6 +343,7 @@ namespace BDMuestras
                 {
                     try
                     {
+
                         encendido = true;
                         fechaCompleta = DateTime.Now.ToString().Split();
                         fecha = fechaCompleta[0];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
@@ -366,6 +368,7 @@ namespace BDMuestras
                         MessageBox.Show("Error al correr Ciclo.");
                     }
                 }
+
             }
             else if (valoresHorno != null && valoresHorno.Length == 32 && status == "0")
             {
@@ -497,7 +500,7 @@ namespace BDMuestras
             try
             {
                 serialPortMuestras.Open();
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
                 try
                 {
                     serialPortMuestras.Write("1");
@@ -515,7 +518,7 @@ namespace BDMuestras
             try
             {
                 serialPortAmbiente.Open();
-                Thread.Sleep(2000);
+                //Thread.Sleep(2000);
                 try
                 {
                     serialPortAmbiente.Write("1");
@@ -525,7 +528,7 @@ namespace BDMuestras
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Verifique que el puerto de comunicación con el ambiente este correctamente conectado. (COM 6)");
+                //MessageBox.Show("Verifique que el puerto de comunicación con el ambiente este correctamente conectado. (COM 6)");
                 puertoAmbienteAbierto = false;
                 return;
             }
@@ -535,6 +538,9 @@ namespace BDMuestras
             serialPortAmbiente.Close();
         }
 
-    
+        private void timerDatosRecibidos_Tick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
