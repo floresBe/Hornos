@@ -39,6 +39,7 @@ namespace BDMuestras
             Application.SetCompatibleTextRenderingDefault(false);
             sesion = 0;
             noCiclo = 0;
+            horno = "A0";
             tiempoMuestreo = 1;
             ObtenerPrimerCiclo();
             VentanaInicio = new IniciarSesion();
@@ -47,7 +48,7 @@ namespace BDMuestras
 
         private static void ObtenerPrimerCiclo()
         {
-            horno = "I0";
+            
             ciclo = new cCiclo();
             string[] fecha = null;
             string f = string.Empty;
@@ -92,7 +93,7 @@ namespace BDMuestras
         }
         public static void GenerarNombre()
         {
-            horno = "I0";
+            horno = "A0";
             if (noCiclo < 10)
             {
                 horno = horno + "00";

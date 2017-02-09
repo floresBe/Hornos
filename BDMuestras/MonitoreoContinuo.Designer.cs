@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoreoContinuo));
             this.labelHorno = new System.Windows.Forms.Label();
             this.labelTituloGrafica = new System.Windows.Forms.Label();
@@ -149,10 +149,10 @@
             // 
             // chartMuestras
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartMuestras.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartMuestras.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartMuestras.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartMuestras.Legends.Add(legend2);
             this.chartMuestras.Location = new System.Drawing.Point(461, 120);
             this.chartMuestras.Name = "chartMuestras";
             this.chartMuestras.Size = new System.Drawing.Size(875, 441);
@@ -327,7 +327,7 @@
             this.labelMaquina.Name = "labelMaquina";
             this.labelMaquina.Size = new System.Drawing.Size(202, 35);
             this.labelMaquina.TabIndex = 43;
-            this.labelMaquina.Text = "I1806";
+            this.labelMaquina.Text = "Aluminio1436";
             // 
             // pictureCorriendo
             // 

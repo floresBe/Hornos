@@ -31,7 +31,6 @@ namespace BDMuestras
         static string datosHorno; //Se utiliza para almacenar datos provinientes del puerto serial del horno
         static string datosAmbiente; //Se utiliza para almacenar datos provinientes del puerto serial del ambiente
         static int promedio; //Informacion incluida en los datos que vienen del horno
-        //static int punto;//Maneja la cantidad de puntos de cada serie de la grafica
         bool puertoHornoAbierto;//Indica si el puerto serial del horno esta abierto
         bool puertoAmbienteAbierto; //Indica si el puerto serial del ambiente esta abierto
         static string temp;//Guarda la temperatura del ambiente
@@ -377,17 +376,21 @@ namespace BDMuestras
         {
             try
             {
-                sHora = string.Format("{0:HH:mm:ss}", DateTime.Now);
-                string cadenaAmbiente = "Temperatura: " + valoresAmbiente[0] + " Humedad: " + valoresAmbiente[1] + "   Hora: " + sHora;
-                listBoxAmbiente.Items.Add(cadenaAmbiente);
-                listBoxAmbiente.SelectedItem = cadenaAmbiente;
                 temp = valoresAmbiente[0];
                 hum = valoresAmbiente[1];
+                if (temp != string.Empty && hum != string.Empty)
+                {
+                    sHora = string.Format("{0:HH:mm:ss}", DateTime.Now);
+                    string cadenaAmbiente = "Temperatura: " + valoresAmbiente[0] + " Humedad: " + valoresAmbiente[1] + "   Hora: " + sHora;
+                    listBoxAmbiente.Items.Add(cadenaAmbiente);
+                    listBoxAmbiente.SelectedItem = cadenaAmbiente;
 
-                muestra.Insertar(31, Program.horno, Program.noCiclo, sHora, temp);
-                muestra.Insertar(32, Program.horno, Program.noCiclo, sHora, hum);
-                datosAmbienteRecibidos = false;
-                datosAmbienteDesocupados = true;
+
+                    muestra.Insertar(31, Program.horno, Program.noCiclo, sHora, temp);
+                    muestra.Insertar(32, Program.horno, Program.noCiclo, sHora, hum);
+                    datosAmbienteRecibidos = false;
+                    datosAmbienteDesocupados = true;
+                }
             }
             catch (Exception ex)
             {
@@ -425,6 +428,7 @@ namespace BDMuestras
             int tipo;
             int claveSensor;
             string valor;
+            int v;
             try
             {
                 foreach (var serie in Program.VentanaMonitoreo.chartMuestras.Series)
@@ -433,6 +437,7 @@ namespace BDMuestras
                     tipo = sensor.ObtenerTipo(nombreSerie);
                     claveSensor = sensor.ObtenerPK(nombreSerie) - 1;
                     valor = valoresHorno[claveSensor];
+                    v = Convert.ToInt32(valor);
                     if (tipo == 1 && valoresHorno.Length == 32)
                     {
                         cadena = nombreSerie + "      " + sHora + "              " + valor;
@@ -445,11 +450,14 @@ namespace BDMuestras
                         Program.VentanaMonitoreo.listBoxMuestrasPress.Items.Add(cadena);
                         Program.VentanaMonitoreo.listBoxMuestrasPress.SelectedItem = cadena;
                     }
-                    transformarHora();
-                    serie.ChartType = SeriesChartType.Line;
-                    serie.XValueType = ChartValueType.Time;
-                    serie.Points.AddY(valoresHorno[claveSensor]);
-                    serie.Points[serie.Points.Count - 1].XValue = hora;
+                    if (v < 1600)
+                    {
+                        transformarHora();
+                        serie.ChartType = SeriesChartType.Line;
+                        serie.XValueType = ChartValueType.Time;
+                        serie.Points.AddY(valoresHorno[claveSensor]);
+                        serie.Points[serie.Points.Count - 1].XValue = hora;
+                    }
                     if (encendido)
                     {
                         muestra.Insertar(claveSensor + 1, Program.horno, Program.noCiclo, sHora, valor);
