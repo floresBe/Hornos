@@ -100,7 +100,7 @@ namespace BDMuestras
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
+        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
         {
             try
             {
@@ -115,8 +115,8 @@ namespace BDMuestras
                 }
                 try
                 {
-                    // datosHorno += sp.ReadExisting();
-                    datosHorno += sp.ReadLine();
+                    //datosHorno += sp.ReadExisting();
+                   datosHorno += sp.ReadLine();
                 }
                 catch (Exception) { MessageBox.Show("Al Leer linea"); }
                 try
@@ -152,31 +152,31 @@ namespace BDMuestras
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private static void DataReceivedHandler2(object sender, SerialDataReceivedEventArgs e)
-        {
-            try
-            {
-                SerialPort sp = (SerialPort)sender;
-                //datos += sp.ReadExisting();
-                datosAmbiente += sp.ReadLine();
-                //Console.WriteLine(datosAmbiente);
-                valoresAmbiente = datosAmbiente.Split(',');
-                if (valoresAmbiente.Length == 3 && datosAmbienteRecibidos == false)
-                {
-                    datosAmbienteRecibidos = true;
-                }//Cierra if comprobacion de todos los datos recibidos
-                else if (datosAmbienteDesocupados || valoresAmbiente.Length > 3)
-                {
-                    valoresAmbiente = null;
-                    datosAmbiente = string.Empty;
-                    datosAmbienteDesocupados = false;
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error al recibir datos ambiente.");
-            }
-        }
+        //private void DataReceivedHandler2(object sender, SerialDataReceivedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        SerialPort sp = (SerialPort)sender;
+        //        //datos += sp.ReadExisting();
+        //        datosAmbiente += sp.ReadLine();
+        //        //Console.WriteLine(datosAmbiente);
+        //        valoresAmbiente = datosAmbiente.Split(',');
+        //        if (valoresAmbiente.Length == 3 && datosAmbienteRecibidos == false)
+        //        {
+        //            datosAmbienteRecibidos = true;
+        //        }//Cierra if comprobacion de todos los datos recibidos
+        //        else if (datosAmbienteDesocupados || valoresAmbiente.Length > 3)
+        //        {
+        //            valoresAmbiente = null;
+        //            datosAmbiente = string.Empty;
+        //            datosAmbienteDesocupados = false;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("Error al recibir datos ambiente.");
+        //    }
+        //}
         /// <summary>
         /// Evento de dar clic al boton de reportes
         /// </summary>
@@ -194,7 +194,7 @@ namespace BDMuestras
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
-            Program.sesion = 1;            
+            Program.sesion = 1;
             this.Close();
         }
         /// <summary>
@@ -221,13 +221,24 @@ namespace BDMuestras
             {
                 MessageBox.Show("Error al tomar fecha.");
             }
-            
 
-            
+            if (datosAmbienteRecibidos)
+            {
+                DatosAmbienteRecibidos();
+            }
+
             if (puertoAmbienteAbierto)
             {
-                serialPortAmbiente.Write("1");
+                try
+                {
+                    serialPortAmbiente.Write("1");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Enviar Uno");
+                }
             }
+
         }
         /// <summary>
         /// Evento de pedir muestreo
@@ -283,11 +294,11 @@ namespace BDMuestras
             }
             sensor = null;
             // punto = 0;
-        }     
+        }
         /// <summary>
         /// Procedimiento a seguir despues de recibir los datos por puerto serial del horno
         /// </summary>
-        public static void DatosHornoRecibidos()
+        public void DatosHornoRecibidos()
         {
             ciclo = new cCiclo();
             parteCiclo = new cParteCiclo();
@@ -311,8 +322,8 @@ namespace BDMuestras
 
                         encendido = true;
                         fechaCompleta = DateTime.Now.ToString().Split();
-                        fecha = fechaCompleta[0];                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
-                        sHora = string.Format("{0:HH:mm:ss}", DateTime.Now); 
+                        fecha = fechaCompleta[0];
+                        sHora = string.Format("{0:HH:mm:ss}", DateTime.Now);
                         if (Program.mismociclo)
                         {
                             nombreCiclo = Program.nombreCiclo;
@@ -362,7 +373,7 @@ namespace BDMuestras
         /// <summary>
         /// Procedimiento a seguir despues de recibir los datos por puerto serial del ambiente
         /// </summary>
-        public static void DatosAmbienteRecibidos()
+        public void DatosAmbienteRecibidos()
         {
             try
             {
@@ -404,11 +415,11 @@ namespace BDMuestras
         /// <summary>
         /// Grafica las muestras recibidas por el puerto serial
         /// </summary>
-        private static void GraficarMuestras()
+        private void GraficarMuestras()
         {
-            
+
             sensor = new cSensor();
-            muestra = new cMuestra(); 
+            muestra = new cMuestra();
             string nombreSerie = string.Empty;
             string cadena = string.Empty;
             int tipo;
@@ -421,7 +432,7 @@ namespace BDMuestras
                     nombreSerie = serie.Name;
                     tipo = sensor.ObtenerTipo(nombreSerie);
                     claveSensor = sensor.ObtenerPK(nombreSerie) - 1;
-                    valor = valoresHorno[claveSensor]; 
+                    valor = valoresHorno[claveSensor];
                     if (tipo == 1 && valoresHorno.Length == 32)
                     {
                         cadena = nombreSerie + "      " + sHora + "              " + valor;
@@ -440,7 +451,7 @@ namespace BDMuestras
                     serie.Points.AddY(valoresHorno[claveSensor]);
                     serie.Points[serie.Points.Count - 1].XValue = hora;
                     if (encendido)
-                    {                        
+                    {
                         muestra.Insertar(claveSensor + 1, Program.horno, Program.noCiclo, sHora, valor);
                     }
                 }
@@ -448,13 +459,13 @@ namespace BDMuestras
                 {
                     promedio = Convert.ToInt32(valoresHorno[31]);
                     muestra.Insertar(32, Program.horno, Program.noCiclo, sHora, promedio.ToString());
-                }                 
-                    labelPromedio.Text = promedio.ToString();      
-                
+                }
+                labelPromedio.Text = promedio.ToString();
+
             }
             catch (Exception)
             {
-                 MessageBox.Show("Error al Graficar Muestras.");
+                MessageBox.Show("Error al Graficar Muestras.");
             }
             sensor = null;
             muestra = null;
@@ -482,7 +493,7 @@ namespace BDMuestras
                 puertoHornoAbierto = false;
                 return;
             }
-            serialPortAmbiente.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler2);
+           // serialPortAmbiente.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler2);
             try
             {
                 serialPortAmbiente.Open();
@@ -501,7 +512,8 @@ namespace BDMuestras
                 return;
             }
         }
-        private static void cerrarPuertos() {
+        private void cerrarPuertos()
+        {
             serialPortMuestras.Close();
             serialPortAmbiente.Close();
         }
@@ -532,11 +544,35 @@ namespace BDMuestras
                 {
                     MessageBox.Show("Error al cambiar etiquetas.");
                 }
-                if (datosAmbienteRecibidos)
+               
+            }
+        }
+
+        private void serialPortAmbiente_DataReceived(object sender, SerialDataReceivedEventArgs e)
+        {
+            try
+            {
+                SerialPort sp = (SerialPort)sender;
+                datosAmbiente += sp.ReadExisting();
+                //datosAmbiente += sp.ReadLine();
+                //Console.WriteLine(datosAmbiente);
+                valoresAmbiente = datosAmbiente.Split(',');
+                if (valoresAmbiente.Length == 3 && datosAmbienteRecibidos == false)
                 {
-                    DatosAmbienteRecibidos();
+                    datosAmbienteRecibidos = true;
+                }//Cierra if comprobacion de todos los datos recibidos
+                else if (datosAmbienteDesocupados || valoresAmbiente.Length > 3)
+                {
+                    valoresAmbiente = null;
+                    datosAmbiente = string.Empty;
+                    datosAmbienteDesocupados = false;
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al recibir datos ambiente.");
+            }
+
         }
     }
 }

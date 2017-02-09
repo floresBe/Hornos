@@ -40,14 +40,14 @@
             this.labelCiclo = new System.Windows.Forms.Label();
             this.listBoxMuestrasTemp = new System.Windows.Forms.ListBox();
             this.chartMuestras = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            serialPortMuestras = new System.IO.Ports.SerialPort(this.components);
+            this.serialPortMuestras = new System.IO.Ports.SerialPort(this.components);
             this.listBoxMuestrasPress = new System.Windows.Forms.ListBox();
             this.TemporizadorHora = new System.Windows.Forms.Timer(this.components);
             this.timerMuestreo = new System.Windows.Forms.Timer(this.components);
             this.labelReporte = new System.Windows.Forms.Label();
             this.labelConfiguración = new System.Windows.Forms.Label();
-            listBoxAmbiente = new System.Windows.Forms.ListBox();
-            serialPortAmbiente = new System.IO.Ports.SerialPort(this.components);
+            this.listBoxAmbiente = new System.Windows.Forms.ListBox();
+            this.serialPortAmbiente = new System.IO.Ports.SerialPort(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.IconoAtencion = new System.Windows.Forms.PictureBox();
@@ -58,7 +58,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.labelMaquina = new System.Windows.Forms.Label();
             this.pictureCorriendo = new System.Windows.Forms.PictureBox();
-            labelPromedio = new System.Windows.Forms.Label();
+            this.labelPromedio = new System.Windows.Forms.Label();
             this.labelPro = new System.Windows.Forms.Label();
             this.timerDatosRecibidos = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartMuestras)).BeginInit();
@@ -161,7 +161,7 @@
             // 
             // serialPortMuestras
             // 
-            serialPortMuestras.PortName = "COM3";
+            this.serialPortMuestras.PortName = "COM3";
             // 
             // listBoxMuestrasPress
             // 
@@ -211,19 +211,20 @@
             // 
             // listBoxAmbiente
             // 
-            listBoxAmbiente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            listBoxAmbiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            listBoxAmbiente.ForeColor = System.Drawing.SystemColors.ControlDark;
-            listBoxAmbiente.FormattingEnabled = true;
-            listBoxAmbiente.ItemHeight = 29;
-            listBoxAmbiente.Location = new System.Drawing.Point(460, 605);
-            listBoxAmbiente.Name = "listBoxAmbiente";
-            listBoxAmbiente.Size = new System.Drawing.Size(875, 89);
-            listBoxAmbiente.TabIndex = 38;
+            this.listBoxAmbiente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listBoxAmbiente.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxAmbiente.ForeColor = System.Drawing.SystemColors.ControlDark;
+            this.listBoxAmbiente.FormattingEnabled = true;
+            this.listBoxAmbiente.ItemHeight = 29;
+            this.listBoxAmbiente.Location = new System.Drawing.Point(460, 605);
+            this.listBoxAmbiente.Name = "listBoxAmbiente";
+            this.listBoxAmbiente.Size = new System.Drawing.Size(875, 89);
+            this.listBoxAmbiente.TabIndex = 38;
             // 
             // serialPortAmbiente
             // 
-            serialPortAmbiente.PortName = "COM6";
+            this.serialPortAmbiente.PortName = "COM6";
+            this.serialPortAmbiente.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPortAmbiente_DataReceived);
             // 
             // label1
             // 
@@ -341,14 +342,14 @@
             // 
             // labelPromedio
             // 
-            labelPromedio.AutoSize = true;
-            labelPromedio.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            labelPromedio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            labelPromedio.Location = new System.Drawing.Point(1235, 496);
-            labelPromedio.Name = "labelPromedio";
-            labelPromedio.Size = new System.Drawing.Size(74, 31);
-            labelPromedio.TabIndex = 45;
-            labelPromedio.Text = "0000";
+            this.labelPromedio.AutoSize = true;
+            this.labelPromedio.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelPromedio.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelPromedio.Location = new System.Drawing.Point(1235, 496);
+            this.labelPromedio.Name = "labelPromedio";
+            this.labelPromedio.Size = new System.Drawing.Size(74, 31);
+            this.labelPromedio.TabIndex = 45;
+            this.labelPromedio.Text = "0000";
             // 
             // labelPro
             // 
@@ -370,16 +371,16 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1354, 726);
+            this.ClientSize = new System.Drawing.Size(1348, 726);
             this.Controls.Add(this.labelPro);
-            this.Controls.Add(labelPromedio);
+            this.Controls.Add(this.labelPromedio);
             this.Controls.Add(this.pictureCorriendo);
             this.Controls.Add(this.labelMaquina);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label1);
-            this.Controls.Add(listBoxAmbiente);
+            this.Controls.Add(this.listBoxAmbiente);
             this.Controls.Add(this.IconoAtencion);
             this.Controls.Add(this.labelConfiguración);
             this.Controls.Add(this.labelReporte);
@@ -436,11 +437,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelMaquina;
         public System.Windows.Forms.PictureBox pictureCorriendo;
-        private static System.Windows.Forms.Label labelPromedio;
         private System.Windows.Forms.Label labelPro;
         private System.Windows.Forms.Timer timerDatosRecibidos;
-        private static System.IO.Ports.SerialPort serialPortMuestras;
-        private static System.IO.Ports.SerialPort serialPortAmbiente;
-        public static System.Windows.Forms.ListBox listBoxAmbiente;
+        private System.Windows.Forms.Label labelPromedio;
+        private System.IO.Ports.SerialPort serialPortMuestras;
+        public System.Windows.Forms.ListBox listBoxAmbiente;
+        private System.IO.Ports.SerialPort serialPortAmbiente;
     }
 }
