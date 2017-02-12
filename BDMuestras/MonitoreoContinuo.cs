@@ -35,6 +35,9 @@ namespace BDMuestras
         bool puertoAmbienteAbierto; //Indica si el puerto serial del ambiente esta abierto
         static string temp;//Guarda la temperatura del ambiente
         static string hum;//Guarda la humedad del ambiente
+        static double primeraHora;
+        static double ultimaHora;
+        static bool isPrimeraHora = true;
 
         static cCiclo ciclo;
         static cSensor sensor;
@@ -62,6 +65,9 @@ namespace BDMuestras
             puertoAmbienteAbierto = false;
             temp = string.Empty;
             hum = string.Empty;
+            //chartMuestras.ChartAreas[0].AxisX.Maximum = 0.1;
+            //chartMuestras.ChartAreas[0].AxisX.Minimum = 0;
+
         }
 
         //Eventos
@@ -115,7 +121,7 @@ namespace BDMuestras
                 try
                 {
                     //datosHorno += sp.ReadExisting();
-                   datosHorno += sp.ReadLine();
+                    datosHorno += sp.ReadLine();
                 }
                 catch (Exception) { MessageBox.Show("Al Leer linea"); }
                 try
@@ -273,7 +279,7 @@ namespace BDMuestras
             chartMuestras.ChartAreas[0].AxisY.Title = "Temperatura (Fº)";
             chartMuestras.ChartAreas[0].AxisY2.Title = "Vacío (MiliTorrs)";
             chartMuestras.ChartAreas[0].AxisY2.Enabled = AxisEnabled.True;
-           // chartMuestras.ChartAreas[0].AxisY2.Interval = 20;
+            // chartMuestras.ChartAreas[0].AxisY2.Interval = 20;
             chartMuestras.ChartAreas[0].AxisX.Title = "Hora";
             chartMuestras.Series.Clear();
             foreach (string snsr in sensores)
@@ -401,20 +407,16 @@ namespace BDMuestras
         /// <summary>
         /// Transforma la hora para utilizarla en la grafica
         /// </summary>
-        private static void transformarHora()
+        private static double transformarHora(string sHora)
         {
-            try
-            {
-                sHora = string.Format("{0:HH:mm:ss}", DateTime.Now);
-                String[] parte = sHora.Split(':');
-                //Se hacen las operacionespara transformar la hora (1 dia = 1; 1 hora = 0.041666)
-                hora = (Int32.Parse(parte[0])) * (0.041666) + (Int32.Parse(parte[1]))
-                        * (0.04166667 / 60) + (Int32.Parse(parte[2])) * ((0.04166667 / 60) / 60);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al transformar hora.");
-            }
+
+
+            String[] parte = sHora.Split(':');
+            //Se hacen las operacionespara transformar la hora (1 dia = 1; 1 hora = 0.041666)
+            return (Int32.Parse(parte[0])) * (0.041666) + (Int32.Parse(parte[1]))
+                    * (0.04166667 / 60) + (Int32.Parse(parte[2])) * ((0.04166667 / 60) / 60);
+
+
         }
         /// <summary>
         /// Grafica las muestras recibidas por el puerto serial
@@ -453,17 +455,23 @@ namespace BDMuestras
                     }
                     if (v < 1600)
                     {
-                        transformarHora();
+                        sHora = string.Format("{0:HH:mm:ss}", DateTime.Now);
+                        hora = transformarHora(sHora);
                         serie.ChartType = SeriesChartType.Line;
                         serie.XValueType = ChartValueType.Time;
                         serie.Points.AddY(valoresHorno[claveSensor]);
                         serie.Points[serie.Points.Count - 1].XValue = hora;
+
+                        refrescarHora();
+
+
                     }
                     if (encendido)
                     {
                         muestra.Insertar(claveSensor + 1, Program.horno, Program.noCiclo, sHora, valor);
                     }
                 }
+                Program.VentanaMonitoreo.chartMuestras.Update();
                 if (encendido)
                 {
                     promedio = Convert.ToInt32(valoresHorno[31]);
@@ -479,6 +487,25 @@ namespace BDMuestras
             sensor = null;
             muestra = null;
         }
+
+        private void refrescarHora()
+        {
+            if (isPrimeraHora)
+            {
+                isPrimeraHora = false;
+                primeraHora = transformarHora(string.Format("{0:HH:mm:ss}", DateTime.Now));
+                ultimaHora = transformarHora(string.Format("{0:HH:mm:ss}", DateTime.Now.AddHours(4)));
+            }
+            if (hora > ultimaHora)
+            {
+                primeraHora += 0.041666;
+                ultimaHora += 0.041666;
+                Program.VentanaMonitoreo.chartMuestras.ChartAreas[0].AxisX.ScaleView.Zoom(primeraHora, ultimaHora);
+                
+            }
+            Program.VentanaMonitoreo.chartMuestras.Update();
+        }
+
         /// <summary>
         /// Abre el puerto serial
         /// </summary> 
@@ -502,7 +529,7 @@ namespace BDMuestras
                 puertoHornoAbierto = false;
                 return;
             }
-           // serialPortAmbiente.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler2);
+            // serialPortAmbiente.DataReceived += new SerialDataReceivedEventHandler(DataReceivedHandler2);
             try
             {
                 serialPortAmbiente.Open();
@@ -553,7 +580,7 @@ namespace BDMuestras
                 {
                     MessageBox.Show("Error al cambiar etiquetas.");
                 }
-               
+
             }
         }
 

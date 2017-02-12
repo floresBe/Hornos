@@ -1742,7 +1742,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>yEUQAKBbQNZrv3ellRAvIWNtyj6cWuyYsu0M3ZQbr5o=</dsig:DigestValue>
+        <dsig:DigestValue>2xPxc8zH6vRuRJap1Pxj881AnmlzldsBlTP0QEIMz5E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1754,7 +1754,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>2htj6ePDfxw9Ewa2n73q1TN+64ao5JM9kmGNgGkpX+4=</dsig:DigestValue>
+        <dsig:DigestValue>9c4FYdgq9djnoZza/KVwHVk/vKuwWm5pemQR9wHl1SY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -1770,13 +1770,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="Hornos.exe.config" size="1730">
+  <file name="Hornos.exe.config" size="1715">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>NxkLtnY/2I2CjNISDZjLUvHk88yWRI52b1H/UcquB8w=</dsig:DigestValue>
+      <dsig:DigestValue>nLJvX6cwPTRIxmzjLcC6X9N+MNp6Rxov7aaxXH2zRY0=</dsig:DigestValue>
     </hash>
   </file>
   <file name="images.ico" size="99678">
