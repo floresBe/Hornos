@@ -34,7 +34,7 @@ namespace Servicio
                     entidad.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al crear ciclo.");
             }
@@ -151,6 +151,7 @@ namespace Servicio
         /// <returns></returns>
         public int ObtenerUltimo(string horno)
         {
+
             int ultimo = 0;
             try
             {

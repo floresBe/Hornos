@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoreoContinuo));
             this.labelHorno = new System.Windows.Forms.Label();
             this.labelTituloGrafica = new System.Windows.Forms.Label();
@@ -60,6 +60,7 @@
             this.pictureCorriendo = new System.Windows.Forms.PictureBox();
             this.labelPromedio = new System.Windows.Forms.Label();
             this.labelPro = new System.Windows.Forms.Label();
+            this.timerDatosRecibidos = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.chartMuestras)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.IconoAtencion)).BeginInit();
@@ -148,10 +149,10 @@
             // 
             // chartMuestras
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chartMuestras.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chartMuestras.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chartMuestras.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chartMuestras.Legends.Add(legend2);
             this.chartMuestras.Location = new System.Drawing.Point(461, 120);
             this.chartMuestras.Name = "chartMuestras";
             this.chartMuestras.Size = new System.Drawing.Size(875, 441);
@@ -223,6 +224,7 @@
             // serialPortAmbiente
             // 
             this.serialPortAmbiente.PortName = "COM6";
+            this.serialPortAmbiente.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPortAmbiente_DataReceived);
             // 
             // label1
             // 
@@ -313,9 +315,9 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(18, 335);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(408, 31);
+            this.label3.Size = new System.Drawing.Size(412, 31);
             this.label3.TabIndex = 42;
-            this.label3.Text = "Nombre             Hora        Presión";
+            this.label3.Text = "Nombre             Hora            Vacio";
             // 
             // labelMaquina
             // 
@@ -325,7 +327,7 @@
             this.labelMaquina.Name = "labelMaquina";
             this.labelMaquina.Size = new System.Drawing.Size(202, 35);
             this.labelMaquina.TabIndex = 43;
-            this.labelMaquina.Text = "I1806";
+            this.labelMaquina.Text = "Aluminio1436";
             // 
             // pictureCorriendo
             // 
@@ -360,12 +362,16 @@
             this.labelPro.TabIndex = 46;
             this.labelPro.Text = "Promedio";
             // 
+            // timerDatosRecibidos
+            // 
+            this.timerDatosRecibidos.Tick += new System.EventHandler(this.timerDatosRecibidos_Tick);
+            // 
             // MonitoreoContinuo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkGray;
-            this.ClientSize = new System.Drawing.Size(1369, 726);
+            this.ClientSize = new System.Drawing.Size(1348, 726);
             this.Controls.Add(this.labelPro);
             this.Controls.Add(this.labelPromedio);
             this.Controls.Add(this.pictureCorriendo);
@@ -395,6 +401,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Toma de Muestras";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MonitoreoContinuo_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MonitoreoContinuo_FormClosed);
             this.Load += new System.EventHandler(this.MonitoreoContinuo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.chartMuestras)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -413,7 +420,6 @@
         private System.Windows.Forms.Label labelMaqTitulo;
         private System.Windows.Forms.Label labelFechaHora;
         private System.Windows.Forms.Button buttonImprimirInforme;
-        private System.IO.Ports.SerialPort serialPortMuestras;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Timer TemporizadorHora;
         private System.Windows.Forms.Timer timerMuestreo;
@@ -425,15 +431,17 @@
         private System.Windows.Forms.Label labelReporte;
         private System.Windows.Forms.Label labelConfiguración;
         private System.Windows.Forms.PictureBox IconoAtencion;
-        private System.IO.Ports.SerialPort serialPortAmbiente;
-        public System.Windows.Forms.ListBox listBoxAmbiente;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label labelMaquina;
         public System.Windows.Forms.PictureBox pictureCorriendo;
-        private System.Windows.Forms.Label labelPromedio;
         private System.Windows.Forms.Label labelPro;
+        private System.Windows.Forms.Timer timerDatosRecibidos;
+        private System.Windows.Forms.Label labelPromedio;
+        private System.IO.Ports.SerialPort serialPortMuestras;
+        public System.Windows.Forms.ListBox listBoxAmbiente;
+        private System.IO.Ports.SerialPort serialPortAmbiente;
     }
 }
