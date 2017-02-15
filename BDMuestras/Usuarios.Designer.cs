@@ -29,15 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxNoEmpleado = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.buttonCancelar = new System.Windows.Forms.Button();
-            this.buttonGuardar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBoxaMaterno = new System.Windows.Forms.TextBox();
             this.textBoxApaterno = new System.Windows.Forms.TextBox();
@@ -64,9 +62,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.usuariosTableAdapter = new Hornos.MuestrasHornosDataSetTableAdapters.UsuariosTableAdapter();
             this.label8 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.buttonCancelar = new System.Windows.Forms.Button();
+            this.buttonGuardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.muestrasHornosDataSet)).BeginInit();
@@ -77,7 +78,7 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(43, 286);
+            this.label5.Location = new System.Drawing.Point(34, 293);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(307, 31);
             this.label5.TabIndex = 71;
@@ -87,7 +88,7 @@
             // 
             this.textBoxNoEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNoEmpleado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNoEmpleado.Location = new System.Drawing.Point(50, 362);
+            this.textBoxNoEmpleado.Location = new System.Drawing.Point(46, 362);
             this.textBoxNoEmpleado.Name = "textBoxNoEmpleado";
             this.textBoxNoEmpleado.Size = new System.Drawing.Size(263, 31);
             this.textBoxNoEmpleado.TabIndex = 1;
@@ -97,38 +98,12 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(44, 334);
+            this.label4.Location = new System.Drawing.Point(40, 334);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(147, 25);
             this.label4.TabIndex = 70;
             this.label4.Text = "No. Empleado";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // buttonCancelar
-            // 
-            this.buttonCancelar.BackColor = System.Drawing.Color.Red;
-            this.buttonCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonCancelar.BackgroundImage")));
-            this.buttonCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonCancelar.Location = new System.Drawing.Point(539, 529);
-            this.buttonCancelar.Name = "buttonCancelar";
-            this.buttonCancelar.Size = new System.Drawing.Size(59, 50);
-            this.buttonCancelar.TabIndex = 10;
-            this.buttonCancelar.UseVisualStyleBackColor = false;
-            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
-            // 
-            // buttonGuardar
-            // 
-            this.buttonGuardar.BackColor = System.Drawing.Color.DarkGray;
-            this.buttonGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonGuardar.BackgroundImage")));
-            this.buttonGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.buttonGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonGuardar.Location = new System.Drawing.Point(612, 529);
-            this.buttonGuardar.Name = "buttonGuardar";
-            this.buttonGuardar.Size = new System.Drawing.Size(59, 50);
-            this.buttonGuardar.TabIndex = 9;
-            this.buttonGuardar.UseVisualStyleBackColor = false;
-            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
             // 
             // label1
             // 
@@ -146,7 +121,7 @@
             // 
             this.textBoxaMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxaMaterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxaMaterno.Location = new System.Drawing.Point(51, 548);
+            this.textBoxaMaterno.Location = new System.Drawing.Point(47, 548);
             this.textBoxaMaterno.Name = "textBoxaMaterno";
             this.textBoxaMaterno.Size = new System.Drawing.Size(263, 31);
             this.textBoxaMaterno.TabIndex = 4;
@@ -155,7 +130,7 @@
             // 
             this.textBoxApaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxApaterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxApaterno.Location = new System.Drawing.Point(51, 486);
+            this.textBoxApaterno.Location = new System.Drawing.Point(47, 486);
             this.textBoxApaterno.Name = "textBoxApaterno";
             this.textBoxApaterno.Size = new System.Drawing.Size(263, 31);
             this.textBoxApaterno.TabIndex = 3;
@@ -164,7 +139,7 @@
             // 
             this.textBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNombre.Location = new System.Drawing.Point(51, 424);
+            this.textBoxNombre.Location = new System.Drawing.Point(47, 424);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(263, 31);
             this.textBoxNombre.TabIndex = 2;
@@ -174,7 +149,7 @@
             this.PmalasLabel.AutoSize = true;
             this.PmalasLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PmalasLabel.ForeColor = System.Drawing.Color.White;
-            this.PmalasLabel.Location = new System.Drawing.Point(46, 520);
+            this.PmalasLabel.Location = new System.Drawing.Point(42, 520);
             this.PmalasLabel.Name = "PmalasLabel";
             this.PmalasLabel.Size = new System.Drawing.Size(174, 25);
             this.PmalasLabel.TabIndex = 66;
@@ -186,7 +161,7 @@
             this.PiezasLabel.AutoSize = true;
             this.PiezasLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PiezasLabel.ForeColor = System.Drawing.Color.White;
-            this.PiezasLabel.Location = new System.Drawing.Point(46, 458);
+            this.PiezasLabel.Location = new System.Drawing.Point(42, 458);
             this.PiezasLabel.Name = "PiezasLabel";
             this.PiezasLabel.Size = new System.Drawing.Size(170, 25);
             this.PiezasLabel.TabIndex = 65;
@@ -198,7 +173,7 @@
             this.ParteLabel.AutoSize = true;
             this.ParteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParteLabel.ForeColor = System.Drawing.Color.White;
-            this.ParteLabel.Location = new System.Drawing.Point(46, 396);
+            this.ParteLabel.Location = new System.Drawing.Point(42, 396);
             this.ParteLabel.Name = "ParteLabel";
             this.ParteLabel.Size = new System.Drawing.Size(87, 25);
             this.ParteLabel.TabIndex = 64;
@@ -400,19 +375,6 @@
             this.label8.Text = "Eliminar usuario";
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button1.Location = new System.Drawing.Point(612, 15);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(59, 50);
-            this.button1.TabIndex = 82;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -435,12 +397,63 @@
             this.label10.TabIndex = 84;
             this.label10.Text = "Guardar";
             // 
+            // button2
+            // 
+            this.button2.BackgroundImage = global::Hornos.Properties.Resources.help;
+            this.button2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button2.Location = new System.Drawing.Point(642, 293);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(29, 31);
+            this.button2.TabIndex = 85;
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("button1.BackgroundImage")));
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Location = new System.Drawing.Point(612, 15);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(59, 50);
+            this.button1.TabIndex = 82;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // buttonCancelar
+            // 
+            this.buttonCancelar.BackColor = System.Drawing.Color.Red;
+            this.buttonCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonCancelar.BackgroundImage")));
+            this.buttonCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonCancelar.Location = new System.Drawing.Point(539, 529);
+            this.buttonCancelar.Name = "buttonCancelar";
+            this.buttonCancelar.Size = new System.Drawing.Size(59, 50);
+            this.buttonCancelar.TabIndex = 10;
+            this.buttonCancelar.UseVisualStyleBackColor = false;
+            this.buttonCancelar.Click += new System.EventHandler(this.buttonCancelar_Click);
+            // 
+            // buttonGuardar
+            // 
+            this.buttonGuardar.BackColor = System.Drawing.Color.DarkGray;
+            this.buttonGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonGuardar.BackgroundImage")));
+            this.buttonGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.buttonGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.buttonGuardar.Location = new System.Drawing.Point(612, 529);
+            this.buttonGuardar.Name = "buttonGuardar";
+            this.buttonGuardar.Size = new System.Drawing.Size(59, 50);
+            this.buttonGuardar.TabIndex = 9;
+            this.buttonGuardar.UseVisualStyleBackColor = false;
+            this.buttonGuardar.Click += new System.EventHandler(this.buttonGuardar_Click);
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(724, 614);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.button1);
@@ -514,5 +527,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button button2;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Servicio;
+﻿using Hornos;
+using Servicio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -62,11 +63,6 @@ namespace BDMuestras
             if (textBoxaMaterno.Text != string.Empty && textBoxaMaterno.Text != null)
             {
                 aMaterno = textBoxaMaterno.Text;
-            }
-            else
-            {
-                MessageBox.Show("Ingresar Apellido.");
-                return;
             }
 
             if (comboBoxTurno.SelectedItem != null)
@@ -188,6 +184,12 @@ namespace BDMuestras
             comboBoxTurno.Text = string.Empty;
             comboBoxNivel.SelectedItem = null;
             comboBoxNivel.Text = string.Empty;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Ayudas ayuda = new Hornos.Ayudas();
+            ayuda.Show();
         }
     }
 }

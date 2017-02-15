@@ -115,6 +115,12 @@
     <Compile Include="Atencion.Designer.cs">
       <DependentUpon>Atencion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Ayudas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Ayudas.Designer.cs">
+      <DependentUpon>Ayudas.cs</DependentUpon>
+    </Compile>
     <Compile Include="CapturadeDatos.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </Compile>
     <EmbeddedResource Include="Atencion.resx">
       <DependentUpon>Atencion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Ayudas.resx">
+      <DependentUpon>Ayudas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CapturadeDatos.resx">
       <DependentUpon>CapturadeDatos.cs</DependentUpon>
@@ -293,6 +302,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images.ico" />
+    <None Include="Resources\help.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

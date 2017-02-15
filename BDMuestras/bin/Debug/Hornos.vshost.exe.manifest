@@ -1735,14 +1735,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Hornos.exe" size="492032">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Hornos.exe" size="569856">
       <assemblyIdentity name="Hornos" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>OJcqBICir9mUKoztUjpYJYNmoelPGDsYARfEZBu8l/w=</dsig:DigestValue>
+        <dsig:DigestValue>XSvdnJkBnvA21KkyQ8VahGWvoQZzBfmq0MMJKl1sKkY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
