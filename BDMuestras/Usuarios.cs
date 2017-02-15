@@ -21,6 +21,7 @@ namespace BDMuestras
         int nivel;
         string contra;
         cUsuario usuario = null;
+
         public Usuarios()
         {
             InitializeComponent();
@@ -113,25 +114,34 @@ namespace BDMuestras
                 MessageBox.Show("Ingresar contraseña.");
                 return;
             }
-            usuario.Insertar(noEmpleado, nombre, aPaterno, aMaterno, contra, nivel, turno);
-            MessageBox.Show("Usuario Ingresado Satisfactoriamente.");
-            this.Close();
-            //Program.VentanaInicio.Show();
+            DialogResult insertar = MessageBox.Show("Seguro que desea agregar el usuario: " + noEmpleado + " a la base de datos?","Agregar usuario?",MessageBoxButtons.YesNo);
+            if (insertar == DialogResult.Yes)
+            {
+                usuario = new cUsuario();
+                int insert = usuario.Insertar(noEmpleado, nombre, aPaterno, aMaterno, contra, nivel, turno);
+                if (insert > 0)
+                {
+                    MessageBox.Show("Usuario Ingresado Satisfactoriamente.");
+                    limpiarDatos();
+                }
+                else
+                {
+                    MessageBox.Show("El usuario " + noEmpleado + " ya existe en la base de datos.");
+                    textBoxNoEmpleado.Focus();
+                }
+                usuario = null;
+            }
+            usuariosActivos();
         }
-
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
-            usuario = new cUsuario();
-            string noEmpleado = dataGridUsuarios.CurrentRow.Cells[0].Value.ToString();
-            usuario.desactivarUsuario(noEmpleado);
-            usuariosActivos();           
+            limpiarDatos();
         }
-
         private void Usuarios_FormClosed(object sender, FormClosedEventArgs e)
         {
+            Program.sesion = 0;
             Program.VentanaInicio.Show();
         }
-
         private void Usuarios_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'muestrasHornosDataSet.Usuarios' table. You can move, or remove it, as needed.
@@ -154,6 +164,30 @@ namespace BDMuestras
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            usuario = new cUsuario();
+            string noEmpleado = dataGridUsuarios.CurrentRow.Cells[0].Value.ToString();
+            DialogResult eliminar = MessageBox.Show("Seguro que desea eliminar al usuario: " + noEmpleado, "Eliminar usuario?", MessageBoxButtons.YesNo);
+            if (eliminar == DialogResult.Yes)
+            {
+                usuario.desactivarUsuario(noEmpleado);
+                usuariosActivos();
+            }
+            usuario = null;
+        }
+        private void limpiarDatos()
+        {
+            textBoxaMaterno.Text = string.Empty;
+            textBoxApaterno.Text = string.Empty;
+            textBoxContrasena.Text = string.Empty;
+            textBoxNoEmpleado.Text = string.Empty;
+            textBoxNombre.Text = string.Empty;
+            textBoxRcontrasena.Text = string.Empty;
+            comboBoxTurno.SelectedItem = null;
+            comboBoxTurno.Text = string.Empty;
+            comboBoxNivel.SelectedItem = null;
+            comboBoxNivel.Text = string.Empty;
+        }
     }
 }

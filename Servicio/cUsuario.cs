@@ -22,30 +22,39 @@ namespace Servicio
         /// <returns></returns>
         public int Insertar(string usuario, string nombre, string ap, string am, string contrasena, int nivel, string turno)
         {
-            using (var entidad = new MuestrasHornosEntities())
+            bool existe = existeUsuario(usuario);
+            if (!existe)
             {
-                Usuario us = null;
-                try
+                using (var entidad = new MuestrasHornosEntities())
                 {
-                    us = new Usuario
+                    Usuario us = null;
+                    try
                     {
-                        No_Empleado = usuario,
-                        Nombre = nombre,
-                        aPaterno = ap,
-                        aMaterno = am,
-                        Contraseña = contrasena,
-                        Nivel = nivel,
-                        Turno = turno
-                    };
-                    entidad.Usuarios.Add(us);
-                    entidad.SaveChanges();
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine(e);
-                }
+                        us = new Usuario
+                        {
+                            No_Empleado = usuario,
+                            Nombre = nombre,
+                            aPaterno = ap,
+                            aMaterno = am,
+                            Contraseña = contrasena,
+                            Nivel = nivel,
+                            Turno = turno,
+                            Activo = 1
+                        };
+                        entidad.Usuarios.Add(us);
+                        entidad.SaveChanges();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
 
-                return us.PK_Usuario;
+                    return us.PK_Usuario;
+                }
+            }
+            else
+            {
+                return 0;
             }
         }
         /// <summary>
@@ -203,5 +212,36 @@ namespace Servicio
         }
 
 
+        private bool existeUsuario(string usuario)
+        {
+            bool existe = false;
+            var lista = new List<Usuario>();
+            try
+            {
+                using (var entidad = new MuestrasHornosEntities())
+                {
+                    var consultaUsuario = from c in entidad.Usuarios
+                                          where c.No_Empleado.Equals(usuario)
+                                          select c;
+                    lista = consultaUsuario.ToList();
+                    int usuarios = lista.Count;
+                    if (usuarios > 0)
+                    {
+                        existe = true;
+                    }
+                    else
+                    {
+                        existe = false;
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+
+            return existe;
+        }
     }
 }
