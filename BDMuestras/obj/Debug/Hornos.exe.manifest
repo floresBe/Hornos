@@ -1742,19 +1742,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vwBu/r0Y4Opdh3l4KDpKWBzsa60bUe4T6M5PaqYhoso=</dsig:DigestValue>
+        <dsig:DigestValue>XeNKGnVmrpzqYLA6rBvJt2m+/b5pJHC+V1tm8f4jaMI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Servicio.dll" size="87552">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Servicio.dll" size="90112">
       <assemblyIdentity name="Servicio" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MFBa2C2D6Lnz6SjDwsjS8aP7IC+pRLMciivspSYERb0=</dsig:DigestValue>
+        <dsig:DigestValue>LXtfDpoc3bHOScYDrLyBHZGHswQPgECpaAFBMym9K9k=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

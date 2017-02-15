@@ -14,7 +14,7 @@ namespace Servicio
         /// </summary>
         /// <param name="noSerie">Numero serial de la pieza</param>
         /// <param name="defecto">Tipo de defecto</param>
-        public string Insertar(string noSerie, int lote, int defecto, int aprobada, int rebraze)
+        public int Insertar(int noSerie, int lote, int defecto, int aprobada, int rebraze)
         {
             Pieza pieza = null;
 
@@ -72,9 +72,9 @@ namespace Servicio
             return lista;
         }
 
-        public string obtenerPKdeSerie(string serie)
+        public int obtenerPKdeSerie(int serie)
         {
-            string pieza = null;
+            int pieza = 0;
 
             try
             {
