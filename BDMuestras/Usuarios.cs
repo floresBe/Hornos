@@ -24,6 +24,7 @@ namespace BDMuestras
         public Usuarios()
         {
             InitializeComponent();
+            
         }
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
@@ -122,9 +123,8 @@ namespace BDMuestras
         {
             usuario = new cUsuario();
             string noEmpleado = dataGridUsuarios.CurrentRow.Cells[0].Value.ToString();
-            //usuario.desactivarUsuario(noEmpleado);
-
-            dataGridUsuarios.Refresh();            
+            usuario.desactivarUsuario(noEmpleado);
+            usuariosActivos();           
         }
 
         private void Usuarios_FormClosed(object sender, FormClosedEventArgs e)
@@ -136,10 +136,14 @@ namespace BDMuestras
         {
             // TODO: This line of code loads data into the 'muestrasHornosDataSet.Usuarios' table. You can move, or remove it, as needed.
             this.usuariosTableAdapter.Fill(this.muestrasHornosDataSet.Usuarios);
+            usuariosActivos();
+        }
+        private void usuariosActivosToolStripButton_Click(object sender, EventArgs e)
+        {
+            usuariosActivos();
 
         }
-
-        private void usuariosActivosToolStripButton_Click(object sender, EventArgs e)
+        private void usuariosActivos()
         {
             try
             {
@@ -149,7 +153,7 @@ namespace BDMuestras
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
             }
-
         }
+        
     }
 }

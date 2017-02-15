@@ -187,6 +187,7 @@ namespace Servicio
                         {
                             user.Activo = 0;
                         }
+                        entidad.SaveChanges();
                     }
                     else
                     {
