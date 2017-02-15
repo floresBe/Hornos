@@ -22,5 +22,16 @@ namespace Hornos.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=AALEPOTTER_PC\\MSSQLSERVERR;Initial Catalog=MuestrasHornos;User ID=sa;" +
+            "Password=floresB1310")]
+        public string MuestrasHornosConnectionString {
+            get {
+                return ((string)(this["MuestrasHornosConnectionString"]));
+            }
+        }
     }
 }

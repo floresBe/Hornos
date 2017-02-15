@@ -10,6 +10,7 @@
     <Property Name="PK_Usuario" Type="int" Nullable="false" />
     <Property Name="Fecha" Type="varchar" MaxLength="20" />
     <Property Name="Hora" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="vacio" Type="int" />
   </EntityType>
   <EntityType Name="Defectos">
     <Key>
@@ -18,6 +19,18 @@
     <Property Name="PK_Defecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="25" />
+    <Property Name="Activo" Type="int" />
+  </EntityType>
+  <EntityType Name="inicio">
+    <Key>
+      <PropertyRef Name="dia" />
+      <PropertyRef Name="mes" />
+      <PropertyRef Name="ano" />
+    </Key>
+    <Property Name="dia" Type="int" Nullable="false" />
+    <Property Name="mes" Type="int" Nullable="false" />
+    <Property Name="ano" Type="int" Nullable="false" />
+    <Property Name="posicion" Type="int" />
   </EntityType>
   <EntityType Name="Lotes">
     <Key>
@@ -43,10 +56,12 @@
   </EntityType>
   <EntityType Name="ParteCiclo">
     <Key>
+      <PropertyRef Name="Horno" />
+      <PropertyRef Name="No_Ciclo" />
       <PropertyRef Name="No_Parte" />
     </Key>
-    <Property Name="Horno" Type="varchar" MaxLength="20" />
-    <Property Name="No_Ciclo" Type="int" />
+    <Property Name="Horno" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="No_Ciclo" Type="int" Nullable="false" />
     <Property Name="No_Parte" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Piezas_Entrantes" Type="int" />
     <Property Name="Piezas_Rebraze" Type="int" />
@@ -55,13 +70,16 @@
   <EntityType Name="Piezas">
     <Key>
       <PropertyRef Name="No_Serie" />
+      <PropertyRef Name="No_Parte" />
     </Key>
     <Property Name="Lote" Type="int" Nullable="false" />
-    <Property Name="No_Serie" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="No_Serie" Type="int" Nullable="false" />
     <Property Name="No_Parte" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="PK_Defecto" Type="int" />
     <Property Name="Aprobada" Type="int" />
     <Property Name="Rebraze" Type="int" />
+    <Property Name="Reparo" Type="int" />
+    <Property Name="Serie" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityType Name="PruebaPieza">
     <Key>
@@ -82,6 +100,7 @@
     <Property Name="PK_Prueba" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="100" />
+    <Property Name="Activo" Type="int" />
   </EntityType>
   <EntityType Name="Sensores">
     <Key>
@@ -112,6 +131,7 @@
     <Property Name="Turno" Type="varchar" MaxLength="15" />
     <Property Name="Nivel" Type="int" Nullable="false" />
     <Property Name="Contraseña" Type="varchar" MaxLength="8" />
+    <Property Name="Activo" Type="int" />
   </EntityType>
   <Association Name="FK_CicloMuestra">
     <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="0..1">
@@ -188,7 +208,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_ParteCiclo">
-    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="0..1">
+    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="ParteCiclo" Type="Self.ParteCiclo" Multiplicity="*" />
@@ -200,20 +220,6 @@
       <Dependent Role="ParteCiclo">
         <PropertyRef Name="Horno" />
         <PropertyRef Name="No_Ciclo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Pieza">
-    <End Role="Piezas" Type="Self.Piezas" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="PruebaPieza" Type="Self.PruebaPieza" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Piezas">
-        <PropertyRef Name="No_Serie" />
-      </Principal>
-      <Dependent Role="PruebaPieza">
-        <PropertyRef Name="No_Serie" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -274,6 +280,7 @@
   <EntityContainer Name="MuestrasHornosModelStoreContainer">
     <EntitySet Name="Ciclos" EntityType="Self.Ciclos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Defectos" EntityType="Self.Defectos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="inicio" EntityType="Self.inicio" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Lotes" EntityType="Self.Lotes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Muestras" EntityType="Self.Muestras" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParteCiclo" EntityType="Self.ParteCiclo" Schema="dbo" store:Type="Tables" />
@@ -306,10 +313,6 @@
     <AssociationSet Name="FK_ParteCiclo" Association="Self.FK_ParteCiclo">
       <End Role="Ciclos" EntitySet="Ciclos" />
       <End Role="ParteCiclo" EntitySet="ParteCiclo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Pieza" Association="Self.FK_Pieza">
-      <End Role="Piezas" EntitySet="Piezas" />
-      <End Role="PruebaPieza" EntitySet="PruebaPieza" />
     </AssociationSet>
     <AssociationSet Name="FK_Prueba" Association="Self.FK_Prueba">
       <End Role="Pruebas" EntitySet="Pruebas" />

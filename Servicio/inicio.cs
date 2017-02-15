@@ -12,16 +12,11 @@ namespace Servicio
     using System;
     using System.Collections.Generic;
     
-    public partial class PruebaPieza
+    public partial class inicio
     {
-        public int PK_PruebaP { get; set; }
-        public int PK_Prueba { get; set; }
-        public string FechaPrueba { get; set; }
-        public string FechaCaptura { get; set; }
-        public int Aprobada { get; set; }
-        public Nullable<int> Defecto { get; set; }
-        public string No_Serie { get; set; }
-    
-        public virtual Prueba Prueba { get; set; }
+        public int dia { get; set; }
+        public int mes { get; set; }
+        public int ano { get; set; }
+        public Nullable<int> posicion { get; set; }
     }
 }

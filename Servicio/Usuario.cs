@@ -29,6 +29,7 @@ namespace Servicio
         public string Turno { get; set; }
         public int Nivel { get; set; }
         public string Contraseña { get; set; }
+        public Nullable<int> Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Ciclo> Ciclos { get; set; }

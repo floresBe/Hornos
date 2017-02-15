@@ -15,7 +15,7 @@ namespace Servicio
     public partial class ParteCiclo
     {
         public string Horno { get; set; }
-        public Nullable<int> No_Ciclo { get; set; }
+        public int No_Ciclo { get; set; }
         public string No_Parte { get; set; }
         public Nullable<int> Piezas_Entrantes { get; set; }
         public Nullable<int> Piezas_Rebraze { get; set; }

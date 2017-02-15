@@ -14,22 +14,16 @@ namespace Servicio
     
     public partial class Pieza
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pieza()
-        {
-            this.PruebaPiezas = new HashSet<PruebaPieza>();
-        }
-    
         public int Lote { get; set; }
-        public string No_Serie { get; set; }
+        public int No_Serie { get; set; }
         public string No_Parte { get; set; }
         public Nullable<int> PK_Defecto { get; set; }
         public Nullable<int> Aprobada { get; set; }
         public Nullable<int> Rebraze { get; set; }
+        public Nullable<int> Reparo { get; set; }
+        public string Serie { get; set; }
     
         public virtual Defecto Defecto { get; set; }
         public virtual Lote Lote1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PruebaPieza> PruebaPiezas { get; set; }
     }
 }

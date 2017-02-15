@@ -28,7 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Usuarios));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxNoEmpleado = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -48,24 +52,39 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBoxRcontrasena = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.dataGridUsuarios = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.usuariosBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.muestrasHornosDataSet = new Hornos.MuestrasHornosDataSet();
+            this.usuariosTableAdapter = new Hornos.MuestrasHornosDataSetTableAdapters.UsuariosTableAdapter();
+            this.noEmpleadoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aPaternoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.aMaternoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.turnoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nivelDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label8 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.muestrasHornosDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(44, 15);
+            this.label5.Location = new System.Drawing.Point(43, 291);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(236, 37);
+            this.label5.Size = new System.Drawing.Size(307, 31);
             this.label5.TabIndex = 71;
-            this.label5.Text = "Capturar Datos";
+            this.label5.Text = "Capturar Nuevo Usuario";
             // 
             // textBoxNoEmpleado
             // 
             this.textBoxNoEmpleado.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNoEmpleado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNoEmpleado.Location = new System.Drawing.Point(52, 97);
+            this.textBoxNoEmpleado.Location = new System.Drawing.Point(50, 362);
             this.textBoxNoEmpleado.Name = "textBoxNoEmpleado";
             this.textBoxNoEmpleado.Size = new System.Drawing.Size(263, 31);
             this.textBoxNoEmpleado.TabIndex = 1;
@@ -75,7 +94,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(46, 69);
+            this.label4.Location = new System.Drawing.Point(44, 334);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(147, 25);
             this.label4.TabIndex = 70;
@@ -88,7 +107,7 @@
             this.buttonCancelar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonCancelar.BackgroundImage")));
             this.buttonCancelar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonCancelar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonCancelar.Location = new System.Drawing.Point(256, 545);
+            this.buttonCancelar.Location = new System.Drawing.Point(612, 12);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(59, 50);
             this.buttonCancelar.TabIndex = 10;
@@ -101,7 +120,7 @@
             this.buttonGuardar.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("buttonGuardar.BackgroundImage")));
             this.buttonGuardar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.buttonGuardar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.buttonGuardar.Location = new System.Drawing.Point(182, 545);
+            this.buttonGuardar.Location = new System.Drawing.Point(612, 541);
             this.buttonGuardar.Name = "buttonGuardar";
             this.buttonGuardar.Size = new System.Drawing.Size(59, 50);
             this.buttonGuardar.TabIndex = 9;
@@ -113,7 +132,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(48, 317);
+            this.label1.Location = new System.Drawing.Point(403, 332);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 25);
             this.label1.TabIndex = 67;
@@ -124,7 +143,7 @@
             // 
             this.textBoxaMaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxaMaterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxaMaterno.Location = new System.Drawing.Point(53, 283);
+            this.textBoxaMaterno.Location = new System.Drawing.Point(51, 548);
             this.textBoxaMaterno.Name = "textBoxaMaterno";
             this.textBoxaMaterno.Size = new System.Drawing.Size(263, 31);
             this.textBoxaMaterno.TabIndex = 4;
@@ -133,7 +152,7 @@
             // 
             this.textBoxApaterno.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxApaterno.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxApaterno.Location = new System.Drawing.Point(53, 221);
+            this.textBoxApaterno.Location = new System.Drawing.Point(51, 486);
             this.textBoxApaterno.Name = "textBoxApaterno";
             this.textBoxApaterno.Size = new System.Drawing.Size(263, 31);
             this.textBoxApaterno.TabIndex = 3;
@@ -142,7 +161,7 @@
             // 
             this.textBoxNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNombre.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxNombre.Location = new System.Drawing.Point(53, 159);
+            this.textBoxNombre.Location = new System.Drawing.Point(51, 424);
             this.textBoxNombre.Name = "textBoxNombre";
             this.textBoxNombre.Size = new System.Drawing.Size(263, 31);
             this.textBoxNombre.TabIndex = 2;
@@ -152,7 +171,7 @@
             this.PmalasLabel.AutoSize = true;
             this.PmalasLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PmalasLabel.ForeColor = System.Drawing.Color.White;
-            this.PmalasLabel.Location = new System.Drawing.Point(48, 255);
+            this.PmalasLabel.Location = new System.Drawing.Point(46, 520);
             this.PmalasLabel.Name = "PmalasLabel";
             this.PmalasLabel.Size = new System.Drawing.Size(174, 25);
             this.PmalasLabel.TabIndex = 66;
@@ -164,7 +183,7 @@
             this.PiezasLabel.AutoSize = true;
             this.PiezasLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.PiezasLabel.ForeColor = System.Drawing.Color.White;
-            this.PiezasLabel.Location = new System.Drawing.Point(48, 193);
+            this.PiezasLabel.Location = new System.Drawing.Point(46, 458);
             this.PiezasLabel.Name = "PiezasLabel";
             this.PiezasLabel.Size = new System.Drawing.Size(170, 25);
             this.PiezasLabel.TabIndex = 65;
@@ -176,7 +195,7 @@
             this.ParteLabel.AutoSize = true;
             this.ParteLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ParteLabel.ForeColor = System.Drawing.Color.White;
-            this.ParteLabel.Location = new System.Drawing.Point(48, 131);
+            this.ParteLabel.Location = new System.Drawing.Point(46, 396);
             this.ParteLabel.Name = "ParteLabel";
             this.ParteLabel.Size = new System.Drawing.Size(87, 25);
             this.ParteLabel.TabIndex = 64;
@@ -187,7 +206,7 @@
             // 
             this.textBoxContrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxContrasena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxContrasena.Location = new System.Drawing.Point(53, 421);
+            this.textBoxContrasena.Location = new System.Drawing.Point(408, 424);
             this.textBoxContrasena.Name = "textBoxContrasena";
             this.textBoxContrasena.PasswordChar = '*';
             this.textBoxContrasena.Size = new System.Drawing.Size(263, 31);
@@ -198,7 +217,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(48, 393);
+            this.label2.Location = new System.Drawing.Point(403, 396);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(123, 25);
             this.label2.TabIndex = 73;
@@ -214,7 +233,7 @@
             "1",
             "2",
             "3"});
-            this.comboBoxTurno.Location = new System.Drawing.Point(53, 345);
+            this.comboBoxTurno.Location = new System.Drawing.Point(408, 360);
             this.comboBoxTurno.Name = "comboBoxTurno";
             this.comboBoxTurno.Size = new System.Drawing.Size(113, 33);
             this.comboBoxTurno.TabIndex = 5;
@@ -228,7 +247,7 @@
             "1",
             "2",
             "3"});
-            this.comboBoxNivel.Location = new System.Drawing.Point(202, 345);
+            this.comboBoxNivel.Location = new System.Drawing.Point(558, 362);
             this.comboBoxNivel.Name = "comboBoxNivel";
             this.comboBoxNivel.Size = new System.Drawing.Size(113, 33);
             this.comboBoxNivel.TabIndex = 6;
@@ -238,7 +257,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(197, 317);
+            this.label3.Location = new System.Drawing.Point(562, 334);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(60, 25);
             this.label3.TabIndex = 76;
@@ -249,7 +268,7 @@
             // 
             this.textBoxRcontrasena.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxRcontrasena.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.textBoxRcontrasena.Location = new System.Drawing.Point(53, 485);
+            this.textBoxRcontrasena.Location = new System.Drawing.Point(408, 488);
             this.textBoxRcontrasena.Name = "textBoxRcontrasena";
             this.textBoxRcontrasena.PasswordChar = '*';
             this.textBoxRcontrasena.Size = new System.Drawing.Size(263, 31);
@@ -260,19 +279,133 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(48, 457);
+            this.label6.Location = new System.Drawing.Point(403, 460);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(198, 25);
             this.label6.TabIndex = 78;
             this.label6.Text = "Repetir Contraseña";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // dataGridUsuarios
+            // 
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Gray;
+            this.dataGridUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridUsuarios.AutoGenerateColumns = false;
+            this.dataGridUsuarios.BackgroundColor = System.Drawing.SystemColors.ControlDarkDark;
+            this.dataGridUsuarios.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dataGridUsuarios.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.noEmpleadoDataGridViewTextBoxColumn,
+            this.nombreDataGridViewTextBoxColumn,
+            this.aPaternoDataGridViewTextBoxColumn,
+            this.aMaternoDataGridViewTextBoxColumn,
+            this.turnoDataGridViewTextBoxColumn,
+            this.nivelDataGridViewTextBoxColumn});
+            this.dataGridUsuarios.DataSource = this.usuariosBindingSource;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.ControlDark;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridUsuarios.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridUsuarios.Location = new System.Drawing.Point(40, 79);
+            this.dataGridUsuarios.Name = "dataGridUsuarios";
+            this.dataGridUsuarios.Size = new System.Drawing.Size(631, 195);
+            this.dataGridUsuarios.TabIndex = 79;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.White;
+            this.label7.Location = new System.Drawing.Point(43, 25);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(144, 37);
+            this.label7.TabIndex = 80;
+            this.label7.Text = "Usuarios";
+            // 
+            // usuariosBindingSource
+            // 
+            this.usuariosBindingSource.DataMember = "Usuarios";
+            this.usuariosBindingSource.DataSource = this.muestrasHornosDataSet;
+            // 
+            // muestrasHornosDataSet
+            // 
+            this.muestrasHornosDataSet.DataSetName = "MuestrasHornosDataSet";
+            this.muestrasHornosDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // usuariosTableAdapter
+            // 
+            this.usuariosTableAdapter.ClearBeforeFill = true;
+            // 
+            // noEmpleadoDataGridViewTextBoxColumn
+            // 
+            this.noEmpleadoDataGridViewTextBoxColumn.DataPropertyName = "No_Empleado";
+            this.noEmpleadoDataGridViewTextBoxColumn.HeaderText = "No. Empleado";
+            this.noEmpleadoDataGridViewTextBoxColumn.Name = "noEmpleadoDataGridViewTextBoxColumn";
+            // 
+            // nombreDataGridViewTextBoxColumn
+            // 
+            this.nombreDataGridViewTextBoxColumn.DataPropertyName = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.HeaderText = "Nombre";
+            this.nombreDataGridViewTextBoxColumn.Name = "nombreDataGridViewTextBoxColumn";
+            // 
+            // aPaternoDataGridViewTextBoxColumn
+            // 
+            this.aPaternoDataGridViewTextBoxColumn.DataPropertyName = "aPaterno";
+            this.aPaternoDataGridViewTextBoxColumn.HeaderText = "Apellido Paterno";
+            this.aPaternoDataGridViewTextBoxColumn.Name = "aPaternoDataGridViewTextBoxColumn";
+            // 
+            // aMaternoDataGridViewTextBoxColumn
+            // 
+            this.aMaternoDataGridViewTextBoxColumn.DataPropertyName = "aMaterno";
+            this.aMaternoDataGridViewTextBoxColumn.HeaderText = "Apellido Materno";
+            this.aMaternoDataGridViewTextBoxColumn.Name = "aMaternoDataGridViewTextBoxColumn";
+            // 
+            // turnoDataGridViewTextBoxColumn
+            // 
+            this.turnoDataGridViewTextBoxColumn.DataPropertyName = "Turno";
+            this.turnoDataGridViewTextBoxColumn.HeaderText = "Turno";
+            this.turnoDataGridViewTextBoxColumn.Name = "turnoDataGridViewTextBoxColumn";
+            // 
+            // nivelDataGridViewTextBoxColumn
+            // 
+            this.nivelDataGridViewTextBoxColumn.DataPropertyName = "Nivel";
+            this.nivelDataGridViewTextBoxColumn.HeaderText = "Nivel";
+            this.nivelDataGridViewTextBoxColumn.Name = "nivelDataGridViewTextBoxColumn";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.White;
+            this.label8.Location = new System.Drawing.Point(440, 25);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(166, 25);
+            this.label8.TabIndex = 81;
+            this.label8.Text = "Eliminar usuario";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Usuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(359, 617);
+            this.ClientSize = new System.Drawing.Size(724, 614);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.dataGridUsuarios);
             this.Controls.Add(this.textBoxRcontrasena);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label3);
@@ -296,6 +429,9 @@
             this.Text = "Usuarios";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Usuarios_FormClosed);
             this.Load += new System.EventHandler(this.Usuarios_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridUsuarios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.usuariosBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.muestrasHornosDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -322,5 +458,17 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox textBoxRcontrasena;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.DataGridView dataGridUsuarios;
+        private System.Windows.Forms.Label label7;
+        private Hornos.MuestrasHornosDataSet muestrasHornosDataSet;
+        private System.Windows.Forms.BindingSource usuariosBindingSource;
+        private Hornos.MuestrasHornosDataSetTableAdapters.UsuariosTableAdapter usuariosTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noEmpleadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombreDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aPaternoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn aMaternoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn turnoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nivelDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label8;
     }
 }

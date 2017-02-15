@@ -69,6 +69,9 @@
     <Compile Include="Defecto.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
+    <Compile Include="inicio.cs">
+      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+    </Compile>
     <Compile Include="Lote.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>

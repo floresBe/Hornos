@@ -6,15 +6,16 @@
     <edmx:Diagrams>
       <Diagram DiagramId="28b9dfc328fc48cba2574b203c3336f1" Name="Diagram1" ZoomLevel="64">
         <EntityTypeShape EntityType="MuestrasHornosModel.Ciclo" Width="1.5" PointX="3" PointY="4.5" />
-        <EntityTypeShape EntityType="MuestrasHornosModel.Defecto" Width="1.5" PointX="8.25" PointY="2" />
-        <EntityTypeShape EntityType="MuestrasHornosModel.Lote" Width="1.5" PointX="8.25" PointY="4.625" />
-        <EntityTypeShape EntityType="MuestrasHornosModel.Muestra" Width="1.5" PointX="5.25" PointY="4.625" />
-        <EntityTypeShape EntityType="MuestrasHornosModel.ParteCiclo" Width="1.5" PointX="5.25" PointY="11.25" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.Defecto" Width="1.5" PointX="8.25" PointY="1" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.inicio" Width="1.5" PointX="0.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.Lote" Width="1.5" PointX="8.25" PointY="4.75" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.Muestra" Width="1.5" PointX="5.25" PointY="4.75" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.ParteCiclo" Width="1.5" PointX="5.25" PointY="11.375" />
         <EntityTypeShape EntityType="MuestrasHornosModel.Pieza" Width="1.5" PointX="10.5" PointY="4.5" />
-        <EntityTypeShape EntityType="MuestrasHornosModel.PruebaPieza" Width="1.5" PointX="12.75" PointY="4.5" />
-        <EntityTypeShape EntityType="MuestrasHornosModel.Prueba" Width="1.5" PointX="10.5" PointY="1" />
-        <EntityTypeShape EntityType="MuestrasHornosModel.Sensore" Width="1.5" PointX="3" PointY="0.75" />
-        <EntityTypeShape EntityType="MuestrasHornosModel.TipoSensor" Width="1.5" PointX="0.75" PointY="1" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.PruebaPieza" Width="1.5" PointX="10" PointY="9" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.Prueba" Width="1.5" PointX="7.75" PointY="9.25" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.Sensore" Width="1.5" PointX="3" PointY="0.875" />
+        <EntityTypeShape EntityType="MuestrasHornosModel.TipoSensor" Width="1.5" PointX="0.75" PointY="1.125" />
         <EntityTypeShape EntityType="MuestrasHornosModel.Usuario" Width="1.5" PointX="0.75" PointY="4.375" />
         <AssociationConnector Association="MuestrasHornosModel.FK_CicloMuestra" />
         <AssociationConnector Association="MuestrasHornosModel.FK_LoteCiclo" />
@@ -24,7 +25,6 @@
         <AssociationConnector Association="MuestrasHornosModel.FK_Lote" />
         <AssociationConnector Association="MuestrasHornosModel.FK_LotesUsuario" />
         <AssociationConnector Association="MuestrasHornosModel.FK_Sensor" />
-        <AssociationConnector Association="MuestrasHornosModel.FK_Pieza" />
         <AssociationConnector Association="MuestrasHornosModel.FK_Prueba" />
         <AssociationConnector Association="MuestrasHornosModel.FK_tipoSensor" />
       </Diagram>

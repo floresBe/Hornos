@@ -121,6 +121,11 @@
     <Compile Include="CapturadeDatos.Designer.cs">
       <DependentUpon>CapturadeDatos.cs</DependentUpon>
     </Compile>
+    <Compile Include="MuestrasHornosDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MuestrasHornosDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reportes\EntidadReporteMuestra.cs" />
     <Compile Include="Reportes\ReporteMuestras.cs">
       <SubType>Form</SubType>
@@ -217,6 +222,17 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="BDMuestras_TemporaryKey.pfx" />
+    <None Include="MuestrasHornosDataSet.xsc">
+      <DependentUpon>MuestrasHornosDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MuestrasHornosDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MuestrasHornosDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="MuestrasHornosDataSet.xss">
+      <DependentUpon>MuestrasHornosDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

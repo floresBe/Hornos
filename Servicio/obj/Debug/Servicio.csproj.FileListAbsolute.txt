@@ -37,3 +37,13 @@ C:\Users\Luis Dueñas\Documents\Hornos y halting\BDMuestras\Servicio\bin\Debug\E
 C:\Users\Luis Dueñas\Documents\Hornos y halting\BDMuestras\Servicio\obj\Debug\Servicio.csprojResolveAssemblyReference.cache
 C:\Users\Luis Dueñas\Documents\Hornos y halting\BDMuestras\Servicio\obj\Debug\Servicio.dll
 C:\Users\Luis Dueñas\Documents\Hornos y halting\BDMuestras\Servicio\obj\Debug\Servicio.pdb
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\Servicio.dll.config
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\Servicio.dll
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\Servicio.pdb
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\EntityFramework.dll
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\EntityFramework.xml
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\obj\Debug\Servicio.csprojResolveAssemblyReference.cache
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\obj\Debug\Servicio.dll
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\obj\Debug\Servicio.pdb

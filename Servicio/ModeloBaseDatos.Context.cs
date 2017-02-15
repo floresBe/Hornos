@@ -27,6 +27,7 @@ namespace Servicio
     
         public virtual DbSet<Ciclo> Ciclos { get; set; }
         public virtual DbSet<Defecto> Defectos { get; set; }
+        public virtual DbSet<inicio> inicios { get; set; }
         public virtual DbSet<Lote> Lotes { get; set; }
         public virtual DbSet<Muestra> Muestras { get; set; }
         public virtual DbSet<ParteCiclo> ParteCicloes { get; set; }

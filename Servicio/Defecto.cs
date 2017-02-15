@@ -23,6 +23,7 @@ namespace Servicio
         public int PK_Defecto { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
+        public Nullable<int> Activo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pieza> Piezas { get; set; }

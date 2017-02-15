@@ -168,5 +168,39 @@ namespace Servicio
             }
             return nivel;
         }
+
+        public void desactivarUsuario(string usuario)
+        {
+            var lista = new List<Usuario>();
+            try
+            {
+                using (var entidad = new MuestrasHornosEntities())
+                {
+                    var consultaUsuario = from c in entidad.Usuarios
+                                          where c.No_Empleado.Equals(usuario)
+                                          select c;
+                    lista = consultaUsuario.ToList();
+                    int usuarios = lista.Count;
+                    if (usuarios == 1)
+                    {
+                        foreach (Usuario user in lista)
+                        {
+                            user.Activo = 0;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("El usuario" + usuario + " no existe.");
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+
     }
 }

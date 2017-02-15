@@ -27,6 +27,7 @@ namespace Servicio
         public int PK_Usuario { get; set; }
         public string Fecha { get; set; }
         public string Hora { get; set; }
+        public Nullable<int> vacio { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Muestra> Muestras { get; set; }
