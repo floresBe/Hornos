@@ -15,7 +15,7 @@ namespace Servicio
         /// <param name="noCiclo">Número de ciclo del día</param>
         /// <param name="fecha">Fecha en que se crea el ciclo</param>
         /// <param name="hora">Hora en que se crea el ciclo</param>
-        public void Insertar(string horno, int noCiclo, int pkUsuario, string fecha, string hora)
+        public void insertar(string horno, int noCiclo, int pkUsuario, string fecha, string hora)
         {
             Ciclo ciclo = null;
             try
@@ -74,65 +74,50 @@ namespace Servicio
             }
         }
         /// <summary>
-        /// Regresa una lista con todos los ciclos
+        /// regresa el ultimo ciclo ingresado a la base de datos segun el horno seleccionado
         /// </summary>
+        /// <param name="horno"></param>
         /// <returns></returns>
-        public List<Ciclo> ObtenerTodos()
+        public int obtenerUltimo(string horno)
         {
-            List<Ciclo> lista = null;
+
+            int ultimo = 0;
             try
             {
-                lista = new List<Ciclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (MuestrasHornosEntities entidad = new MuestrasHornosEntities())
                 {
                     var consulta = from c in entidad.Ciclos
-                                   select c;
-                    lista = consulta.ToList();
+                                   where c.Horno.Contains(horno)
+                                   orderby c.No_Ciclo
+                                   select c.No_Ciclo;
+                    List<int> ciclos = consulta.ToList();
+                    if (ciclos.Count > 0)
+                    {
+                        ultimo = ciclos.Last<int>();
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("Error al consultar la base de datos.");
+                MessageBox.Show("Error al buscar el ultimo ciclo.");
+
             }
-            return lista;
-        }
-        /// <summary>
-        /// //Regresa la informacion del ciclo ingresado por parametro
-        /// </summary>
-        /// <param name="nombreCiclo"></param>
-        /// <returns></returns>
-        public List<Ciclo> ObtenerPorNombre(string horno, int noCiclo)
-        {
-            string Horno = horno;
-            int ciclo = noCiclo;
-            List<Ciclo> lista = null;
-            try
-            {
-                lista = new List<Ciclo>();
-                using (var entidad = new MuestrasHornosEntities())
-                {
-                    var consulta = from c in entidad.Ciclos
-                                   where c.Horno == horno
-                                   where c.No_Ciclo == noCiclo
-                                   select c;
-                    lista = consulta.ToList();
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error al consultar la base de datos.");
-            }
-            return lista;
+            return ultimo;
         }
         /// <summary>
         /// Regresa un string con todos los datos del ciclo 
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
-        public string ObtenerTodoslosDatos(string horno, int noCiclo)
+        public string obtenerDatos(string horno, int noCiclo)
         {
             string ciclo = null;
-            List<Ciclo> lista = ObtenerPorNombre(horno, noCiclo);
+            List<Ciclo> lista = obtenerPorNombre(horno, noCiclo);
             try
             {
                 foreach (var item in lista)
@@ -148,99 +133,7 @@ namespace Servicio
 
         }
         /// <summary>
-        /// Regresa una lista con los ciclos de la fecha ingresada por parametro
-        /// </summary>
-        /// <param name="fecha">Fecha de busqueda</param>
-        /// <returns></returns>
-        public List<string> obtenerPorFecha(string horno, string fecha)
-        {
-            var lista = new List<string>();
-            try
-            {
-                using (var entidad = new MuestrasHornosEntities())
-                {
-                    var consulta = from c in entidad.Ciclos
-                                   where c.Horno.Contains(horno)
-                                   where c.Fecha.Contains(fecha)
-                                   orderby c.No_Ciclo
-                                   select c;
-
-                    var listaCiclos = consulta.ToList<Ciclo>();
-                    foreach (var item in listaCiclos)
-                    {
-                        lista.Add(item.Horno + " " + item.No_Ciclo);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error al acceder a la base de datos.");
-            }
-
-            return lista;
-        }
-        /// <summary>
-        /// regresa el ultimo ciclo ingresado a la base de datos segun el horno seleccionado
-        /// </summary>
-        /// <param name="horno"></param>
-        /// <returns></returns>
-        public int ObtenerUltimo(string horno)
-        {
-
-            int ultimo = 0;
-            try
-            {
-                using (MuestrasHornosEntities entidad = new MuestrasHornosEntities())
-                {
-                    var consulta = from c in entidad.Ciclos
-                                   where c.Horno.Contains(horno)
-                                   orderby c.No_Ciclo
-                                   select c.No_Ciclo;
-                    List<int> ciclos = consulta.ToList();
-                    if (ciclos.Count > 0) {
-                        ultimo = ciclos.Last<int>();
-                    }else
-                    {
-                        return 0;
-                    }
-                                        
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al buscar el ultimo ciclo.");
-                
-            }
-            return ultimo;
-        }
-        /// <summary>
-        /// Regresa una lista con las fechas en las que existen ciclos
-        /// </summary>
-        /// <returns></returns>
-        public List<string> ObtenerTodaslasFechas()
-        {
-            List<Ciclo> listaCiclos = new List<Ciclo>();
-            listaCiclos = ObtenerTodos();
-            List<string> lista = new List<string>();
-            try
-            {
-                foreach (var item in listaCiclos)
-                {
-                    string fecha = item.Fecha;
-                    if (!lista.Contains(fecha))
-                    {
-                        lista.Add(fecha);
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Error al acceder a la base de datos.");
-            }
-            return lista;
-        }
-        /// <summary>
-        /// 
+        /// Regresa la fecha del ciclo ingresado por parametro
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
@@ -270,7 +163,7 @@ namespace Servicio
             return fecha;
         }
         /// <summary>
-        /// 
+        /// Regresa la hora en la que se creo el ciclo ingresado por parametro
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
@@ -301,33 +194,152 @@ namespace Servicio
 
 
         }
-        public string obtenerFechaDeUltimoCiclo(string horno, int ciclo)
+        /// <summary>
+        /// Indica si existen ciclos sin numero de parte agregadas
+        /// </summary>
+        /// <param name="horno"></param>
+        /// <returns></returns>
+        public bool ciclosVacios(string horno)
         {
-            string fecha = null;
+            foreach (Ciclo ciclo in obtenerPorHorno(horno))
+            {
+                if (ciclo.vacio == 1)
+                    return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Regresa una lista con los ciclos de la fecha ingresada por parametro
+        /// </summary>
+        /// <param name="fecha">Fecha de busqueda</param>
+        /// <returns></returns>
+        public List<string> obtenerPorHornoyFecha(string horno, string fecha)
+        {
+            var lista = new List<string>();
             try
             {
                 using (var entidad = new MuestrasHornosEntities())
                 {
                     var consulta = from c in entidad.Ciclos
-                                   where c.Horno == horno
-                                   where c.No_Ciclo == ciclo
+                                   where c.Horno.Contains(horno)
+                                   where c.Fecha.Contains(fecha)
+                                   orderby c.No_Ciclo
                                    select c;
-                    var listaMuestras = consulta.ToList<Ciclo>();
-                    foreach (var item in listaMuestras)
+
+                    var listaCiclos = consulta.ToList<Ciclo>();
+                    foreach (var item in listaCiclos)
                     {
-                        fecha = item.Fecha;
+                        lista.Add(item.Horno + " " + item.No_Ciclo);
                     }
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Error al consultar la base de datos.");
-                return null;
+                MessageBox.Show("Error al acceder a la base de datos.");
             }
-            return fecha;
 
-
+            return lista;
         }
-
+        /// <summary>
+        /// Regresa una lista con las fechas en las que existen ciclos
+        /// </summary>
+        /// <returns></returns>
+        public List<string> obtenerTodaslasFechas()
+        {
+            List<Ciclo> listaCiclos = new List<Ciclo>();
+            listaCiclos = obtenerTodos();
+            List<string> lista = new List<string>();
+            try
+            {
+                foreach (var item in listaCiclos)
+                {
+                    string fecha = item.Fecha;
+                    if (!lista.Contains(fecha))
+                    {
+                        lista.Add(fecha);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al acceder a la base de datos.");
+            }
+            return lista;
+        }
+        /// <summary>
+        /// Regresa una lista con todos los ciclos
+        /// </summary>
+        /// <returns></returns>
+        public List<Ciclo> obtenerTodos()
+        {
+            List<Ciclo> lista = null;
+            try
+            {
+                lista = new List<Ciclo>();
+                using (var entidad = new MuestrasHornosEntities())
+                {
+                    var consulta = from c in entidad.Ciclos
+                                   select c;
+                    lista = consulta.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al consultar la base de datos.");
+            }
+            return lista;
+        }
+        /// <summary>
+        /// Regresa una lista con todos los ciclos del horno ingresadopor parametro
+        /// </summary>
+        /// <returns></returns>
+        public List<Ciclo> obtenerPorHorno(string horno)
+        {
+            List<Ciclo> lista = null;
+            try
+            {
+                lista = new List<Ciclo>();
+                using (var entidad = new MuestrasHornosEntities())
+                {
+                    var consulta = from c in entidad.Ciclos
+                                   where c.Horno.Contains(horno)
+                                   select c;
+                    lista = consulta.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al consultar la base de datos.");
+            }
+            return lista;
+        }
+        /// <summary>
+        /// //Regresa la informacion del ciclo ingresado por parametro
+        /// </summary>
+        /// <param name="nombreCiclo"></param>
+        /// <returns></returns>
+        public List<Ciclo> obtenerPorNombre(string horno, int noCiclo)
+        {
+            string Horno = horno;
+            int ciclo = noCiclo;
+            List<Ciclo> lista = null;
+            try
+            {
+                lista = new List<Ciclo>();
+                using (var entidad = new MuestrasHornosEntities())
+                {
+                    var consulta = from c in entidad.Ciclos
+                                   where c.Horno == horno
+                                   where c.No_Ciclo == noCiclo
+                                   select c;
+                    lista = consulta.ToList();
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al consultar la base de datos.");
+            }
+            return lista;
+        }
     }
 }

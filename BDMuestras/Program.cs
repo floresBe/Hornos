@@ -52,12 +52,12 @@ namespace BDMuestras
             ciclo = new cCiclo();
             string[] fecha = null;
             string f = string.Empty;
-            ultimo = ciclo.ObtenerUltimo(horno);
+            ultimo = ciclo.obtenerUltimo(horno);
             if (ultimo != 0)
             {                
                 fecha = DateTime.Now.ToString().Split();
                 f = fecha[0];
-                if (ciclo.obtenerFechaDeUltimoCiclo(horno, ultimo) == f)
+                if (ciclo.obtenerFechaDeCiclo(horno, ultimo) == f)
                 {
                     mismociclo = true;                   
                     noCiclo = ultimo;
@@ -81,7 +81,7 @@ namespace BDMuestras
             ciclo = new cCiclo();
             try
             {
-                ultimo = ciclo.ObtenerUltimo(horno);
+                ultimo = ciclo.obtenerUltimo(horno);
                 noCiclo = 1 + ultimo;
                 GenerarNombre();
             }

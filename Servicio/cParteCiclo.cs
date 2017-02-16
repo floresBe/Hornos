@@ -10,10 +10,11 @@ namespace Servicio
     public class cParteCiclo
     {
 
-        public int InsertarNoParte(int ciclo, string horno, string noParte)
+        public int insertar(int ciclo, string horno, string noParte)
         {
             try
             {
+                cCiclo cicl = new cCiclo();
                 ParteCiclo parteCiclo = null;
                 using (var entidad = new MuestrasHornosEntities())
                 {
@@ -29,6 +30,7 @@ namespace Servicio
                     entidad.ParteCicloes.Add(parteCiclo);
                     entidad.SaveChanges();
                 }
+                cicl.llenar(horno, ciclo);
                 return parteCiclo.No_Ciclo;
             }
             catch (Exception ex)
@@ -45,7 +47,7 @@ namespace Servicio
         /// <param name="entrantes">Cantidad de piezas entrantes al horno</param>
         /// <param name="malas">Cantidad de piezas malas que salieron del horno</param>
         /// <param name="rebraze">Cantidad de piezas a rebraze</param>
-        public void ActualizarCiclo(string horno, int noCiclo, string parte, int entrantes, int malas, int rebraze)
+        public void actualizar(string horno, int noCiclo, string parte, int entrantes, int malas, int rebraze)
         {
             List<ParteCiclo> lista = null;
             try
@@ -74,32 +76,11 @@ namespace Servicio
             }
         }
         /// <summary>
-        /// Regresa una lista con los ciclos vacios de la fecha ingresada por parametro
-        /// </summary>
-        /// <param name="fecha">Fecha de busqueda</param>
-        /// <returns></returns>
-        public List<string> ObtenerCiclosVaciosDeFecha(string fecha, string horno)
-        {
-            cCiclo Ciclo = new cCiclo();
-            List<string> CiclosVacios = new List<string>();
-            List<ParteCiclo> ciclosVacios = ObtenerCiclosVacios(horno);
-            string nCiclo = string.Empty;
-            foreach (ParteCiclo cv in ciclosVacios)
-            {
-                if (fecha == Ciclo.obtenerFechaDeCiclo(cv.Horno, cv.No_Ciclo))
-                {
-                    CiclosVacios.Add(cv.Horno + " " + cv.No_Ciclo);
-                }
-
-            }
-            return CiclosVacios;
-        }
-        /// <summary>
         /// Regresa todos los datos del ciclo ingresado por parametros
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
-        public string ObtenerTodoslosDatos(string horno, int ciclo)
+        public string obtenerDatos(string horno, int ciclo)
         {
             string info = null;
             List<ParteCiclo> lista = null;
@@ -128,6 +109,38 @@ namespace Servicio
                 return null;
             }
             return info;
+        }
+        /// <summary>
+        /// Indica si existen ciclos vacios en la base de datos
+        /// </summary>
+        /// <returns></returns>
+        public bool ciclosVacios(string horno)
+        {
+            if (ObtenerCiclosVacios(horno) == null || ObtenerCiclosVacios(horno).Count < 1)
+                return false;
+            else
+                return true;
+        }
+        /// <summary>
+        /// Regresa una lista con los ciclos vacios de la fecha ingresada por parametro
+        /// </summary>
+        /// <param name="fecha">Fecha de busqueda</param>
+        /// <returns></returns>
+        public List<string> ObtenerCiclosVaciosDeFecha(string fecha, string horno)
+        {
+            cCiclo Ciclo = new cCiclo();
+            List<string> CiclosVacios = new List<string>();
+            List<ParteCiclo> ciclosVacios = ObtenerCiclosVacios(horno);
+            string nCiclo = string.Empty;
+            foreach (ParteCiclo cv in ciclosVacios)
+            {
+                if (fecha == Ciclo.obtenerFechaDeCiclo(cv.Horno, cv.No_Ciclo))
+                {
+                    CiclosVacios.Add(cv.Horno + " " + cv.No_Ciclo);
+                }
+
+            }
+            return CiclosVacios;
         }
         /// <summary>
         /// Regresa una lista con las fechas en las que existen ciclos vacíos
@@ -191,17 +204,7 @@ namespace Servicio
             }
             return lista;
         }
-        /// <summary>
-        /// Indica si existen ciclos vacios en la base de datos
-        /// </summary>
-        /// <returns></returns>
-        public bool ciclosVacios(string horno)
-        {
-            if(ObtenerCiclosVacios(horno) == null || ObtenerCiclosVacios(horno).Count < 1)
-                return false;
-            else
-                return true;
-        }
+
 
     }
 }

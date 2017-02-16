@@ -309,7 +309,7 @@ namespace BDMuestras
             ciclo = new cCiclo();
             parteCiclo = new cParteCiclo();
             string status = null;
-            Program.ciclosVacios = parteCiclo.ciclosVacios();
+            Program.ciclosVacios = parteCiclo.ciclosVacios(Program.horno);
             try
             {
                 status = valoresHorno[30].ToString();
@@ -338,7 +338,7 @@ namespace BDMuestras
                         else
                         {
                             Program.ObtenerNuevoCiclo();
-                            ciclo.Insertar(Program.horno, Program.noCiclo, Program.usuario, fecha, sHora);
+                            ciclo.insertar(Program.horno, Program.noCiclo, Program.usuario, fecha, sHora);
                             nombreCiclo = Program.nombreCiclo;
 
                             //Recargar grafica

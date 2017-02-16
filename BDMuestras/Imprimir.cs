@@ -46,7 +46,7 @@ namespace BDMuestras
             labelFecha.Text = fecha;
             comboBoxCiclos.Items.Clear();
             checkedListBoxMuestras.Items.Clear();
-            List<string> ciclos = ciclo.obtenerPorFecha(fecha);
+            List<string> ciclos = ciclo.obtenerPorHornoyFecha(Program.horno, fecha);
             if (ciclos.Count == 0 || ciclos == null)
             {
                 MessageBox.Show("No existen cicos en la fecha seleccionada");
