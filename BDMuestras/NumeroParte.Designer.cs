@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelTitulo = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // labelTitulo
@@ -66,6 +68,7 @@
             this.button1.TabIndex = 2;
             this.button1.Text = "Seleccionar";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -88,6 +91,11 @@
             this.comboBox1.Size = new System.Drawing.Size(188, 33);
             this.comboBox1.TabIndex = 4;
             // 
+            // timer1
+            // 
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // NumeroParte
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -101,7 +109,6 @@
             this.Controls.Add(this.labelTitulo);
             this.Name = "NumeroParte";
             this.Text = "NumeroParte";
-            this.Load += new System.EventHandler(this.NumeroParte_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -114,5 +121,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Timer timer1;
     }
 }

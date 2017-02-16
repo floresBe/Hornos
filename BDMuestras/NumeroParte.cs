@@ -15,9 +15,11 @@ namespace Hornos
     {
         int configuracion;
         string horno = string.Empty;
+        string numeroParte;
         int ciclo;
-
-        public NumeroParte(int conf,string hor, int cic)
+        int segundos = 0;
+        cParteCiclo parteCiclo = null;
+        public NumeroParte(int conf, string hor, int cic)
         {
             InitializeComponent();
             horno = hor;
@@ -27,25 +29,19 @@ namespace Hornos
 
         }
 
-        private void NumeroParte_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void configurar(int conf)
         {
             switch (conf)
             {
                 case 1:  //Guardar numero de parte en ciclo
-                    
                     labelTitulo.Text = "Ingresar No. de Parte.";
                     comboBox1.Visible = false;
                     button1.Text = "Agregar";
                     button2.Text = "Más tarde";
+                    timer1.Start();
                     break;
                 case 2: //Editar numero de parte de ciclo
                     configuracionII();
-
                     break;
                 case 3: //Imprimir numero de parte de cico
                     configuracionII();
@@ -54,7 +50,6 @@ namespace Hornos
                     break;
             }
         }
-
         private void configuracionII()
         {
             cParteCiclo cicloParte = new cParteCiclo();
@@ -70,9 +65,44 @@ namespace Hornos
                 {
                     comboBox1.Items.Add(noParte);
                 }
-            }else
+            }
+            else
             {
                 MessageBox.Show("El ciclo no contiene números de parte guardados.");
+                this.Close();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            parteCiclo = new cParteCiclo();
+            if (configuracion == 1)
+            {
+                if (textBox1.Text == string.Empty || textBox1.Text == null)
+                {
+                    MessageBox.Show("Ingrese número de parte.");
+                    textBox1.Focus();
+                    return;
+                }else
+                {
+                    numeroParte = textBox1.Text;
+                    if (MessageBox.Show("Seguro que desea agregar el número de parte: " + numeroParte +" a la base de datos?","Agregar número de parte",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        parteCiclo.insertar(ciclo,horno,numeroParte);
+                    }else
+                    {
+                        textBox1.Focus();
+                        return;
+                    }
+                }                
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            segundos++;
+            if(segundos == 90)
+            {
                 this.Close();
             }
         }
