@@ -9,6 +9,34 @@ namespace Servicio
 {
     public class cParteCiclo
     {
+
+        public int InsertarNoParte(int ciclo, string horno, string noParte)
+        {
+            try
+            {
+                ParteCiclo parteCiclo = null;
+                using (var entidad = new MuestrasHornosEntities())
+                {
+                    parteCiclo = new ParteCiclo
+                    {
+                        No_Ciclo = ciclo,
+                        Horno = horno,
+                        No_Parte = noParte,
+                        Piezas_Entrantes = 0,
+                        Piezas_Malas = 0,
+                        Piezas_Rebraze = 0
+                    };
+                    entidad.ParteCicloes.Add(parteCiclo);
+                    entidad.SaveChanges();
+                }
+                return parteCiclo.No_Ciclo;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
         /// <summary>
         /// Regresa una lista con los ciclos con valores nulos
         /// </summary>
@@ -205,5 +233,6 @@ namespace Servicio
             else
                 return true;
         }
+
     }
 }
