@@ -40,6 +40,11 @@ namespace Servicio
                 MessageBox.Show("Error al crear ciclo.");
             }
         }
+        /// <summary>
+        /// Indica que un ciclo ya contiene numero de parte ingresados
+        /// </summary>
+        /// <param name="horno"></param>
+        /// <param name="noCiclo"></param>
         public void llenar(string horno, int noCiclo)
         {
             try
@@ -68,7 +73,6 @@ namespace Servicio
 
             }
         }
-
         /// <summary>
         /// Regresa una lista con todos los ciclos
         /// </summary>
@@ -97,10 +101,10 @@ namespace Servicio
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
-        public List<Ciclo> ObtenerPorNombre(string nombreCiclo)
+        public List<Ciclo> ObtenerPorNombre(string horno, int noCiclo)
         {
-            string horno = nombreCiclo.Remove(3);
-            int noCiclo = Convert.ToInt32(nombreCiclo.Remove(1, 2));
+            string Horno = horno;
+            int ciclo = noCiclo;
             List<Ciclo> lista = null;
             try
             {
@@ -125,10 +129,10 @@ namespace Servicio
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
-        public string ObtenerTodoslosDatos(string nombreCiclo)
+        public string ObtenerTodoslosDatos(string horno, int noCiclo)
         {
             string ciclo = null;
-            List<Ciclo> lista = ObtenerPorNombre(nombreCiclo);
+            List<Ciclo> lista = ObtenerPorNombre(horno, noCiclo);
             try
             {
                 foreach (var item in lista)
@@ -148,7 +152,7 @@ namespace Servicio
         /// </summary>
         /// <param name="fecha">Fecha de busqueda</param>
         /// <returns></returns>
-        public List<string> obtenerPorFecha(string fecha)
+        public List<string> obtenerPorFecha(string horno, string fecha)
         {
             var lista = new List<string>();
             try
@@ -156,6 +160,7 @@ namespace Servicio
                 using (var entidad = new MuestrasHornosEntities())
                 {
                     var consulta = from c in entidad.Ciclos
+                                   where c.Horno.Contains(horno)
                                    where c.Fecha.Contains(fecha)
                                    orderby c.No_Ciclo
                                    select c;
@@ -208,7 +213,6 @@ namespace Servicio
             }
             return ultimo;
         }
-
         /// <summary>
         /// Regresa una lista con las fechas en las que existen ciclos
         /// </summary>
@@ -240,10 +244,8 @@ namespace Servicio
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
-        public string obtenerFechaDeCiclo(string nombreCiclo)
+        public string obtenerFechaDeCiclo(string horno, int ciclo)
         {
-            string horno = nombreCiclo.Remove(3);
-            int noCiclo = Convert.ToInt32(nombreCiclo.Remove(1, 2));
             string fecha = null;
             try
             {
@@ -251,7 +253,7 @@ namespace Servicio
                 {
                     var consulta = from c in entidad.Ciclos
                                    where c.Horno == horno
-                                   where c.No_Ciclo == noCiclo
+                                   where c.No_Ciclo == ciclo
                                    select c;
                     var listaMuestras = consulta.ToList<Ciclo>();
                     foreach (var item in listaMuestras)
@@ -266,8 +268,6 @@ namespace Servicio
                 return null;
             }
             return fecha;
-
-
         }
         /// <summary>
         /// 

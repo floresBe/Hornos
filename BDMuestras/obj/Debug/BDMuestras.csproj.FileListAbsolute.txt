@@ -1218,3 +1218,4 @@ C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\BDMuestras\obj\Debug\Horn
 C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\BDMuestras\obj\Debug\Hornos.exe
 C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\BDMuestras\obj\Debug\Hornos.pdb
 C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\BDMuestras\obj\Debug\Hornos.Ayudas.resources
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\BDMuestras\obj\Debug\Hornos.NumeroParte.resources
