@@ -88,11 +88,20 @@ namespace Hornos
                     numeroParte = textBox1.Text;
                     if (MessageBox.Show("Seguro que desea agregar el número de parte: " + numeroParte +" a la base de datos?","Agregar número de parte",MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        parteCiclo.insertar(ciclo,horno,numeroParte);
+                        if(parteCiclo.insertar(ciclo,horno,numeroParte) > 0)
+                        {
+                            MessageBox.Show("Número de parte agregada con exito.");
+                            if (MessageBox.Show("Desea agregar otro número de parte al ciclo?","Agregar otro número",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            {
+                                this.Refresh();
+                            }else
+                            {
+                                this.Close();
+                            }
+                        }
                     }else
                     {
                         textBox1.Focus();
-                        return;
                     }
                 }                
             }
@@ -105,6 +114,11 @@ namespace Hornos
             {
                 this.Close();
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
