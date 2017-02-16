@@ -95,7 +95,7 @@ namespace Servicio
             return CiclosVacios;
         }
         /// <summary>
-        /// 
+        /// Regresa todos los datos del ciclo ingresado por parametros
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
@@ -129,7 +129,6 @@ namespace Servicio
             }
             return info;
         }
-
         /// <summary>
         /// Regresa una lista con las fechas en las que existen ciclos vacíos
         /// </summary>
@@ -164,7 +163,6 @@ namespace Servicio
             }
             return fechas;
         }
-
         /// <summary>
         /// Regresa una lista con los ciclos con valores nulos
         /// </summary>
@@ -197,20 +195,9 @@ namespace Servicio
         /// Indica si existen ciclos vacios en la base de datos
         /// </summary>
         /// <returns></returns>
-        public bool ciclosVacios()
+        public bool ciclosVacios(string horno)
         {
-            var lista = new List<ParteCiclo>();
-            using (var entidad = new MuestrasHornosEntities())
-            {
-                var consulta = from c in entidad.ParteCicloes
-                               where c.No_Parte.Equals(null)
-                                     || c.Piezas_Entrantes.Equals(null)
-                                     || c.Piezas_Malas.Equals(null)
-                                     || c.Piezas_Rebraze.Equals(null)
-                               select c;
-                lista = consulta.ToList();
-            }
-            if (lista.Count < 1 || lista == null)
+            if(ObtenerCiclosVacios(horno) == null || ObtenerCiclosVacios(horno).Count < 1)
                 return false;
             else
                 return true;
