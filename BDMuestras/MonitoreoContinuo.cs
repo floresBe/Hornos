@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Threading;
 using Servicio;
+using Hornos;
 
 namespace BDMuestras
 {
@@ -340,8 +341,7 @@ namespace BDMuestras
                             Program.ObtenerNuevoCiclo();
                             ciclo.insertar(Program.horno, Program.noCiclo, Program.usuario, fecha, sHora);
                             nombreCiclo = Program.nombreCiclo;
-
-                            //Recargar grafica
+                            NumeroParte noParte = new Hornos.NumeroParte(1, Program.horno, Program.noCiclo);
                         }
                     }
 

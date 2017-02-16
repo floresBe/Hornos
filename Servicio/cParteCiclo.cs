@@ -111,6 +111,41 @@ namespace Servicio
             return info;
         }
         /// <summary>
+        /// Regresa todos los datos del ciclo ingresado por parametros
+        /// </summary>
+        /// <param name="nombreCiclo"></param>
+        /// <returns></returns>
+        public List<string> obtenerNumerosPartePorCiclo(string horno, int ciclo)
+        {
+            List<string> info = new List<string>();
+            List<ParteCiclo> lista = null;
+
+            try
+            {
+                lista = new List<ParteCiclo>();
+                using (var entidad = new MuestrasHornosEntities())
+                {
+                    var consulta = from c in entidad.ParteCicloes
+                                   where c.Horno.Equals(horno)
+                                   where c.No_Ciclo == ciclo
+                                   orderby c.No_Ciclo
+                                   select c;
+                    lista = consulta.ToList();
+
+                }
+                foreach (var item in lista)
+                {
+                    info.Add(item.No_Parte.ToString());
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al acceder a la base de datos.");
+                return null;
+            }
+            return info;
+        }
+        /// <summary>
         /// Indica si existen ciclos vacios en la base de datos
         /// </summary>
         /// <returns></returns>

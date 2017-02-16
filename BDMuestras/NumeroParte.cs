@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Servicio;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,13 +13,18 @@ namespace Hornos
 {
     public partial class NumeroParte : Form
     {
-        int congifuracion;
+        int configuracion;
+        string horno = string.Empty;
+        int ciclo;
 
-        public NumeroParte(int conf)
+        public NumeroParte(int conf,string hor, int cic)
         {
             InitializeComponent();
+            horno = hor;
+            ciclo = cic;
+            configuracion = conf;
             configurar(conf);
-            congifuracion = conf;           
+
         }
 
         private void NumeroParte_Load(object sender, EventArgs e)
@@ -38,22 +44,37 @@ namespace Hornos
                     button2.Text = "Más tarde";
                     break;
                 case 2: //Editar numero de parte de ciclo
-                    labelTitulo.Text = "Seleccionar No. de Parte.";
-                    comboBox1.Visible = true;
-                    button1.Text = "Seleccionar";
-                    button2.Text = "Cancelar";
+                    configuracionII();
+
                     break;
                 case 3: //Imprimir numero de parte de cico
-                    labelTitulo.Text = "Seleccionar No. de Parte.";
-                    comboBox1.Visible = true;
-                    button1.Text = "Seleccionar";
-                    button2.Text = "Cancelar";
+                    configuracionII();
                     break;
                 default:
                     break;
             }
         }
 
-
+        private void configuracionII()
+        {
+            cParteCiclo cicloParte = new cParteCiclo();
+            List<string> partes;
+            labelTitulo.Text = "Seleccionar No. de Parte.";
+            comboBox1.Visible = true;
+            button1.Text = "Seleccionar";
+            button2.Text = "Cancelar";
+            partes = cicloParte.obtenerNumerosPartePorCiclo(horno, ciclo);
+            if (partes.Count > 0)
+            {
+                foreach (string noParte in partes)
+                {
+                    comboBox1.Items.Add(noParte);
+                }
+            }else
+            {
+                MessageBox.Show("El ciclo no contiene números de parte guardados.");
+                this.Close();
+            }
+        }
     }
 }
