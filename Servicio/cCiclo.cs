@@ -28,7 +28,8 @@ namespace Servicio
                         No_Ciclo = noCiclo,
                         PK_Usuario = pkUsuario,
                         Fecha = fecha,
-                        Hora = hora
+                        Hora = hora,
+                        vacio = 1
                     };
                     entidad.Ciclos.Add(ciclo);
                     entidad.SaveChanges();
@@ -39,6 +40,35 @@ namespace Servicio
                 MessageBox.Show("Error al crear ciclo.");
             }
         }
+        public void llenar(string horno, int noCiclo)
+        {
+            try
+            {
+                List<Ciclo> Ciclos = null;
+                using (MuestrasHornosEntities entidad = new MuestrasHornosEntities())
+                {
+                    var consulta = from c in entidad.Ciclos
+                                   where c.Horno == horno
+                                   where c.No_Ciclo == noCiclo
+                                   select c;
+                    Ciclos = consulta.ToList();
+                    if (Ciclos.Count == 0)
+                    {
+                        foreach (Ciclo ccl in Ciclos)
+                        {
+                            ccl.vacio = 0;
+                        }
+                        entidad.SaveChanges();
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         /// <summary>
         /// Regresa una lista con todos los ciclos
         /// </summary>
@@ -298,5 +328,6 @@ namespace Servicio
 
 
         }
+
     }
 }
