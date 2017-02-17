@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Servicio;
+using Hornos;
 
 namespace BDMuestras
 {
@@ -53,9 +54,7 @@ namespace BDMuestras
                 Program.PkCicloAuxiliar = horno;
                 Program.fechaAuxiliar = fecha;
                 Program.sesion = 1;
-                Program.VentanaCapturarDatos = new CapturadeDatos();
-                Program.VentanaCapturarDatos.Show();
-
+                NumeroParte numeroParte = new NumeroParte(2,horno,noCiclo);
                 this.Close();
             }
             catch (Exception)

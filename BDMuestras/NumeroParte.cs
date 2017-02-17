@@ -119,7 +119,8 @@ namespace Hornos
                 }
                 if (configuracion == 2) //Proigram.sesion = 2
                 {
-                    CapturadeDatos capturarDatos = new CapturadeDatos(Program.fechaAuxiliar,Program.PkCicloAuxiliar,Program.NcicloAuxiliar,numeroParte);
+                    CapturadeDatos capturarDatos = 
+                        new CapturadeDatos(Program.fechaAuxiliar,horno,ciclo,numeroParte);
                     capturarDatos.Show();
                     capturarDatos = null;
                 }
@@ -137,7 +138,6 @@ namespace Hornos
                 this.Close();
             }
         }
-
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
