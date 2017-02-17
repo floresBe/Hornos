@@ -48,14 +48,12 @@ namespace BDMuestras
                 infoCiclo = listBoxCiclosdelDia.SelectedItem.ToString().Split();
                 horno = infoCiclo[0];
                 noCiclo = Convert.ToInt32(infoCiclo[1]);
-                
-
                 Program.NcicloAuxiliar = noCiclo;
                 Program.PkCicloAuxiliar = horno;
                 Program.fechaAuxiliar = fecha;
                 Program.sesion = 1;
                 NumeroParte numeroParte = new NumeroParte(2,horno,noCiclo);
-                this.Close();
+                numeroParte.Show();
             }
             catch (Exception)
             {

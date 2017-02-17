@@ -44,12 +44,14 @@ namespace BDMuestras
         /// <param name="e"></param>
         private void CapturadeDatos_Load(object sender, EventArgs e)
         {
-            parteCiclo = new cParteCiclo();
+
             FechaLabel.Text = fecha;
             CicloLabel.Text = "Ciclo: " + horno + noCiclo;
-            parteCiclo = null;
+            textBoxParte.Text = parte;
+            textBoxParte.Enabled = false;
             if (Program.sesion == 2)
             {
+                parteCiclo = new cParteCiclo();
                 string informacionCiclo = parteCiclo.obtenerDatos(horno, noCiclo, parte);
                 if (informacionCiclo != null)
                 {
@@ -57,9 +59,9 @@ namespace BDMuestras
                     textBoxParte.Text = infoCiclo[0];
                     textBoxEntrantes.Text = infoCiclo[1];
                     textBoxMalas.Text = infoCiclo[3];
-                    textBoxRebraze.Text = infoCiclo[2];
-                    textBoxParte.Enabled = false;
+                    textBoxRebraze.Text = infoCiclo[2];               
                 }
+                parteCiclo = null;
             }            
         }
         /// <summary>

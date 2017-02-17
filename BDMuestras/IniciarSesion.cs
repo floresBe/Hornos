@@ -82,9 +82,7 @@ namespace BDMuestras
                         }
                         else if ((cUsuario.obtenerNivel(usuario) == 2 || cUsuario.obtenerNivel(usuario) == 3) && Program.sesion == 2)
                         {
-                            Program.VentanaCapturarDatos = new CapturadeDatos();
-                            Program.VentanaCapturarDatos.Show();
-                            this.Hide();
+                           this.Hide();
                         }else if (cUsuario.obtenerNivel(usuario) == 3 && Program.sesion == 3)
                         {
                             Usuarios ventana = new Usuarios();
