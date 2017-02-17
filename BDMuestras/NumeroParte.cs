@@ -72,7 +72,6 @@ namespace Hornos
                 this.Close();
             }
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
             parteCiclo = new cParteCiclo();
@@ -93,7 +92,9 @@ namespace Hornos
                             MessageBox.Show("Número de parte agregada con exito.");
                             if (MessageBox.Show("Desea agregar otro número de parte al ciclo?","Agregar otro número",MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
-                                this.Refresh();
+                                segundos = 0;
+                                textBox1.Text = string.Empty;
+                                textBox1.Focus();
                             }else
                             {
                                 this.Close();
@@ -103,14 +104,32 @@ namespace Hornos
                     {
                         textBox1.Focus();
                     }
-                }                
+                }
+            }
+            else
+            {
+                if(comboBox1.SelectedItem != null)
+                {
+                    numeroParte = comboBox1.SelectedItem.ToString();
+                }else
+                {
+                    MessageBox.Show("Seleccione número de parte.");
+                    return;
+                }
+                if (configuracion == 2)
+                {
+                    //Editar numero de parte
+                }
+                if(configuracion == 3)
+                {
+                    //Imprimir numero de parte
+                }
             }
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             segundos++;
-            if(segundos == 90)
+            if(segundos == 60)
             {
                 this.Close();
             }

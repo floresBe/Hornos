@@ -46,3 +46,4 @@ C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\Entity
 C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\obj\Debug\Servicio.dll
 C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\obj\Debug\Servicio.pdb
+C:\Users\aale\Documents\Hornos y Halting\Hornos\Hornos\Servicio\obj\Debug\Servicio.csprojResolveAssemblyReference.cache

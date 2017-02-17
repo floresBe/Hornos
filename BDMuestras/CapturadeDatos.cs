@@ -21,29 +21,34 @@ namespace BDMuestras
         int entrantes;
         int malas;
 
-        cParteCiclo parteCiclo = new cParteCiclo();
-        cCiclo ciclo = new cCiclo();
+        cParteCiclo parteCiclo = null;
+        cCiclo ciclo = null;
         private DialogResult respuesta;
-
-        public CapturadeDatos()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="fecha"></param>
+        /// <param name="horno"></param>
+        /// <param name="noCiclo"></param>
+        public CapturadeDatos(string fecha, string horno, int noCiclo)
         {
             InitializeComponent();
+            this.fecha = fecha;
+            this.horno = horno;
+            this.noCiclo = noCiclo;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CapturadeDatos_Load(object sender, EventArgs e)
         {
-            if (Program.sesion == 1)
+            FechaLabel.Text = fecha;
+            CicloLabel.Text = "Ciclo: " + horno + noCiclo;
+            if (Program.sesion == 2)
             {
-                fecha = Program.fechaAuxiliar;
-                noCiclo = Program.NcicloAuxiliar;
-                horno = Program.PkCicloAuxiliar;
-            }
-            else if (Program.sesion == 2)
-            {
-                fecha = Program.fechaAuxiliar;
-                noCiclo = Program.NcicloAuxiliar;
-                horno = Program.PkCicloAuxiliar;
-                string informacionCiclo = parteCiclo.ObtenerTodoslosDatos(horno, noCiclo);
+                string informacionCiclo = parteCiclo.obtenerDatos(horno, noCiclo);
                 if (informacionCiclo != null)
                 {
                     string[] infoCiclo = informacionCiclo.Split();
@@ -54,10 +59,13 @@ namespace BDMuestras
                 }
             }
 
-            FechaLabel.Text = fecha;
-            CicloLabel.Text = "Ciclo: " + horno + noCiclo;
-        }
 
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
             try
@@ -105,7 +113,7 @@ namespace BDMuestras
             respuesta = MessageBox.Show("Seguro que desea actualizar el ciclo?", "Actualizar Ciclo", MessageBoxButtons.YesNo);
             if (respuesta == DialogResult.Yes)
             {
-                parteCiclo.ActualizarCiclo(horno, noCiclo, parte, entrantes, malas, rebraze);
+                parteCiclo.actualizar(horno, noCiclo, parte, entrantes, malas, rebraze);
 
                 respuesta = MessageBox.Show("Desea Agregar mas Piezas al Ciclo?", "Agregar Pieza", MessageBoxButtons.YesNo);
                 if (respuesta == DialogResult.Yes)
@@ -133,6 +141,11 @@ namespace BDMuestras
             }
 
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             this.Close();

@@ -342,6 +342,8 @@ namespace BDMuestras
                             ciclo.insertar(Program.horno, Program.noCiclo, Program.usuario, fecha, sHora);
                             nombreCiclo = Program.nombreCiclo;
                             NumeroParte noParte = new Hornos.NumeroParte(1, Program.horno, Program.noCiclo);
+                            noParte.Show();
+                            noParte = null;
                         }
                     }
 
