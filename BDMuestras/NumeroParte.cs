@@ -1,4 +1,5 @@
-﻿using Servicio;
+﻿using BDMuestras;
+using Servicio;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -116,9 +117,11 @@ namespace Hornos
                     MessageBox.Show("Seleccione número de parte.");
                     return;
                 }
-                if (configuracion == 2)
+                if (configuracion == 2) //Proigram.sesion = 2
                 {
-                    //Editar numero de parte
+                    CapturadeDatos capturarDatos = new CapturadeDatos(Program.fechaAuxiliar,Program.PkCicloAuxiliar,Program.NcicloAuxiliar,numeroParte);
+                    capturarDatos.Show();
+                    capturarDatos = null;
                 }
                 if(configuracion == 3)
                 {

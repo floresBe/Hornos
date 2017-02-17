@@ -20,22 +20,22 @@ namespace BDMuestras
         int rebraze;
         int entrantes;
         int malas;
-
         cParteCiclo parteCiclo = null;
-        cCiclo ciclo = null;
         private DialogResult respuesta;
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="fecha"></param>
         /// <param name="horno"></param>
         /// <param name="noCiclo"></param>
-        public CapturadeDatos(string fecha, string horno, int noCiclo)
+        public CapturadeDatos(string fecha, string horno, int noCiclo, string noParte)
         {
             InitializeComponent();
             this.fecha = fecha;
             this.horno = horno;
             this.noCiclo = noCiclo;
+            parte = noParte;
         }
         /// <summary>
         /// 
@@ -44,11 +44,13 @@ namespace BDMuestras
         /// <param name="e"></param>
         private void CapturadeDatos_Load(object sender, EventArgs e)
         {
+            parteCiclo = new cParteCiclo();
             FechaLabel.Text = fecha;
             CicloLabel.Text = "Ciclo: " + horno + noCiclo;
+            parteCiclo = null;
             if (Program.sesion == 2)
             {
-                string informacionCiclo = parteCiclo.obtenerDatos(horno, noCiclo);
+                string informacionCiclo = parteCiclo.obtenerDatos(horno, noCiclo, parte);
                 if (informacionCiclo != null)
                 {
                     string[] infoCiclo = informacionCiclo.Split();
@@ -56,10 +58,9 @@ namespace BDMuestras
                     textBoxEntrantes.Text = infoCiclo[1];
                     textBoxMalas.Text = infoCiclo[3];
                     textBoxRebraze.Text = infoCiclo[2];
+                    textBoxParte.Enabled = false;
                 }
-            }
-
-
+            }            
         }
         /// <summary>
         /// 
@@ -73,7 +74,7 @@ namespace BDMuestras
                 if (textBoxParte.Text != string.Empty)
                     parte = textBoxParte.Text;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Dato no valido: " + textBoxParte.Text);
                 textBoxEntrantes.Text = string.Empty;
@@ -83,7 +84,7 @@ namespace BDMuestras
             {
                 entrantes = Convert.ToInt32(textBoxEntrantes.Text);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Dato no valido: " + textBoxEntrantes.Text);
                 textBoxEntrantes.Text = string.Empty;
@@ -93,7 +94,7 @@ namespace BDMuestras
             {
                 malas = Convert.ToInt32(textBoxMalas.Text);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Dato no valido: " + textBoxMalas.Text);
                 textBoxMalas.Text = string.Empty;
@@ -103,21 +104,23 @@ namespace BDMuestras
             {
                 rebraze = Convert.ToInt32(textBoxRebraze.Text);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Dato no valido: " + textBoxRebraze.Text);
                 textBoxRebraze.Text = string.Empty;
                 return;
             }
-
             respuesta = MessageBox.Show("Seguro que desea actualizar el ciclo?", "Actualizar Ciclo", MessageBoxButtons.YesNo);
             if (respuesta == DialogResult.Yes)
             {
+                parteCiclo = new cParteCiclo();
                 parteCiclo.actualizar(horno, noCiclo, parte, entrantes, malas, rebraze);
-
-                respuesta = MessageBox.Show("Desea Agregar mas Piezas al Ciclo?", "Agregar Pieza", MessageBoxButtons.YesNo);
+                parteCiclo = null;
+                respuesta = MessageBox.Show("Desea Agregar más números de parte al Ciclo?", "Agregar Pieza", MessageBoxButtons.YesNo);
                 if (respuesta == DialogResult.Yes)
                 {
+                    textBoxParte.Enabled = true;
+                    textBoxParte.Text = string.Empty;
                     textBoxEntrantes.Text = string.Empty;
                     textBoxParte.Text = string.Empty;
                     textBoxMalas.Text = string.Empty;
@@ -129,17 +132,6 @@ namespace BDMuestras
                     this.Close();
                 }
             }
-            else if (Program.sesion != 2)
-            {
-                this.Close();
-                Program.VentanaInformesIncompletos = new InformesIncompletos();
-                Program.VentanaInformesIncompletos.Show();
-            }
-            else
-            {
-                this.Close();
-            }
-
         }
         /// <summary>
         /// 
@@ -149,11 +141,6 @@ namespace BDMuestras
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            if (Program.sesion != 2)
-            {
-                Program.VentanaInformesIncompletos = new InformesIncompletos();
-                Program.VentanaInformesIncompletos.Show();
-            }
         }
     }
 }

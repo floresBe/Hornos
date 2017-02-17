@@ -80,7 +80,7 @@ namespace Servicio
         /// </summary>
         /// <param name="nombreCiclo"></param>
         /// <returns></returns>
-        public string obtenerDatos(string horno, int ciclo)
+        public string obtenerDatos(string horno, int ciclo, string noParte)
         {
             string info = null;
             List<ParteCiclo> lista = null;
@@ -93,6 +93,7 @@ namespace Servicio
                     var consulta = from c in entidad.ParteCicloes
                                    where c.Horno.Equals(horno)
                                    where c.No_Ciclo == ciclo
+                                   where c.No_Parte == noParte
                                    orderby c.No_Ciclo
                                    select c;
                     lista = consulta.ToList();
