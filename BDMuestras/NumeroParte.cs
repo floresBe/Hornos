@@ -29,7 +29,6 @@ namespace Hornos
             configurar();
 
         }
-
         private void configurar()
         {
             switch (configuracion)

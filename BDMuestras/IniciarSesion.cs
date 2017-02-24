@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Servicio;
+using Hornos;
 
 namespace BDMuestras
 {
@@ -81,10 +82,12 @@ namespace BDMuestras
                             this.Hide();
                         }
                         else if ((cUsuario.obtenerNivel(usuario) == 2 || cUsuario.obtenerNivel(usuario) == 3) && Program.sesion == 2)
-                        {
+                        {//se cumple cuando se quiere editar un ciclo con los datos anteriormente guardados
+                            NumeroParte parte = new NumeroParte(2,Program.PkCicloAuxiliar,Program.NcicloAuxiliar);
+                            parte.Show();
                            this.Hide();
                         }else if (cUsuario.obtenerNivel(usuario) == 3 && Program.sesion == 3)
-                        {
+                        {//se cumple cuando se inicia sesion para manejar usuarios
                             Usuarios ventana = new Usuarios();
                             ventana.Show();
                             this.Hide();
