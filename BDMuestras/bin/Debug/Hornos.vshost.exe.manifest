@@ -259,26 +259,26 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Hornos.exe" size="572928">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Hornos.exe" size="573440">
       <assemblyIdentity name="Hornos" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>BjhybceeXwfgVlDOOd3fZrAZ4IVwAyCFX2UKy9V57G0=</dsig:DigestValue>
+        <dsig:DigestValue>/SLAmV9s0VTfcwGM1YnZ/fFeiirhYLSyCKR2oF4rcfQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Servicio.dll" size="91648">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Servicio.dll" size="92672">
       <assemblyIdentity name="Servicio" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>vcNgShJDmuws2fvhi0axbg2tvCkhRLoH9h3ydGHOMjA=</dsig:DigestValue>
+        <dsig:DigestValue>n0eVWMAA40A35cmeAY0LqmDbyr1az/Ngq4czie+5JKM=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

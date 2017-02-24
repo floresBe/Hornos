@@ -148,6 +148,7 @@
             this.dateTimePicker.Name = "dateTimePicker";
             this.dateTimePicker.Size = new System.Drawing.Size(18, 20);
             this.dateTimePicker.TabIndex = 43;
+            this.dateTimePicker.CloseUp += new System.EventHandler(this.dateTimePicker_CloseUp);
             this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // labelFecha

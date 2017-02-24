@@ -102,7 +102,7 @@ namespace Servicio
                 }
                 foreach (var item in lista)
                 {
-                    info = item.ToString();
+                    info = item.Piezas_Entrantes.ToString() +" " + item.Piezas_Malas.ToString() + " " + item.Piezas_Rebraze.ToString(); 
                 }
             }
             catch (Exception)
@@ -242,6 +242,38 @@ namespace Servicio
             return lista;
         }
 
+        public List<string> obtenerNumerosParteVaciosPorCiclo(string horno, int ciclo)
+        {
+            List<string> info = new List<string>();
+            List<ParteCiclo> lista = null;
 
+            try
+            {
+                lista = new List<ParteCiclo>();
+                using (var entidad = new MuestrasHornosEntities())
+                {
+                    var consulta = from c in entidad.ParteCicloes
+                                   where c.Horno.Equals(horno)
+                                   where c.No_Ciclo == ciclo
+                                   where c.Piezas_Entrantes == 0
+                                   where c.Piezas_Malas == 0
+                                   where c.Piezas_Rebraze == 0
+                                   orderby c.No_Ciclo
+                                   select c;
+                    lista = consulta.ToList();
+
+                }
+                foreach (var item in lista)
+                {
+                    info.Add(item.No_Parte.ToString());
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al acceder a la base de datos.");
+                return null;
+            }
+            return info;
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Servicio;
+using Hornos;
 
 namespace BDMuestras
 {
@@ -36,6 +37,7 @@ namespace BDMuestras
             this.horno = horno;
             this.noCiclo = noCiclo;
             parte = noParte;
+
         }
         /// <summary>
         /// 
@@ -49,20 +51,9 @@ namespace BDMuestras
             CicloLabel.Text = "Ciclo: " + horno + noCiclo;
             textBoxParte.Text = parte;
             textBoxParte.Enabled = false;
-            if (Program.sesion == 2)
-            {
-                parteCiclo = new cParteCiclo();
-                string informacionCiclo = parteCiclo.obtenerDatos(horno, noCiclo, parte);
-                if (informacionCiclo != null)
-                {
-                    string[] infoCiclo = informacionCiclo.Split();
-                    textBoxParte.Text = infoCiclo[0];
-                    textBoxEntrantes.Text = infoCiclo[1];
-                    textBoxMalas.Text = infoCiclo[3];
-                    textBoxRebraze.Text = infoCiclo[2];               
-                }
-                parteCiclo = null;
-            }            
+           
+                mostrarDatos();
+                      
         }
         /// <summary>
         /// 
@@ -136,6 +127,8 @@ namespace BDMuestras
                 else
                 {
                     this.Close();
+                    NumeroParte parte = new NumeroParte(2,horno,noCiclo);
+                    parte.Show();
                 }
             }
         }
@@ -147,6 +140,20 @@ namespace BDMuestras
         private void buttonCancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void mostrarDatos()
+        {
+            parteCiclo = new cParteCiclo();
+            string informacionCiclo = parteCiclo.obtenerDatos(horno, noCiclo, parte);
+            if (informacionCiclo != null)
+            {
+                string[] infoCiclo = informacionCiclo.Split();
+                textBoxEntrantes.Text = infoCiclo[0];
+                textBoxMalas.Text = infoCiclo[1];
+                textBoxRebraze.Text = infoCiclo[2];
+            }
+            parteCiclo = null;
         }
     }
 }

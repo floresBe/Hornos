@@ -54,12 +54,14 @@ namespace BDMuestras
                 Program.sesion = 1;
                 NumeroParte numeroParte = new NumeroParte(2,horno,noCiclo);
                 numeroParte.Show();
+                this.Close();
             }
             catch (Exception)
             {
                 MessageBox.Show("No se ha seleccionado ciclo.");
                 return;
             }
+
 
         }
         private void buttonCancelar_Click(object sender, EventArgs e)
@@ -68,16 +70,7 @@ namespace BDMuestras
         }
         private void dateTimePicker_ValueChanged(object sender, EventArgs e)
         {
-            vfecha = dateTimePicker.Value.ToString().Split();
-            fecha = vfecha[0];
-            labelFecha.Text = fecha;
-            listBoxCiclosdelDia.Items.Clear();
-            ciclos = null;
-            ciclos = parteCiclo.ObtenerCiclosVaciosDeFecha(fecha, Program.horno);
-            foreach (var item in ciclos)
-            {
-                listBoxCiclosdelDia.Items.Add(item);
-            }
+            
         }
 
         private void labelFecha_Click(object sender, EventArgs e)
@@ -93,6 +86,34 @@ namespace BDMuestras
         private void listBoxCiclosdelDia_LostFocus(object sender, EventArgs e)
         {           
             ///Algo se me ocurrira con este metodo
+        }
+
+        private void dateTimePicker_CloseUp(object sender, EventArgs e)
+        {
+            vfecha = dateTimePicker.Value.ToString().Split();
+            fecha = vfecha[0];
+            labelFecha.Text = fecha;
+
+            llenarLista();
+        }
+
+        private void llenarLista()
+        {
+            listBoxCiclosdelDia.Items.Clear();
+            ciclos = null;
+            ciclos = parteCiclo.ObtenerCiclosVaciosDeFecha(fecha, Program.horno);
+
+            if (ciclos.Count > 0)
+            {
+                foreach (var item in ciclos)
+                {
+                    listBoxCiclosdelDia.Items.Add(item);
+                }
+            }
+            else
+            {
+                MessageBox.Show("No existen ciclos VACÍOS en la fecha seleccionada.");
+            }
         }
     }
 }

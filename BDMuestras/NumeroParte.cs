@@ -26,13 +26,13 @@ namespace Hornos
             horno = hor;
             ciclo = cic;
             configuracion = conf;
-            configurar(conf);
+            configurar();
 
         }
 
-        private void configurar(int conf)
+        private void configurar()
         {
-            switch (conf)
+            switch (configuracion)
             {
                 case 1:  //Guardar numero de parte en ciclo
                     labelTitulo.Text = "Ingresar No. de Parte.";
@@ -54,12 +54,19 @@ namespace Hornos
         private void configuracionII()
         {
             cParteCiclo cicloParte = new cParteCiclo();
-            List<string> partes;
+            List<string> partes = new List<string>();
             labelTitulo.Text = "Seleccionar No. de Parte.";
             comboBox1.Visible = true;
             button1.Text = "Seleccionar";
             button2.Text = "Cancelar";
-            partes = cicloParte.obtenerNumerosPartePorCiclo(horno, ciclo);
+            if (configuracion == 3)
+            {
+                partes = cicloParte.obtenerNumerosPartePorCiclo(horno, ciclo);
+            }
+            if (configuracion == 2)
+            {
+                partes = cicloParte.obtenerNumerosParteVaciosPorCiclo(horno, ciclo);
+            }
             if (partes.Count > 0)
             {
                 foreach (string noParte in partes)
@@ -83,25 +90,28 @@ namespace Hornos
                     MessageBox.Show("Ingrese número de parte.");
                     textBox1.Focus();
                     return;
-                }else
+                }
+                else
                 {
                     numeroParte = textBox1.Text;
-                    if (MessageBox.Show("Seguro que desea agregar el número de parte: " + numeroParte +" a la base de datos?","Agregar número de parte",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show("Seguro que desea agregar el número de parte: " + numeroParte + " a la base de datos?", "Agregar número de parte", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        if(parteCiclo.insertar(ciclo,horno,numeroParte) > 0)
+                        if (parteCiclo.insertar(ciclo, horno, numeroParte) > 0)
                         {
                             MessageBox.Show("Número de parte agregada con exito.");
-                            if (MessageBox.Show("Desea agregar otro número de parte al ciclo?","Agregar otro número",MessageBoxButtons.YesNo) == DialogResult.Yes)
+                            if (MessageBox.Show("Desea agregar otro número de parte al ciclo?", "Agregar otro número", MessageBoxButtons.YesNo) == DialogResult.Yes)
                             {
                                 segundos = 0;
                                 textBox1.Text = string.Empty;
                                 textBox1.Focus();
-                            }else
+                            }
+                            else
                             {
                                 this.Close();
                             }
                         }
-                    }else
+                    }
+                    else
                     {
                         textBox1.Focus();
                     }
@@ -109,22 +119,24 @@ namespace Hornos
             }
             else
             {
-                if(comboBox1.SelectedItem != null)
+                if (comboBox1.SelectedItem != null)
                 {
                     numeroParte = comboBox1.SelectedItem.ToString();
-                }else
+                }
+                else
                 {
                     MessageBox.Show("Seleccione número de parte.");
                     return;
                 }
                 if (configuracion == 2) //Proigram.sesion = 2
                 {
-                    CapturadeDatos capturarDatos = 
-                        new CapturadeDatos(Program.fechaAuxiliar,horno,ciclo,numeroParte);
+                    CapturadeDatos capturarDatos =
+                        new CapturadeDatos(Program.fechaAuxiliar, horno, ciclo, numeroParte);
                     capturarDatos.Show();
                     capturarDatos = null;
+                    this.Close();
                 }
-                if(configuracion == 3)
+                if (configuracion == 3)
                 {
                     //Imprimir numero de parte
                 }
@@ -133,13 +145,18 @@ namespace Hornos
         private void timer1_Tick(object sender, EventArgs e)
         {
             segundos++;
-            if(segundos == 60)
+            if (segundos == 60)
             {
                 this.Close();
             }
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            if (configuracion == 2)
+            {
+                InformesIncompletos ventana = new InformesIncompletos();
+                ventana.Show();
+            }
             this.Close();
         }
     }
