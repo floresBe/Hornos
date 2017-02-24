@@ -79,7 +79,8 @@ namespace BDMuestras
             catch (Exception ex)
             {
                 MessageBox.Show("Dato no valido: " + textBoxParte.Text);
-                textBoxEntrantes.Text = string.Empty;
+                textBoxParte.Text = string.Empty;
+                textBoxParte.Focus();
                 return;
             }
             try
@@ -90,6 +91,7 @@ namespace BDMuestras
             {
                 MessageBox.Show("Dato no valido: " + textBoxEntrantes.Text);
                 textBoxEntrantes.Text = string.Empty;
+                textBoxEntrantes.Focus();
                 return;
             }
             try
@@ -100,6 +102,7 @@ namespace BDMuestras
             {
                 MessageBox.Show("Dato no valido: " + textBoxMalas.Text);
                 textBoxMalas.Text = string.Empty;
+                textBoxMalas.Focus();
                 return;
             }
             try
@@ -110,6 +113,7 @@ namespace BDMuestras
             {
                 MessageBox.Show("Dato no valido: " + textBoxRebraze.Text);
                 textBoxRebraze.Text = string.Empty;
+                textBoxRebraze.Focus();
                 return;
             }
             respuesta = MessageBox.Show("Seguro que desea actualizar el ciclo?", "Actualizar Ciclo", MessageBoxButtons.YesNo);

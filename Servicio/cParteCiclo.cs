@@ -56,7 +56,8 @@ namespace Servicio
                 using (var entidad = new MuestrasHornosEntities())
                 {
                     var consulta = from c in entidad.ParteCicloes
-                                   where c.Horno == horno
+                                   where c.No_Parte == parte
+                                   where c.Horno.Contains(horno)
                                    where c.No_Ciclo == noCiclo
                                    select c;
                     lista = consulta.ToList();
@@ -70,7 +71,7 @@ namespace Servicio
                     entidad.SaveChanges();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al acceder a la base de datos.");
             }
