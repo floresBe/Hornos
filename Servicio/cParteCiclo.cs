@@ -153,7 +153,9 @@ namespace Servicio
         /// <returns></returns>
         public bool ciclosVacios(string horno)
         {
-            if (ObtenerCiclosVacios(horno) == null || ObtenerCiclosVacios(horno).Count < 1)
+            List<ParteCiclo> cVacios = ObtenerCiclosVacios(horno);
+            int ciclosVacios = cVacios.Count;
+            if (cVacios == null || ciclosVacios < 1)
                 return false;
             else
                 return true;

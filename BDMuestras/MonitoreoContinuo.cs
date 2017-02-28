@@ -79,7 +79,9 @@ namespace BDMuestras
         /// <param name="e"></param>
         private void MonitoreoContinuo_Load(object sender, EventArgs e)
         {
+            parteCiclo = new cParteCiclo();
             labelCiclo.Text = "Ciclo: " + nombreCiclo;
+            Program.ciclosVacios = parteCiclo.ciclosVacios(Program.horno);
             TemporizadorHora.Start();
             CargarGrafica();
             abrirPuertos();
@@ -100,6 +102,7 @@ namespace BDMuestras
             }
             timerMuestreo.Start();
             timerDatosRecibidos.Start();
+            parteCiclo = null;
         }
         /// <summary>
         /// Evento de recibir datos desde puerto serial del horno
@@ -222,6 +225,7 @@ namespace BDMuestras
             {
                 labelFechaHora.Text = DateTime.Now.ToString();
                 labelCiclo.Text = "Ciclo: " + Program.nombreCiclo;
+                ciclosVacios();
             }
             catch (Exception ex)
             {
@@ -310,7 +314,6 @@ namespace BDMuestras
             ciclo = new cCiclo();
             parteCiclo = new cParteCiclo();
             string status = null;
-            Program.ciclosVacios = parteCiclo.ciclosVacios(Program.horno);
             try
             {
                 status = valoresHorno[30].ToString();
@@ -503,7 +506,7 @@ namespace BDMuestras
                 primeraHora += 0.041666;
                 ultimaHora += 0.041666;
                 Program.VentanaMonitoreo.chartMuestras.ChartAreas[0].AxisX.ScaleView.Zoom(primeraHora, ultimaHora);
-                
+
             }
             Program.VentanaMonitoreo.chartMuestras.Update();
         }
@@ -573,10 +576,7 @@ namespace BDMuestras
                         pictureCorriendo.Visible = false;
                         pictureDetenido.Visible = true;
                     }
-                    if (Program.ciclosVacios)
-                        IconoAtencion.Visible = true;
-                    else
-                        IconoAtencion.Visible = false;
+
                 }
                 catch (Exception)
                 {
@@ -610,6 +610,17 @@ namespace BDMuestras
             {
                 MessageBox.Show("Error al recibir datos ambiente.");
             }
+
+        }
+        private void ciclosVacios()
+        {
+            parteCiclo = new cParteCiclo();
+            Program.ciclosVacios = parteCiclo.ciclosVacios(Program.horno);
+            if (Program.ciclosVacios)
+                IconoAtencion.Visible = true;
+            else
+                IconoAtencion.Visible = false;
+
 
         }
     }
