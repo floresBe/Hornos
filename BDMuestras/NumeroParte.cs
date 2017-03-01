@@ -31,24 +31,18 @@ namespace Hornos
         }
         private void configurar()
         {
-            switch (configuracion)
+            if (configuracion == 1)
             {
-                case 1:  //Guardar numero de parte en ciclo
-                    labelTitulo.Text = "Ingresar No. de Parte.";
-                    comboBox1.Visible = false;
-                    button1.Text = "Agregar";
-                    button2.Text = "Más tarde";
-                    timer1.Start();
-                    break;
-                case 2: //Editar numero de parte de ciclo
-                    configuracionII();
-                    break;
-                case 3: //Imprimir numero de parte de cico
-                    configuracionII();
-                    break;
-                default:
-                    break;
+                labelTitulo.Text = "Ingresar No. de Parte.";
+                comboBox1.Visible = false;
+                button1.Text = "Agregar";
+                button2.Text = "Más tarde";
+                timer1.Start();
             }
+            else {
+                configuracionII();
+            }
+                        
         }
         private void configuracionII()
         {
@@ -58,14 +52,17 @@ namespace Hornos
             comboBox1.Visible = true;
             button1.Text = "Seleccionar";
             button2.Text = "Cancelar";
-            if (configuracion == 3)
-            {
-                partes = cicloParte.obtenerNumerosPartePorCiclo(horno, ciclo);
-            }
             if (configuracion == 2)
-            {
+            {//se cumple cuando se van a guardar datos de un ciclo
                 partes = cicloParte.obtenerNumerosParteVaciosPorCiclo(horno, ciclo);
             }
+            else if (configuracion == 3 || configuracion == 4)
+            {// se cumple cuando se quieren editar datos de un ciclo
+                // o cuando se quiere imprimir un reporte 
+                partes = cicloParte.obtenerNumerosPartePorCiclo(horno, ciclo);
+            }
+
+
             if (partes.Count > 0)
             {
                 foreach (string noParte in partes)
@@ -127,7 +124,7 @@ namespace Hornos
                     MessageBox.Show("Seleccione número de parte.");
                     return;
                 }
-                if (configuracion == 2) //Proigram.sesion = 2
+                if (configuracion == 2 || configuracion == 3) //Proigram.sesion = 2
                 {
                     CapturadeDatos capturarDatos =
                         new CapturadeDatos(Program.fechaAuxiliar, horno, ciclo, numeroParte);
@@ -135,7 +132,7 @@ namespace Hornos
                     capturarDatos = null;
                     this.Close();
                 }
-                if (configuracion == 3)
+                if (configuracion == 4)
                 {
                     //Imprimir numero de parte
                 }

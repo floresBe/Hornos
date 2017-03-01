@@ -83,7 +83,7 @@ namespace BDMuestras
                         }
                         else if ((cUsuario.obtenerNivel(usuario) == 2 || cUsuario.obtenerNivel(usuario) == 3) && Program.sesion == 2)
                         {//se cumple cuando se quiere editar un ciclo con los datos anteriormente guardados
-                            NumeroParte parte = new NumeroParte(2,Program.PkCicloAuxiliar,Program.NcicloAuxiliar);
+                            NumeroParte parte = new NumeroParte(3,Program.PkCicloAuxiliar,Program.NcicloAuxiliar);
                             parte.Show();
                            this.Hide();
                         }else if (cUsuario.obtenerNivel(usuario) == 3 && Program.sesion == 3)
