@@ -127,7 +127,18 @@ namespace BDMuestras
                     //datosHorno += sp.ReadExisting();
                     datosHorno += sp.ReadLine();
                 }
-                catch (Exception) { MessageBox.Show("Al Leer linea"); }
+                catch (Exception)
+                {
+                    try
+                    {
+                        datosHorno += sp.ReadExisting();
+                    }
+                    catch (Exception exx)
+                    {
+                        MessageBox.Show("Al Leer linea");
+                        return;
+                    }
+                }
                 try
                 {
                     valoresHorno = null;

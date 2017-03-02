@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MonitoreoContinuo));
             this.labelHorno = new System.Windows.Forms.Label();
             this.labelTituloGrafica = new System.Windows.Forms.Label();
@@ -149,10 +149,10 @@
             // 
             // chartMuestras
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chartMuestras.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chartMuestras.Legends.Add(legend2);
+            chartArea1.Name = "ChartArea1";
+            this.chartMuestras.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chartMuestras.Legends.Add(legend1);
             this.chartMuestras.Location = new System.Drawing.Point(461, 120);
             this.chartMuestras.Name = "chartMuestras";
             this.chartMuestras.Size = new System.Drawing.Size(875, 441);
@@ -399,7 +399,7 @@
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.Name = "MonitoreoContinuo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Toma de Muestras";
+            this.Text = "a";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MonitoreoContinuo_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MonitoreoContinuo_FormClosed);
             this.Load += new System.EventHandler(this.MonitoreoContinuo_Load);
