@@ -71,7 +71,6 @@ namespace Servicio
             }
             return lista;
         }
-
         public int obtenerPKdeSerie(int serie)
         {
             int pieza = 0;

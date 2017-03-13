@@ -128,7 +128,7 @@ namespace Servicio
                 using (var entidad = new MuestrasHornosEntities())
                 {
                     var consulta = from c in entidad.ParteCicloes
-                                   where c.Horno.Equals(horno)
+                                  // where c.Horno == horno
                                    where c.No_Ciclo == ciclo
                                    orderby c.No_Ciclo
                                    select c;
@@ -177,7 +177,6 @@ namespace Servicio
                 {
                     CiclosVacios.Add(cv.Horno + " " + cv.No_Ciclo);
                 }
-
             }
             return CiclosVacios;
         }
@@ -241,6 +240,16 @@ namespace Servicio
             {
                 MessageBox.Show("Error al consultar la base de datos.");
             }
+
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
             return lista;
         }
 

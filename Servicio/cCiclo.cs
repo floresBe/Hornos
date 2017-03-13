@@ -105,6 +105,7 @@ namespace Servicio
             catch (Exception ex)
             {
                 MessageBox.Show("Error al buscar el ultimo ciclo.");
+                MessageBox.Show(ex.ToString());
 
             }
             return ultimo;
@@ -203,7 +204,7 @@ namespace Servicio
         {
             foreach (Ciclo ciclo in obtenerPorHorno(horno))
             {
-                if (ciclo.vacio == 1)
+                if (ciclo.vacio == 1 || ciclo.vacio == null)
                     return true;
             }
             return false;

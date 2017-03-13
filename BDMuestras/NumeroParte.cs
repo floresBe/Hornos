@@ -41,6 +41,7 @@ namespace Hornos
             }
             else {
                 configuracionII();
+
             }
                         
         }
@@ -73,7 +74,8 @@ namespace Hornos
             else
             {
                 MessageBox.Show("El ciclo no contiene números de parte guardados.");
-                this.Close();
+                configuracion = 1;
+                configurar();
             }
         }
         private void button1_Click(object sender, EventArgs e)

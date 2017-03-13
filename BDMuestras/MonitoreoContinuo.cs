@@ -121,13 +121,14 @@ namespace BDMuestras
                 catch (Exception)
                 {
                     MessageBox.Show("Al crear el puerto.");
+                    return;
                 }
                 try
                 {
-                    //datosHorno += sp.ReadExisting();
-                    datosHorno += sp.ReadLine();
+                    //datosHorno += sp.ReadLine();
+                    datosHorno += sp.ReadExisting();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     try
                     {
@@ -149,15 +150,16 @@ namespace BDMuestras
                     MessageBox.Show("Al dividir cadena");
                     return;
                 }
-                if (valoresHorno.Length == 32 && datosHornoRecibidos == false)
+                if (valoresHorno.Length == 31 && datosHornoRecibidos == false)
                 {
                     datosHornoRecibidos = true;
+                   // DatosHornoRecibidos();
                 }//Cierra if comprobacion de todos los datos recibidos
                 else if (valoresHorno.Length > 33 || datosHornoDesocupados)
                 {
-                    valoresHorno = null;
-                    datosHorno = string.Empty;
-                    datosHornoRecibidos = false;
+                //    valoresHorno = null;
+                //    datosHorno = string.Empty;
+                //    datosHornoRecibidos = false;
                 }
             }
             catch (Exception ex)
@@ -172,31 +174,7 @@ namespace BDMuestras
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private void DataReceivedHandler2(object sender, SerialDataReceivedEventArgs e)
-        //{
-        //    try
-        //    {
-        //        SerialPort sp = (SerialPort)sender;
-        //        //datos += sp.ReadExisting();
-        //        datosAmbiente += sp.ReadLine();
-        //        //Console.WriteLine(datosAmbiente);
-        //        valoresAmbiente = datosAmbiente.Split(',');
-        //        if (valoresAmbiente.Length == 3 && datosAmbienteRecibidos == false)
-        //        {
-        //            datosAmbienteRecibidos = true;
-        //        }//Cierra if comprobacion de todos los datos recibidos
-        //        else if (datosAmbienteDesocupados || valoresAmbiente.Length > 3)
-        //        {
-        //            valoresAmbiente = null;
-        //            datosAmbiente = string.Empty;
-        //            datosAmbienteDesocupados = false;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show("Error al recibir datos ambiente.");
-        //    }
-        //}
+        
         /// <summary>
         /// Evento de dar clic al boton de reportes
         /// </summary>
@@ -245,7 +223,7 @@ namespace BDMuestras
 
             if (datosAmbienteRecibidos)
             {
-                DatosAmbienteRecibidos();
+              DatosAmbienteRecibidos();
             }
 
             if (puertoAmbienteAbierto)
@@ -324,7 +302,7 @@ namespace BDMuestras
         {
             ciclo = new cCiclo();
             parteCiclo = new cParteCiclo();
-            string status = null;
+            string status = string.Empty;
             try
             {
                 status = valoresHorno[30].ToString();
@@ -334,7 +312,7 @@ namespace BDMuestras
                 //MessageBox.Show("Error al tomar status.");
                 return;
             }
-            if (valoresHorno.Length == 32 && status == "1")//Indica que el horno esta encendido 
+            if (valoresHorno.Length == 31 && status == "1")//Indica que el horno esta encendido 
             {
                 if (encendido == false)//indica que el horno acaba de iniciar un nuevo ciclo
                 {
@@ -368,7 +346,7 @@ namespace BDMuestras
                 }
 
             }
-            else if (valoresHorno != null && valoresHorno.Length == 32 && status == "0")
+            else if (valoresHorno != null && valoresHorno.Length == 31 && status == "0")
             {
                 try
                 {
@@ -383,14 +361,16 @@ namespace BDMuestras
                     MessageBox.Show("Error al detener Ciclo.");
                 }
             }
-            if (valoresHorno != null && valoresHorno.Length == 32)
+            if (valoresHorno != null && valoresHorno.Length == 31)
             {
                 GraficarMuestras();
                 datosHornoRecibidos = false;
             }
             ciclo = null;
             parteCiclo = null;
-            datosHornoDesocupados = true;
+            valoresHorno = null;
+            datosHorno = string.Empty;
+            datosHornoRecibidos = false;
         }
         /// <summary>
         /// Procedimiento a seguir despues de recibir los datos por puerto serial del ambiente
@@ -437,9 +417,8 @@ namespace BDMuestras
         /// <summary>
         /// Grafica las muestras recibidas por el puerto serial
         /// </summary>
-        private void GraficarMuestras()
+        private async void GraficarMuestras()
         {
-
             sensor = new cSensor();
             muestra = new cMuestra();
             string nombreSerie = string.Empty;
@@ -457,17 +436,17 @@ namespace BDMuestras
                     claveSensor = sensor.ObtenerPK(nombreSerie) - 1;
                     valor = valoresHorno[claveSensor];
                     v = Convert.ToInt32(valor);
-                    if (tipo == 1 && valoresHorno.Length == 32)
+                    if (tipo == 1 && valoresHorno.Length == 31)
                     {
                         cadena = nombreSerie + "      " + sHora + "              " + valor;
-                        Program.VentanaMonitoreo.listBoxMuestrasTemp.Items.Add(cadena);
-                        Program.VentanaMonitoreo.listBoxMuestrasTemp.SelectedItem = cadena;
+                        listBoxMuestrasTemp.Items.Add(cadena);
+                        listBoxMuestrasTemp.SelectedItem = cadena;
                     }
-                    else if (tipo == 2 && valoresHorno.Length == 32)
+                    else if (tipo == 2 && valoresHorno.Length == 31)
                     {
                         cadena = nombreSerie + "      " + sHora + "     " + valor;
-                        Program.VentanaMonitoreo.listBoxMuestrasPress.Items.Add(cadena);
-                        Program.VentanaMonitoreo.listBoxMuestrasPress.SelectedItem = cadena;
+                        listBoxMuestrasPress.Items.Add(cadena);
+                        listBoxMuestrasPress.SelectedItem = cadena;
                     }
                     if (v < 1600)
                     {
@@ -490,13 +469,13 @@ namespace BDMuestras
                 Program.VentanaMonitoreo.chartMuestras.Update();
                 if (encendido)
                 {
-                    promedio = Convert.ToInt32(valoresHorno[31]);
+                    promedio = Convert.ToInt32(valoresHorno[30]);
                     muestra.Insertar(32, Program.horno, Program.noCiclo, sHora, promedio.ToString());
                 }
                 labelPromedio.Text = promedio.ToString();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("Error al Graficar Muestras.");
             }
