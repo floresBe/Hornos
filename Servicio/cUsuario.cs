@@ -20,26 +20,27 @@ namespace Servicio
         /// <param name="nivel">Nivel</param>
         /// <param name="turno">Turno</param>
         /// <returns></returns>
-        public int Insertar(string usuario, string nombre, string ap, string am, string contrasena, int nivel, string turno)
+        public int Insertar(string empleado, string nombre, string ap, string am, string contrasena, int nivel, string turno, string sello)
         {
-            bool existe = existeUsuario(usuario);
+            bool existe = existeUsuario(empleado);
             if (!existe)
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     Usuario us = null;
                     try
                     {
                         us = new Usuario
                         {
-                            No_Empleado = usuario,
+                            No_Empleado = empleado,
                             Nombre = nombre,
                             aPaterno = ap,
                             aMaterno = am,
                             Contraseña = contrasena,
                             Nivel = nivel,
                             Turno = turno,
-                            Activo = 1
+                            Activo = 1,
+                            Sello = sello
                         };
                         entidad.Usuarios.Add(us);
                         entidad.SaveChanges();
@@ -49,7 +50,7 @@ namespace Servicio
                         Console.WriteLine(e);
                     }
 
-                    return us.PK_Usuario;
+                    return 1;
                 }
             }
             else
@@ -69,7 +70,7 @@ namespace Servicio
             try
             {
                 var lista = new List<Usuario>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consultaUsuario = from c in entidad.Usuarios
                                           where c.No_Empleado.Equals(usuario)
@@ -112,7 +113,7 @@ namespace Servicio
         {
             int nivel = 0;
             var lista = new List<Usuario>();
-            using (var entidad = new MuestrasHornosEntities())
+            using (var entidad = new HornosHaltingEntities())
             {
                 var consultaUsuario = from c in entidad.Usuarios
                                       where c.No_Empleado.Equals(usuario)
@@ -124,7 +125,6 @@ namespace Servicio
                     foreach (var item in lista)
                     {
                         nivel = item.Nivel;
-
                     }
                 }
                 else if (usuarios > 1)
@@ -140,53 +140,15 @@ namespace Servicio
             }
             return nivel;
         }
-        /// <summary>
-        /// Regresa la clave principal del usuario
-        /// </summary>
-        /// <param name="usuario"></param>
-        /// <returns></returns>
-        public int obtenerPK(string usuario)
-        {
-            int nivel = 0;
-            var lista = new List<Usuario>();
-            using (var entidad = new MuestrasHornosEntities())
-            {
-                var consultaUsuario = from c in entidad.Usuarios
-                                      where c.No_Empleado.Equals(usuario)
-                                      select c;
-                lista = consultaUsuario.ToList();
-                int usuarios = lista.Count;
-                if (usuarios == 1)
-                {
-                    foreach (var item in lista)
-                    {
-                        nivel = item.PK_Usuario;
-
-                    }
-                }
-                else if (usuarios > 1)
-                {
-                    MessageBox.Show("ERROR. Existe mas de un usuario con el nombre: " + usuario, "Atención");
-                    nivel = 0;
-                }
-                else
-                {
-                    MessageBox.Show("El usuario" + usuario + " no existe.");
-                    nivel = 0;
-                }
-            }
-            return nivel;
-        }
-
-        public void desactivarUsuario(string usuario)
+        public void desactivarUsuario(string empleado)
         {
             var lista = new List<Usuario>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consultaUsuario = from c in entidad.Usuarios
-                                          where c.No_Empleado.Equals(usuario)
+                                          where c.No_Empleado.Equals(empleado)
                                           select c;
                     lista = consultaUsuario.ToList();
                     int usuarios = lista.Count;
@@ -200,8 +162,7 @@ namespace Servicio
                     }
                     else
                     {
-                        MessageBox.Show("El usuario" + usuario + " no existe.");
-
+                        MessageBox.Show("El usuario" + empleado + " no existe.");
                     }
                 }
             }
@@ -210,15 +171,13 @@ namespace Servicio
 
             }
         }
-
-
         private bool existeUsuario(string usuario)
         {
             bool existe = false;
             var lista = new List<Usuario>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consultaUsuario = from c in entidad.Usuarios
                                           where c.No_Empleado.Equals(usuario)
@@ -232,7 +191,6 @@ namespace Servicio
                     else
                     {
                         existe = false;
-
                     }
                 }
             }
@@ -240,8 +198,38 @@ namespace Servicio
             {
                 return false;
             }
-
             return existe;
         }
+
+        public string obtenerSello(string usuario)
+        {
+            string sello = null;
+            var lista = new List<Usuario>();
+            using (var entidad = new HornosHaltingEntities())
+            {
+                var consultaUsuario = from c in entidad.Usuarios
+                                      where c.No_Empleado.Equals(usuario)
+                                      select c;
+                lista = consultaUsuario.ToList();
+                int usuarios = lista.Count;
+                if (usuarios == 1)
+                {
+                    foreach (var item in lista)
+                    {
+                        sello = item.Sello;
+                    }
+                }
+                else if (usuarios > 1)
+                {
+                    MessageBox.Show("ERROR. Existe mas de un usuario con el nombre: " + usuario, "Atención");
+                }
+                else
+                {
+                    MessageBox.Show("El usuario" + usuario + " no existe.");
+                }
+            }
+            return sello;
+        }
+
     }
 }
