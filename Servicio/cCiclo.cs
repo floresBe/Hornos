@@ -15,23 +15,22 @@ namespace Servicio
         /// <param name="noCiclo">Número de ciclo del día</param>
         /// <param name="fecha">Fecha en que se crea el ciclo</param>
         /// <param name="hora">Hora en que se crea el ciclo</param>
-        public void insertar(string horno, int noCiclo, int pkUsuario, string fecha, string hora)
+        public void insertar(string horno, int noCiclo, string noEmpleado, string fecha, string hora)
         {
             Ciclo ciclo = null;
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     ciclo = new Ciclo
                     {
                         Horno = horno,
                         No_Ciclo = noCiclo,
-                        PK_Usuario = pkUsuario,
+                        Empleado = noEmpleado,
                         Fecha = fecha,
-                        Hora = hora,
-                        vacio = 1
+                        Hora = hora
                     };
-                    entidad.Ciclos.Add(ciclo);
+                    entidad.Cicloes.Add(ciclo);
                     entidad.SaveChanges();
                 }
             }
@@ -45,32 +44,31 @@ namespace Servicio
         /// </summary>
         /// <param name="horno"></param>
         /// <param name="noCiclo"></param>
-        public void llenar(string horno, int noCiclo)
+        public void Liberar(string horno, int noCiclo)
         {
             try
             {
-                List<Ciclo> Ciclos = null;
-                using (MuestrasHornosEntities entidad = new MuestrasHornosEntities())
+                List<Ciclo> ciclos = null;
+                using (HornosHaltingEntities entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Ciclos
+                    var consulta = from c in entidad.Cicloes
                                    where c.Horno == horno
                                    where c.No_Ciclo == noCiclo
                                    select c;
-                    Ciclos = consulta.ToList();
-                    if (Ciclos.Count == 0)
+                    ciclos = consulta.ToList();
+                    if (ciclos.Count > 0)
                     {
-                        foreach (Ciclo ccl in Ciclos)
+                        foreach (Ciclo ccl in ciclos)
                         {
-                            ccl.vacio = 0;
+                            ccl.Liberado = 1;
                         }
                         entidad.SaveChanges();
                     }
                 }
-
             }
             catch (Exception ex)
             {
-
+                MessageBox.Show("Error al liberar el ciclo.");
             }
         }
         /// <summary>
@@ -80,13 +78,12 @@ namespace Servicio
         /// <returns></returns>
         public int obtenerUltimo(string horno)
         {
-
             int ultimo = 0;
             try
             {
-                using (MuestrasHornosEntities entidad = new MuestrasHornosEntities())
+                using (HornosHaltingEntities entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Ciclos
+                    var consulta = from c in entidad.Cicloes
                                    where c.Horno.Contains(horno)
                                    orderby c.No_Ciclo
                                    select c.No_Ciclo;
@@ -95,11 +92,6 @@ namespace Servicio
                     {
                         ultimo = ciclos.Last<int>();
                     }
-                    else
-                    {
-                        return 0;
-                    }
-
                 }
             }
             catch (Exception ex)
@@ -123,7 +115,7 @@ namespace Servicio
             {
                 foreach (var item in lista)
                 {
-                    ciclo = item.Horno + " " + item.No_Ciclo + " " + item.Fecha + " " + item.Hora + " " + item.Usuario;
+                    ciclo = item.Horno + " " + item.No_Ciclo + " " + item.Fecha + " " + item.Hora + " " + item.Empleado;
                 }
             }
             catch (Exception)
@@ -143,9 +135,9 @@ namespace Servicio
             string fecha = null;
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (HornosHaltingEntities entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Ciclos
+                    var consulta = from c in entidad.Cicloes
                                    where c.Horno == horno
                                    where c.No_Ciclo == ciclo
                                    select c;
@@ -173,9 +165,9 @@ namespace Servicio
             string hora = null;
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Ciclos
+                    var consulta = from c in entidad.Cicloes
                                    where c.Horno == horno
                                    where c.No_Ciclo == ciclo
                                    select c;
@@ -192,19 +184,17 @@ namespace Servicio
                 return null;
             }
             return hora;
-
-
         }
         /// <summary>
         /// Indica si existen ciclos sin numero de parte agregadas
         /// </summary>
         /// <param name="horno"></param>
         /// <returns></returns>
-        public bool ciclosVacios(string horno)
+        public bool ciclosNoLiberados(string horno)
         {
             foreach (Ciclo ciclo in obtenerPorHorno(horno))
             {
-                if (ciclo.vacio == 1 || ciclo.vacio == null)
+                if (ciclo.Liberado == 0)
                     return true;
             }
             return false;
@@ -219,16 +209,15 @@ namespace Servicio
             var lista = new List<string>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Ciclos
+                    var consulta = from c in entidad.Cicloes
                                    where c.Horno.Contains(horno)
                                    where c.Fecha.Contains(fecha)
                                    orderby c.No_Ciclo
                                    select c;
-
-                    var listaCiclos = consulta.ToList<Ciclo>();
-                    foreach (var item in listaCiclos)
+                    var ciclos = consulta.ToList<Ciclo>();
+                    foreach (var item in ciclos)
                     {
                         lista.Add(item.Horno + " " + item.No_Ciclo);
                     }
@@ -238,7 +227,6 @@ namespace Servicio
             {
                 MessageBox.Show("Error al acceder a la base de datos.");
             }
-
             return lista;
         }
         /// <summary>
@@ -277,9 +265,9 @@ namespace Servicio
             try
             {
                 lista = new List<Ciclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Ciclos
+                    var consulta = from c in entidad.Cicloes
                                    select c;
                     lista = consulta.ToList();
                 }
@@ -300,9 +288,9 @@ namespace Servicio
             try
             {
                 lista = new List<Ciclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Ciclos
+                    var consulta = from c in entidad.Cicloes
                                    where c.Horno.Contains(horno)
                                    select c;
                     lista = consulta.ToList();
@@ -327,9 +315,9 @@ namespace Servicio
             try
             {
                 lista = new List<Ciclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Ciclos
+                    var consulta = from c in entidad.Cicloes
                                    where c.Horno == horno
                                    where c.No_Ciclo == noCiclo
                                    select c;

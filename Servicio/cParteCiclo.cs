@@ -9,28 +9,33 @@ namespace Servicio
 {
     public class cParteCiclo
     {
-
-        public int insertar(int ciclo, string horno, string noParte)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="ciclo"></param>
+        /// <param name="horno"></param>
+        /// <param name="noParte"></param>
+        /// <returns></returns>
+        public int insertar(int ciclo, string horno, string noParte, string aob)
         {
             try
             {
                 cCiclo cicl = new cCiclo();
                 ParteCiclo parteCiclo = null;
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     parteCiclo = new ParteCiclo
                     {
                         No_Ciclo = ciclo,
                         Horno = horno,
                         No_Parte = noParte,
-                        Piezas_Entrantes = 0,
-                        Piezas_Malas = 0,
-                        Piezas_Rebraze = 0
+                        CantidadPiezasEntrantes = 0,
+                        CantidadPiezasRebraze = 0,
+                        AoB = aob
                     };
                     entidad.ParteCicloes.Add(parteCiclo);
                     entidad.SaveChanges();
                 }
-                cicl.llenar(horno, ciclo);
                 return parteCiclo.No_Ciclo;
             }
             catch (Exception ex)
@@ -47,13 +52,13 @@ namespace Servicio
         /// <param name="entrantes">Cantidad de piezas entrantes al horno</param>
         /// <param name="malas">Cantidad de piezas malas que salieron del horno</param>
         /// <param name="rebraze">Cantidad de piezas a rebraze</param>
-        public void actualizar(string horno, int noCiclo, string parte, int entrantes, int malas, int rebraze)
+        public void actualizar(string horno, int noCiclo, string parte, int entrantes, int rebraze, string aob)
         {
             List<ParteCiclo> lista = null;
             try
             {
                 lista = new List<ParteCiclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.ParteCicloes
                                    where c.No_Parte == parte
@@ -63,10 +68,9 @@ namespace Servicio
                     lista = consulta.ToList();
                     foreach (var item in lista)
                     {
-                        item.No_Parte = parte;
-                        item.Piezas_Entrantes = entrantes;
-                        item.Piezas_Malas = malas;
-                        item.Piezas_Rebraze = rebraze;
+                        item.CantidadPiezasEntrantes = entrantes;
+                        item.CantidadPiezasRebraze = rebraze;
+                        item.AoB = aob;
                     }
                     entidad.SaveChanges();
                 }
@@ -85,11 +89,10 @@ namespace Servicio
         {
             string info = null;
             List<ParteCiclo> lista = null;
-
             try
             {
                 lista = new List<ParteCiclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.ParteCicloes
                                    where c.Horno.Equals(horno)
@@ -98,17 +101,15 @@ namespace Servicio
                                    orderby c.No_Ciclo
                                    select c;
                     lista = consulta.ToList();
-
                 }
                 foreach (var item in lista)
                 {
-                    info = item.Piezas_Entrantes.ToString() +" " + item.Piezas_Malas.ToString() + " " + item.Piezas_Rebraze.ToString(); 
+                    info = item.CantidadPiezasEntrantes.ToString() +" "  + item.CantidadPiezasRebraze.ToString() + " " + item.AoB.ToString(); 
                 }
             }
             catch (Exception)
             {
                 MessageBox.Show("Error al acceder a la base de datos.");
-                return null;
             }
             return info;
         }
@@ -125,15 +126,14 @@ namespace Servicio
             try
             {
                 lista = new List<ParteCiclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.ParteCicloes
-                                  // where c.Horno == horno
+                                   where c.Horno.Contains(horno)
                                    where c.No_Ciclo == ciclo
                                    orderby c.No_Ciclo
                                    select c;
                     lista = consulta.ToList();
-
                 }
                 foreach (var item in lista)
                 {
@@ -155,7 +155,7 @@ namespace Servicio
         {
             List<ParteCiclo> cVacios = ObtenerCiclosVacios(horno);
             int ciclosVacios = cVacios.Count;
-            if (cVacios == null || ciclosVacios < 1)
+            if (ciclosVacios == 0)
                 return false;
             else
                 return true;
@@ -170,7 +170,7 @@ namespace Servicio
             cCiclo Ciclo = new cCiclo();
             List<string> CiclosVacios = new List<string>();
             List<ParteCiclo> ciclosVacios = ObtenerCiclosVacios(horno);
-            string nCiclo = string.Empty;
+            //string nCiclo = string.Empty;
             foreach (ParteCiclo cv in ciclosVacios)
             {
                 if (fecha == Ciclo.obtenerFechaDeCiclo(cv.Horno, cv.No_Ciclo))
@@ -224,13 +224,13 @@ namespace Servicio
             try
             {
                 lista = new List<ParteCiclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.ParteCicloes
                                    where c.Horno.Contains(horno)
-                                   where c.Piezas_Entrantes == 0
-                                   where c.Piezas_Malas == 0
-                                   where c.Piezas_Rebraze == 0
+                                   where c.CantidadPiezasEntrantes == 0
+                                   where c.AoB == null
+                                   where c.CantidadPiezasRebraze == 0
                                    orderby c.No_Ciclo
                                    select c;
                     lista = consulta.ToList();
@@ -240,19 +240,14 @@ namespace Servicio
             {
                 MessageBox.Show("Error al consultar la base de datos.");
             }
-
-            try
-            {
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-
             return lista;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="horno"></param>
+        /// <param name="ciclo"></param>
+        /// <returns></returns>
         public List<string> obtenerNumerosParteVaciosPorCiclo(string horno, int ciclo)
         {
             List<string> info = new List<string>();
@@ -261,14 +256,13 @@ namespace Servicio
             try
             {
                 lista = new List<ParteCiclo>();
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.ParteCicloes
                                    where c.Horno.Equals(horno)
                                    where c.No_Ciclo == ciclo
-                                   where c.Piezas_Entrantes == 0
-                                   where c.Piezas_Malas == 0
-                                   where c.Piezas_Rebraze == 0
+                                   where c.CantidadPiezasEntrantes == 0
+                                   where c.CantidadPiezasRebraze == 0
                                    orderby c.No_Ciclo
                                    select c;
                     lista = consulta.ToList();

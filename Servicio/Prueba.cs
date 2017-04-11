@@ -14,18 +14,8 @@ namespace Servicio
     
     public partial class Prueba
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Prueba()
-        {
-            this.PruebaPiezas = new HashSet<PruebaPieza>();
-        }
-    
-        public int PK_Prueba { get; set; }
+        public int No_Prueba { get; set; }
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
-        public Nullable<int> Activo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PruebaPieza> PruebaPiezas { get; set; }
     }
 }

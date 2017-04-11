@@ -1,4 +1,11 @@
-﻿using System;
+﻿/* 
+  *  Esta clase se encarga de tomar datos provinientes de puertos seriales, analizarlos y mostrarlos en listas y graficas. 
+  *  Estos datos tambien son almacenados en una base de datos.
+  *  Autor: Alejandra Flores 
+  *  Fecha: Marzo 2017
+*/
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -22,25 +29,27 @@ namespace BDMuestras
         static string sHora; //Guarda la hora en formato: 00:00:00
         static double hora; //Guarda la hora procesada para utilizar en grafica
         static bool encendido; //Indica si el horno esta encendido o no  
-        static string nombreCiclo;//Guarda el nombre del ciclo que esta corriendo 
-        static bool datosHornoRecibidos; //Indica que se han recibido los datos por puerto serial del horno
-        static bool datosAmbienteRecibidos; //indica que se han recibido los datos por puerto serial del ambiente
-        static bool datosHornoDesocupados;//Indica que los datos han sido desocupados
-        static bool datosAmbienteDesocupados; //Indica que los datos han sido desocupados
-        static string[] valoresHorno; //Guarda los valores recibidos por puerto serial del horno
-        static string[] valoresAmbiente; //Guarda los valores recibidos por puerto serial del ambiente
-        static string datosHorno; //Se utiliza para almacenar datos provinientes del puerto serial del horno
-        static string datosAmbiente; //Se utiliza para almacenar datos provinientes del puerto serial del ambiente
-        static int promedio; //Informacion incluida en los datos que vienen del horno
+        static string nombreCiclo;//Guarda el nombre del ciclo que esta corriendo (se obtiene de la clase Program)
         bool puertoHornoAbierto;//Indica si el puerto serial del horno esta abierto
         bool puertoAmbienteAbierto; //Indica si el puerto serial del ambiente esta abierto
+        static bool datosHornoRecibidos; //Indica que se han recibido los datos por puerto serial del horno
+        static bool datosAmbienteRecibidos; //indica que se han recibido los datos por puerto serial del ambiente
+      //  static bool datosHornoDesocupados;//Indica que los datos han sido desocupados
+       // static bool datosAmbienteDesocupados; //Indica que los datos han sido desocupados
+        static string datosHorno; //Se utiliza para almacenar datos provinientes directamente del puerto serial del horno
+        static string datosAmbiente; //Se utiliza para almacenar datos provinientes directamente del puerto serial del ambiente
+        static string[] valoresHorno; //Guarda por separado los valores recibidos por puerto serial del horno
+        static string[] valoresAmbiente; //Guarda por separado los valores recibidos por puerto serial del ambiente
+        static int promedio; //Promedio de temperatura del horno (Informacion incluida en los datos que vienen del horno posicion 32)
+
         static string temp;//Guarda la temperatura del ambiente
         static string hum;//Guarda la humedad del ambiente
-        static double primeraHora;
-        static double ultimaHora;
-        static bool isPrimeraHora = true;
+        static double primeraHora;//primer hora que se muestra en la grafica
+        static double ultimaHora; //ultima hora que se muestra en la grafica
+        static bool isPrimeraHora = true; 
 
-        static cCiclo ciclo;
+        
+        static cCiclo ciclo; 
         static cSensor sensor;
         static cMuestra muestra;
         static cParteCiclo parteCiclo;
@@ -56,8 +65,8 @@ namespace BDMuestras
             nombreCiclo = Program.nombreCiclo;
             datosHornoRecibidos = false;
             datosAmbienteRecibidos = false;
-            datosAmbienteDesocupados = false;
-            datosHornoDesocupados = false;
+       //     datosAmbienteDesocupados = false;
+         //   datosHornoDesocupados = false;
             valoresHorno = null;
             valoresAmbiente = null;
             datosHorno = string.Empty;
@@ -103,78 +112,7 @@ namespace BDMuestras
             timerMuestreo.Start();
             timerDatosRecibidos.Start();
             parteCiclo = null;
-        }
-        /// <summary>
-        /// Evento de recibir datos desde puerto serial del horno
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
-        {
-            try
-            {
-                SerialPort sp = null;
-                try
-                {
-                    sp = (SerialPort)sender;
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Al crear el puerto.");
-                    return;
-                }
-                try
-                {
-                    //datosHorno += sp.ReadLine();
-                    datosHorno += sp.ReadExisting();
-                }
-                catch (Exception ex)
-                {
-                    try
-                    {
-                        datosHorno += sp.ReadExisting();
-                    }
-                    catch (Exception exx)
-                    {
-                        MessageBox.Show("Al Leer linea");
-                        return;
-                    }
-                }
-                try
-                {
-                    valoresHorno = null;
-                    valoresHorno = datosHorno.Split(',');
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Al dividir cadena");
-                    return;
-                }
-                if (valoresHorno.Length == 31 && datosHornoRecibidos == false)
-                {
-                    datosHornoRecibidos = true;
-                   // DatosHornoRecibidos();
-                }//Cierra if comprobacion de todos los datos recibidos
-                else if (valoresHorno.Length > 33 || datosHornoDesocupados)
-                {
-                //    valoresHorno = null;
-                //    datosHorno = string.Empty;
-                //    datosHornoRecibidos = false;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al recibir datos.");
-            }
-            //  Console.WriteLine(datos);
-            //Console.WriteLine(datos.Length); 
-        }
-        /// <summary>
-        /// Evento de recibir datos desde puerto serial del ambiente
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        
+        }  
         /// <summary>
         /// Evento de dar clic al boton de reportes
         /// </summary>
@@ -249,6 +187,11 @@ namespace BDMuestras
             if (puertoHornoAbierto)
                 serialPortMuestras.Write("1");
         }
+        /// <summary>
+        /// Eventos de cerrar el formulario
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MonitoreoContinuo_FormClosing(object sender, FormClosingEventArgs e)
         {
             cerrarPuertos();
@@ -392,7 +335,7 @@ namespace BDMuestras
                     muestra.Insertar(31, Program.horno, Program.noCiclo, sHora, temp);
                     muestra.Insertar(32, Program.horno, Program.noCiclo, sHora, hum);
                     datosAmbienteRecibidos = false;
-                    datosAmbienteDesocupados = true;
+                   // datosAmbienteDesocupados = true;
                 }
             }
             catch (Exception ex)
@@ -417,7 +360,7 @@ namespace BDMuestras
         /// <summary>
         /// Grafica las muestras recibidas por el puerto serial
         /// </summary>
-        private async void GraficarMuestras()
+        private void GraficarMuestras()
         {
             sensor = new cSensor();
             muestra = new cMuestra();
@@ -589,12 +532,12 @@ namespace BDMuestras
                 {
                     datosAmbienteRecibidos = true;
                 }//Cierra if comprobacion de todos los datos recibidos
-                else if (datosAmbienteDesocupados || valoresAmbiente.Length > 3)
-                {
-                    valoresAmbiente = null;
-                    datosAmbiente = string.Empty;
-                    datosAmbienteDesocupados = false;
-                }
+                //else if (datosAmbienteDesocupados || valoresAmbiente.Length > 3)
+                //{
+                //    valoresAmbiente = null;
+                //    datosAmbiente = string.Empty;
+                //    datosAmbienteDesocupados = false;
+                //}
             }
             catch (Exception ex)
             {

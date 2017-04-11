@@ -14,14 +14,17 @@ namespace Servicio
     
     public partial class PruebaPieza
     {
-        public int PK_PruebaP { get; set; }
-        public int PK_Prueba { get; set; }
-        public string FechaPrueba { get; set; }
-        public string FechaCaptura { get; set; }
-        public int Aprobada { get; set; }
+        public string Horno { get; set; }
+        public int No_Ciclo { get; set; }
+        public string PosicionHorno { get; set; }
+        public int No_Prueba { get; set; }
+        public string ResultadoPrueba { get; set; }
         public Nullable<int> Defecto { get; set; }
-        public string No_Serie { get; set; }
-    
-        public virtual Prueba Prueba { get; set; }
+        public string FechaPrueba { get; set; }
+        public string Sello1 { get; set; }
+        public string Sello2 { get; set; }
+        public string ObservacionesPrueba { get; set; }
+        public string FirmaInspector { get; set; }
+        public string ObservacionesInspector { get; set; }
     }
 }

@@ -69,12 +69,6 @@
     <Compile Include="Defecto.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
-    <Compile Include="inicio.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Lote.cs">
-      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
-    </Compile>
     <Compile Include="ModeloBaseDatos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -93,7 +87,13 @@
     <Compile Include="Muestra.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
+    <Compile Include="NumeroParte.cs">
+      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+    </Compile>
     <Compile Include="ParteCiclo.cs">
+      <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PartePrueba.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
     <Compile Include="Pieza.cs">
@@ -106,7 +106,7 @@
     <Compile Include="PruebaPieza.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Sensore.cs">
+    <Compile Include="Sensor.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoSensor.cs">
@@ -117,19 +117,20 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="ModeloBaseDatos.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModeloBaseDatos.Designer.cs</LastGenOutput>
     </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.Config">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="ModeloBaseDatos.edmx.diagram">
       <DependentUpon>ModeloBaseDatos.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ModeloBaseDatos.Context.tt">
@@ -142,9 +143,6 @@
       <DependentUpon>ModeloBaseDatos.edmx</DependentUpon>
       <LastGenOutput>ModeloBaseDatos.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

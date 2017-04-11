@@ -14,26 +14,14 @@ namespace Servicio
     
     public partial class Usuario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Usuario()
-        {
-            this.Ciclos = new HashSet<Ciclo>();
-            this.Lotes = new HashSet<Lote>();
-        }
-    
-        public int PK_Usuario { get; set; }
         public string No_Empleado { get; set; }
         public string Nombre { get; set; }
         public string aPaterno { get; set; }
         public string aMaterno { get; set; }
+        public string Sello { get; set; }
         public string Turno { get; set; }
         public int Nivel { get; set; }
+        public int Activo { get; set; }
         public string Contraseña { get; set; }
-        public Nullable<int> Activo { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Ciclo> Ciclos { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Lote> Lotes { get; set; }
     }
 }

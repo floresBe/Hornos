@@ -12,11 +12,11 @@ namespace Servicio
     using System;
     using System.Collections.Generic;
     
-    public partial class inicio
+    public partial class Sensor
     {
-        public int dia { get; set; }
-        public int mes { get; set; }
-        public int ano { get; set; }
-        public Nullable<int> posicion { get; set; }
+        public int No_Sensor { get; set; }
+        public string Nombre { get; set; }
+        public int Tipo { get; set; }
+        public int Activo { get; set; }
     }
 }

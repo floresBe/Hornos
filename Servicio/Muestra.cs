@@ -14,14 +14,11 @@ namespace Servicio
     
     public partial class Muestra
     {
-        public int PK_Muestra { get; set; }
-        public int PK_Sensor { get; set; }
+        public int No_Muestra { get; set; }
         public string Horno { get; set; }
         public int No_Ciclo { get; set; }
+        public int Sensor { get; set; }
         public string Hora { get; set; }
-        public string Dato { get; set; }
-    
-        public virtual Ciclo Ciclo { get; set; }
-        public virtual Sensore Sensore { get; set; }
+        public Nullable<double> Dato { get; set; }
     }
 }

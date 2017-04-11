@@ -14,17 +14,8 @@ namespace Servicio
     
     public partial class TipoSensor
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TipoSensor()
-        {
-            this.Sensores = new HashSet<Sensore>();
-        }
-    
-        public int PK_TipoSensor { get; set; }
-        public string Magnitud { get; set; }
+        public int No_TipoSensor { get; set; }
+        public string Unidad { get; set; }
         public string Descripcion { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Sensore> Sensores { get; set; }
     }
 }

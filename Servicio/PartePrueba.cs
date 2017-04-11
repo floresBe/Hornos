@@ -12,17 +12,10 @@ namespace Servicio
     using System;
     using System.Collections.Generic;
     
-    public partial class Pieza
+    public partial class PartePrueba
     {
-        public string Horno { get; set; }
-        public int No_Ciclo { get; set; }
-        public string PosicionHorno { get; set; }
+        public int No_Prueba { get; set; }
         public string No_Parte { get; set; }
-        public Nullable<int> Rebraze { get; set; }
-        public string FechaAlta { get; set; }
-        public string UsuarioAlta { get; set; }
-        public string anoMes { get; set; }
-        public string PosicionSerieFinal { get; set; }
-        public string Pais { get; set; }
+        public string Comentarios { get; set; }
     }
 }

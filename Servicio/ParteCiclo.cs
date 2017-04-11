@@ -14,13 +14,11 @@ namespace Servicio
     
     public partial class ParteCiclo
     {
+        public string No_Parte { get; set; }
         public string Horno { get; set; }
         public int No_Ciclo { get; set; }
-        public string No_Parte { get; set; }
-        public Nullable<int> Piezas_Entrantes { get; set; }
-        public Nullable<int> Piezas_Rebraze { get; set; }
-        public Nullable<int> Piezas_Malas { get; set; }
-    
-        public virtual Ciclo Ciclo { get; set; }
+        public string AoB { get; set; }
+        public Nullable<int> CantidadPiezasEntrantes { get; set; }
+        public Nullable<int> CantidadPiezasRebraze { get; set; }
     }
 }
