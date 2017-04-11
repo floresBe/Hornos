@@ -14,7 +14,7 @@ namespace Servicio
     
     public partial class PartePrueba
     {
-        public int No_Prueba { get; set; }
+        public string No_Prueba { get; set; }
         public string No_Parte { get; set; }
         public string Comentarios { get; set; }
     }

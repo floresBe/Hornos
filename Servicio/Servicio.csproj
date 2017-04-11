@@ -60,6 +60,7 @@
     <Compile Include="cMuestra.cs" />
     <Compile Include="cNumeroParte.cs" />
     <Compile Include="cParteCiclo.cs" />
+    <Compile Include="cPartePrueba.cs" />
     <Compile Include="cPieza.cs" />
     <Compile Include="cPrueba.cs" />
     <Compile Include="cPruebaPieza.cs" />

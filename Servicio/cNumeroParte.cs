@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace Servicio
 {
-    class cNumeroParte
+    public class cNumeroParte
     {
         public int Insertar(string numeroParte, string detalles, string fecha, string empleado)
         {

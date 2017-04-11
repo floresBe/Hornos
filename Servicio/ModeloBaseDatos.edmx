@@ -63,7 +63,7 @@
             <PropertyRef Name="No_Prueba" />
             <PropertyRef Name="No_Parte" />
           </Key>
-          <Property Name="No_Prueba" Type="int" Nullable="false" />
+          <Property Name="No_Prueba" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="No_Parte" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Comentarios" Type="varchar" MaxLength="35" />
         </EntityType>
@@ -233,7 +233,7 @@
             <PropertyRef Name="No_Prueba" />
             <PropertyRef Name="No_Parte" />
           </Key>
-          <Property Name="No_Prueba" Type="Int32" Nullable="false" />
+          <Property Name="No_Prueba" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="No_Parte" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="Comentarios" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
         </EntityType>
