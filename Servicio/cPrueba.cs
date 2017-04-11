@@ -11,7 +11,7 @@ namespace Servicio
     {
         public int Insertar(string nombre, string descripcion)
         {
-            using (var entidad = new MuestrasHornosEntities())
+            using (var entidad = new HornosHaltingEntities())
             {
                 Prueba prueba = null;
                 try
@@ -28,7 +28,7 @@ namespace Servicio
                 {
                     MessageBox.Show("Error al accedeer a la base de datos: " + e);
                 }
-                return prueba.PK_Prueba;
+                return prueba.No_Prueba;
             }
         }
         public List<string> ObtenerTodos()
@@ -36,10 +36,10 @@ namespace Servicio
             List<string> listaRetorno = null;
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.Pruebas
-                                   select c.PK_Prueba + " " + c.Nombre;
+                                   select c.Nombre;
                     listaRetorno = consulta.ToList();
                 }
             }
