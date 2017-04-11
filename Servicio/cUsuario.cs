@@ -48,6 +48,7 @@ namespace Servicio
                     catch (Exception e)
                     {
                         Console.WriteLine(e);
+                        return 0;
                     }
 
                     return 1;
@@ -229,6 +230,36 @@ namespace Servicio
                 }
             }
             return sello;
+        }
+
+        public string obtenerDatos(string usuario)
+        {
+            string datos = null;
+            var lista = new List<Usuario>();
+            using (var entidad = new HornosHaltingEntities())
+            {
+                var consultaUsuario = from c in entidad.Usuarios
+                                      where c.No_Empleado.Equals(usuario)
+                                      select c;
+                lista = consultaUsuario.ToList();
+                int usuarios = lista.Count;
+                if (usuarios == 1)
+                {
+                    foreach (var item in lista)
+                    {
+                        datos = item.Nombre + " " + item.aPaterno + " " + item.aMaterno + " " + item.Turno + " " +  item.Nivel + " " +item.Contraseña +" "+ item.Sello;
+                    }
+                }
+                else if (usuarios > 1)
+                {
+                    MessageBox.Show("ERROR. Existe mas de un usuario con el nombre: " + usuario, "Atención");
+                }
+                else
+                {
+                    MessageBox.Show("El usuario" + usuario + " no existe.");
+                }
+            }
+            return datos;
         }
 
     }

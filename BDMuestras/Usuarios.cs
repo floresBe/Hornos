@@ -19,6 +19,7 @@ namespace BDMuestras
         string aPaterno;
         string aMaterno;
         string turno;
+        string sello;
         int nivel;
         string contra;
         cUsuario usuario = null;
@@ -26,7 +27,7 @@ namespace BDMuestras
         public Usuarios()
         {
             InitializeComponent();
-            
+
         }
         private void buttonGuardar_Click(object sender, EventArgs e)
         {
@@ -110,11 +111,21 @@ namespace BDMuestras
                 MessageBox.Show("Ingresar contraseña.");
                 return;
             }
-            DialogResult insertar = MessageBox.Show("Seguro que desea agregar el usuario: " + noEmpleado + " a la base de datos?","Agregar usuario?",MessageBoxButtons.YesNo);
+            if (textBoxSello.Text != string.Empty && textBoxSello.Text != null)
+            {
+                sello = textBoxSello.Text;
+            }
+            else
+            {
+                MessageBox.Show("Ingresar Sello.");
+                return;
+            }
+
+            DialogResult insertar = MessageBox.Show("Seguro que desea agregar el usuario: " + noEmpleado + " a la base de datos?", "Agregar usuario?", MessageBoxButtons.YesNo);
             if (insertar == DialogResult.Yes)
             {
                 usuario = new cUsuario();
-                int insert = usuario.Insertar(noEmpleado, nombre, aPaterno, aMaterno, contra, nivel, turno);
+                int insert = usuario.Insertar(noEmpleado, nombre, aPaterno, aMaterno, contra, nivel, turno, sello);
                 if (insert > 0)
                 {
                     MessageBox.Show("Usuario Ingresado Satisfactoriamente.");
@@ -140,6 +151,10 @@ namespace BDMuestras
         }
         private void Usuarios_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'hornosHaltingDataSet1.Usuario' table. You can move, or remove it, as needed.
+            this.usuarioTableAdapter1.Fill(this.hornosHaltingDataSet1.Usuario);
+            // TODO: This line of code loads data into the 'hornosHaltingDataSet.Usuario' table. You can move, or remove it, as needed.
+            this.usuarioTableAdapter.Fill(this.hornosHaltingDataSet.Usuario);
             // TODO: This line of code loads data into the 'muestrasHornosDataSet.Usuarios' table. You can move, or remove it, as needed.
             this.usuariosTableAdapter.Fill(this.muestrasHornosDataSet.Usuarios);
             usuariosActivos();
@@ -184,12 +199,48 @@ namespace BDMuestras
             comboBoxTurno.Text = string.Empty;
             comboBoxNivel.SelectedItem = null;
             comboBoxNivel.Text = string.Empty;
+            textBoxSello.Text = string.Empty;
+
+            textBoxRcontrasena.Enabled = true;
+            textBoxContrasena.Enabled = true;
+            textBoxNoEmpleado.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             Ayudas ayuda = new Hornos.Ayudas();
             ayuda.Show();
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void traerDatosDeEmpleado(string empleado)
+        {
+            usuario = new cUsuario();
+            string datos = usuario.obtenerDatos(empleado);
+            string[] arregloDatos = datos.Split();
+
+            textBoxNoEmpleado.Text = empleado;
+            textBoxNoEmpleado.Enabled = false;
+            textBoxNombre.Text = arregloDatos[0];
+            textBoxaMaterno.Text = arregloDatos[1];
+            textBoxApaterno.Text = arregloDatos[2];
+            comboBoxTurno.SelectedItem = arregloDatos[3];
+            comboBoxNivel.SelectedItem = arregloDatos[4];
+            textBoxContrasena.Text = arregloDatos[5];
+            textBoxContrasena.Enabled = false;
+            textBoxRcontrasena.Text = arregloDatos[5];
+            textBoxRcontrasena.Enabled = false;
+            textBoxSello.Text = arregloDatos[6];
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string noEmpleado = dataGridUsuarios.CurrentRow.Cells[0].Value.ToString();
+            traerDatosDeEmpleado(noEmpleado);
         }
     }
 }

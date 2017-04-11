@@ -1,334 +1,155 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MuestrasHornosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityType Name="Ciclos">
+<Schema Namespace="HornosHaltingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Ciclo">
     <Key>
       <PropertyRef Name="Horno" />
       <PropertyRef Name="No_Ciclo" />
     </Key>
-    <Property Name="Horno" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Horno" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="No_Ciclo" Type="int" Nullable="false" />
-    <Property Name="PK_Usuario" Type="int" Nullable="false" />
     <Property Name="Fecha" Type="varchar" MaxLength="20" />
     <Property Name="Hora" Type="varchar" MaxLength="10" Nullable="false" />
-    <Property Name="vacio" Type="int" />
+    <Property Name="Empleado" Type="varchar" MaxLength="15" />
+    <Property Name="Liberado" Type="int" />
   </EntityType>
-  <EntityType Name="Defectos">
+  <EntityType Name="Defecto">
     <Key>
-      <PropertyRef Name="PK_Defecto" />
+      <PropertyRef Name="No_Defecto" />
     </Key>
-    <Property Name="PK_Defecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="No_Defecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="Descripcion" Type="varchar" MaxLength="25" />
-    <Property Name="Activo" Type="int" />
   </EntityType>
-  <EntityType Name="inicio">
+  <EntityType Name="Muestra">
     <Key>
-      <PropertyRef Name="dia" />
-      <PropertyRef Name="mes" />
-      <PropertyRef Name="ano" />
+      <PropertyRef Name="No_Muestra" />
     </Key>
-    <Property Name="dia" Type="int" Nullable="false" />
-    <Property Name="mes" Type="int" Nullable="false" />
-    <Property Name="ano" Type="int" Nullable="false" />
-    <Property Name="posicion" Type="int" />
-  </EntityType>
-  <EntityType Name="Lotes">
-    <Key>
-      <PropertyRef Name="PK_Lote" />
-    </Key>
-    <Property Name="PK_Lote" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Horno" Type="varchar" MaxLength="20" />
+    <Property Name="No_Muestra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Horno" Type="varchar" MaxLength="5" />
     <Property Name="No_Ciclo" Type="int" Nullable="false" />
-    <Property Name="PK_Usuario" Type="int" Nullable="false" />
-    <Property Name="FechaAlta" Type="varchar" MaxLength="30" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Muestras">
-    <Key>
-      <PropertyRef Name="PK_Muestra" />
-      <PropertyRef Name="PK_Sensor" />
-    </Key>
-    <Property Name="PK_Muestra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PK_Sensor" Type="int" Nullable="false" />
-    <Property Name="Horno" Type="varchar" MaxLength="20" />
-    <Property Name="No_Ciclo" Type="int" Nullable="false" />
+    <Property Name="Sensor" Type="int" Nullable="false" />
     <Property Name="Hora" Type="varchar" MaxLength="10" />
-    <Property Name="Dato" Type="varchar" MaxLength="20" />
+    <Property Name="Dato" Type="int" />
+  </EntityType>
+  <EntityType Name="NumeroParte">
+    <Key>
+      <PropertyRef Name="No_Parte" />
+    </Key>
+    <Property Name="No_Parte" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Detalles" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="FechaAlta" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="UsuarioAlta" Type="varchar" MaxLength="15" Nullable="false" />
   </EntityType>
   <EntityType Name="ParteCiclo">
     <Key>
+      <PropertyRef Name="No_Parte" />
       <PropertyRef Name="Horno" />
       <PropertyRef Name="No_Ciclo" />
-      <PropertyRef Name="No_Parte" />
     </Key>
-    <Property Name="Horno" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="No_Parte" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Horno" Type="varchar" MaxLength="5" Nullable="false" />
     <Property Name="No_Ciclo" Type="int" Nullable="false" />
-    <Property Name="No_Parte" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="Piezas_Entrantes" Type="int" />
-    <Property Name="Piezas_Rebraze" Type="int" />
-    <Property Name="Piezas_Malas" Type="int" />
+    <Property Name="AoB" Type="varchar" MaxLength="1" />
+    <Property Name="CantidadPiezasEntrantes" Type="int" />
+    <Property Name="CantidadPiezasRebraze" Type="int" />
   </EntityType>
-  <EntityType Name="Piezas">
+  <EntityType Name="PartePrueba">
     <Key>
-      <PropertyRef Name="No_Serie" />
+      <PropertyRef Name="No_Prueba" />
       <PropertyRef Name="No_Parte" />
     </Key>
-    <Property Name="Lote" Type="int" Nullable="false" />
-    <Property Name="No_Serie" Type="int" Nullable="false" />
+    <Property Name="No_Prueba" Type="varchar" MaxLength="20" Nullable="false" />
     <Property Name="No_Parte" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="PK_Defecto" Type="int" />
-    <Property Name="Aprobada" Type="int" />
+    <Property Name="Comentarios" Type="varchar" MaxLength="35" />
+  </EntityType>
+  <EntityType Name="Pieza">
+    <Key>
+      <PropertyRef Name="Horno" />
+      <PropertyRef Name="No_Ciclo" />
+      <PropertyRef Name="PosicionHorno" />
+    </Key>
+    <Property Name="Horno" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="No_Ciclo" Type="int" Nullable="false" />
+    <Property Name="PosicionHorno" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="No_Parte" Type="varchar" MaxLength="20" />
     <Property Name="Rebraze" Type="int" />
-    <Property Name="Reparo" Type="int" />
-    <Property Name="Serie" Type="varchar" MaxLength="20" />
+    <Property Name="FechaAlta" Type="varchar" MaxLength="20" />
+    <Property Name="UsuarioAlta" Type="varchar" MaxLength="5" />
+    <Property Name="anoMes" Type="varchar" MaxLength="2" />
+    <Property Name="PosicionSerieFinal" Type="varchar" MaxLength="5" />
+    <Property Name="Pais" Type="varchar" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Prueba">
+    <Key>
+      <PropertyRef Name="No_Prueba" />
+    </Key>
+    <Property Name="No_Prueba" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Descripcion" Type="varchar" MaxLength="25" />
   </EntityType>
   <EntityType Name="PruebaPieza">
     <Key>
-      <PropertyRef Name="PK_PruebaP" />
+      <PropertyRef Name="Horno" />
+      <PropertyRef Name="No_Ciclo" />
+      <PropertyRef Name="PosicionHorno" />
+      <PropertyRef Name="Prueba" />
     </Key>
-    <Property Name="PK_PruebaP" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="PK_Prueba" Type="int" Nullable="false" />
-    <Property Name="FechaPrueba" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="FechaCaptura" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="Aprobada" Type="int" Nullable="false" />
-    <Property Name="Defecto" Type="int" />
-    <Property Name="No_Serie" Type="varchar" MaxLength="20" />
+    <Property Name="Horno" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="No_Ciclo" Type="int" Nullable="false" />
+    <Property Name="PosicionHorno" Type="varchar" MaxLength="2" Nullable="false" />
+    <Property Name="Prueba" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="ResultadoPrueba" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Defecto" Type="varchar" MaxLength="20" />
+    <Property Name="FechaPrueba" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Sello1" Type="varchar" MaxLength="3" />
+    <Property Name="Sello2" Type="varchar" MaxLength="3" />
+    <Property Name="ObservacionesPrueba" Type="varchar" MaxLength="35" />
+    <Property Name="FirmaInspector" Type="varchar" MaxLength="5" />
+    <Property Name="ObservacionesInspector" Type="varchar" MaxLength="35" />
   </EntityType>
-  <EntityType Name="Pruebas">
+  <EntityType Name="Sensor">
     <Key>
-      <PropertyRef Name="PK_Prueba" />
+      <PropertyRef Name="No_Sensor" />
     </Key>
-    <Property Name="PK_Prueba" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="No_Sensor" Type="int" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="Descripcion" Type="varchar" MaxLength="100" />
-    <Property Name="Activo" Type="int" />
-  </EntityType>
-  <EntityType Name="Sensores">
-    <Key>
-      <PropertyRef Name="PK_Sensor" />
-    </Key>
-    <Property Name="PK_Sensor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Nombre" Type="varchar" MaxLength="20" Nullable="false" />
-    <Property Name="PK_Tipo" Type="int" Nullable="false" />
-    <Property Name="Estado" Type="int" Nullable="false" />
+    <Property Name="Tipo" Type="int" Nullable="false" />
+    <Property Name="Activo" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TipoSensor">
     <Key>
-      <PropertyRef Name="PK_TipoSensor" />
+      <PropertyRef Name="No_TipoSensor" />
     </Key>
-    <Property Name="PK_TipoSensor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Magnitud" Type="varchar" MaxLength="5" />
+    <Property Name="No_TipoSensor" Type="int" Nullable="false" />
+    <Property Name="Unidad" Type="varchar" MaxLength="15" />
     <Property Name="Descripcion" Type="varchar" MaxLength="30" />
   </EntityType>
-  <EntityType Name="Usuarios">
+  <EntityType Name="Usuario">
     <Key>
-      <PropertyRef Name="PK_Usuario" />
+      <PropertyRef Name="No_Empleado" />
     </Key>
-    <Property Name="PK_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="No_Empleado" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="No_Empleado" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="Nombre" Type="varchar" MaxLength="20" />
     <Property Name="aPaterno" Type="varchar" MaxLength="20" />
     <Property Name="aMaterno" Type="varchar" MaxLength="20" />
+    <Property Name="Sello" Type="varchar" MaxLength="5" />
     <Property Name="Turno" Type="varchar" MaxLength="15" />
     <Property Name="Nivel" Type="int" Nullable="false" />
-    <Property Name="Contraseña" Type="varchar" MaxLength="8" />
-    <Property Name="Activo" Type="int" />
+    <Property Name="Activo" Type="int" Nullable="false" />
+    <Property Name="Contraseña" Type="varchar" MaxLength="8" Nullable="false" />
   </EntityType>
-  <Association Name="FK_CicloMuestra">
-    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Muestras" Type="Self.Muestras" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ciclos">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Principal>
-      <Dependent Role="Muestras">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Defecto">
-    <End Role="Defectos" Type="Self.Defectos" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Piezas" Type="Self.Piezas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Defectos">
-        <PropertyRef Name="PK_Defecto" />
-      </Principal>
-      <Dependent Role="Piezas">
-        <PropertyRef Name="PK_Defecto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Lote">
-    <End Role="Lotes" Type="Self.Lotes" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Piezas" Type="Self.Piezas" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Lotes">
-        <PropertyRef Name="PK_Lote" />
-      </Principal>
-      <Dependent Role="Piezas">
-        <PropertyRef Name="Lote" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LoteCiclo">
-    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Lotes" Type="Self.Lotes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ciclos">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Principal>
-      <Dependent Role="Lotes">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LotesUsuario">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Lotes" Type="Self.Lotes" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="PK_Usuario" />
-      </Principal>
-      <Dependent Role="Lotes">
-        <PropertyRef Name="PK_Usuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ParteCiclo">
-    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="ParteCiclo" Type="Self.ParteCiclo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ciclos">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Principal>
-      <Dependent Role="ParteCiclo">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Prueba">
-    <End Role="Pruebas" Type="Self.Pruebas" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="PruebaPieza" Type="Self.PruebaPieza" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Pruebas">
-        <PropertyRef Name="PK_Prueba" />
-      </Principal>
-      <Dependent Role="PruebaPieza">
-        <PropertyRef Name="PK_Prueba" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Sensor">
-    <End Role="Sensores" Type="Self.Sensores" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Muestras" Type="Self.Muestras" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sensores">
-        <PropertyRef Name="PK_Sensor" />
-      </Principal>
-      <Dependent Role="Muestras">
-        <PropertyRef Name="PK_Sensor" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tipoSensor">
-    <End Role="TipoSensor" Type="Self.TipoSensor" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Role="Sensores" Type="Self.Sensores" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoSensor">
-        <PropertyRef Name="PK_TipoSensor" />
-      </Principal>
-      <Dependent Role="Sensores">
-        <PropertyRef Name="PK_Tipo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UsuarioCiclo">
-    <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-    <End Role="Ciclos" Type="Self.Ciclos" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuarios">
-        <PropertyRef Name="PK_Usuario" />
-      </Principal>
-      <Dependent Role="Ciclos">
-        <PropertyRef Name="PK_Usuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityContainer Name="MuestrasHornosModelStoreContainer">
-    <EntitySet Name="Ciclos" EntityType="Self.Ciclos" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Defectos" EntityType="Self.Defectos" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="inicio" EntityType="Self.inicio" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Lotes" EntityType="Self.Lotes" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Muestras" EntityType="Self.Muestras" Schema="dbo" store:Type="Tables" />
+  <EntityContainer Name="HornosHaltingModelStoreContainer">
+    <EntitySet Name="Ciclo" EntityType="Self.Ciclo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Defecto" EntityType="Self.Defecto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Muestra" EntityType="Self.Muestra" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NumeroParte" EntityType="Self.NumeroParte" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ParteCiclo" EntityType="Self.ParteCiclo" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Piezas" EntityType="Self.Piezas" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PartePrueba" EntityType="Self.PartePrueba" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pieza" EntityType="Self.Pieza" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Prueba" EntityType="Self.Prueba" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="PruebaPieza" EntityType="Self.PruebaPieza" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Pruebas" EntityType="Self.Pruebas" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Sensores" EntityType="Self.Sensores" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sensor" EntityType="Self.Sensor" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TipoSensor" EntityType="Self.TipoSensor" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_CicloMuestra" Association="Self.FK_CicloMuestra">
-      <End Role="Ciclos" EntitySet="Ciclos" />
-      <End Role="Muestras" EntitySet="Muestras" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Defecto" Association="Self.FK_Defecto">
-      <End Role="Defectos" EntitySet="Defectos" />
-      <End Role="Piezas" EntitySet="Piezas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Lote" Association="Self.FK_Lote">
-      <End Role="Lotes" EntitySet="Lotes" />
-      <End Role="Piezas" EntitySet="Piezas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LoteCiclo" Association="Self.FK_LoteCiclo">
-      <End Role="Ciclos" EntitySet="Ciclos" />
-      <End Role="Lotes" EntitySet="Lotes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LotesUsuario" Association="Self.FK_LotesUsuario">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Lotes" EntitySet="Lotes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ParteCiclo" Association="Self.FK_ParteCiclo">
-      <End Role="Ciclos" EntitySet="Ciclos" />
-      <End Role="ParteCiclo" EntitySet="ParteCiclo" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Prueba" Association="Self.FK_Prueba">
-      <End Role="Pruebas" EntitySet="Pruebas" />
-      <End Role="PruebaPieza" EntitySet="PruebaPieza" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Sensor" Association="Self.FK_Sensor">
-      <End Role="Sensores" EntitySet="Sensores" />
-      <End Role="Muestras" EntitySet="Muestras" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tipoSensor" Association="Self.FK_tipoSensor">
-      <End Role="TipoSensor" EntitySet="TipoSensor" />
-      <End Role="Sensores" EntitySet="Sensores" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UsuarioCiclo" Association="Self.FK_UsuarioCiclo">
-      <End Role="Usuarios" EntitySet="Usuarios" />
-      <End Role="Ciclos" EntitySet="Ciclos" />
-    </AssociationSet>
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

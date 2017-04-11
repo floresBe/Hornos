@@ -1,354 +1,155 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="MuestrasHornosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="MuestrasHornosEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="Ciclos" EntityType="MuestrasHornosModel.Ciclo" />
-    <EntitySet Name="Defectos" EntityType="MuestrasHornosModel.Defecto" />
-    <EntitySet Name="inicios" EntityType="MuestrasHornosModel.inicio" />
-    <EntitySet Name="Lotes" EntityType="MuestrasHornosModel.Lote" />
-    <EntitySet Name="Muestras" EntityType="MuestrasHornosModel.Muestra" />
-    <EntitySet Name="ParteCicloes" EntityType="MuestrasHornosModel.ParteCiclo" />
-    <EntitySet Name="Piezas" EntityType="MuestrasHornosModel.Pieza" />
-    <EntitySet Name="PruebaPiezas" EntityType="MuestrasHornosModel.PruebaPieza" />
-    <EntitySet Name="Pruebas" EntityType="MuestrasHornosModel.Prueba" />
-    <EntitySet Name="Sensores" EntityType="MuestrasHornosModel.Sensore" />
-    <EntitySet Name="TipoSensors" EntityType="MuestrasHornosModel.TipoSensor" />
-    <EntitySet Name="Usuarios" EntityType="MuestrasHornosModel.Usuario" />
-    <AssociationSet Name="FK_CicloMuestra" Association="MuestrasHornosModel.FK_CicloMuestra">
-      <End Role="Ciclo" EntitySet="Ciclos" />
-      <End Role="Muestra" EntitySet="Muestras" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LoteCiclo" Association="MuestrasHornosModel.FK_LoteCiclo">
-      <End Role="Ciclo" EntitySet="Ciclos" />
-      <End Role="Lote" EntitySet="Lotes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ParteCiclo" Association="MuestrasHornosModel.FK_ParteCiclo">
-      <End Role="Ciclo" EntitySet="Ciclos" />
-      <End Role="ParteCiclo" EntitySet="ParteCicloes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UsuarioCiclo" Association="MuestrasHornosModel.FK_UsuarioCiclo">
-      <End Role="Usuario" EntitySet="Usuarios" />
-      <End Role="Ciclo" EntitySet="Ciclos" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Defecto" Association="MuestrasHornosModel.FK_Defecto">
-      <End Role="Defecto" EntitySet="Defectos" />
-      <End Role="Pieza" EntitySet="Piezas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Lote" Association="MuestrasHornosModel.FK_Lote">
-      <End Role="Lote" EntitySet="Lotes" />
-      <End Role="Pieza" EntitySet="Piezas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_LotesUsuario" Association="MuestrasHornosModel.FK_LotesUsuario">
-      <End Role="Usuario" EntitySet="Usuarios" />
-      <End Role="Lote" EntitySet="Lotes" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Sensor" Association="MuestrasHornosModel.FK_Sensor">
-      <End Role="Sensore" EntitySet="Sensores" />
-      <End Role="Muestra" EntitySet="Muestras" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Prueba" Association="MuestrasHornosModel.FK_Prueba">
-      <End Role="Prueba" EntitySet="Pruebas" />
-      <End Role="PruebaPieza" EntitySet="PruebaPiezas" />
-    </AssociationSet>
-    <AssociationSet Name="FK_tipoSensor" Association="MuestrasHornosModel.FK_tipoSensor">
-      <End Role="TipoSensor" EntitySet="TipoSensors" />
-      <End Role="Sensore" EntitySet="Sensores" />
-    </AssociationSet>
+<Schema Namespace="HornosHaltingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HornosHaltingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cicloes" EntityType="HornosHaltingModel.Ciclo" />
+    <EntitySet Name="Defectoes" EntityType="HornosHaltingModel.Defecto" />
+    <EntitySet Name="Muestras" EntityType="HornosHaltingModel.Muestra" />
+    <EntitySet Name="NumeroPartes" EntityType="HornosHaltingModel.NumeroParte" />
+    <EntitySet Name="ParteCicloes" EntityType="HornosHaltingModel.ParteCiclo" />
+    <EntitySet Name="PartePruebas" EntityType="HornosHaltingModel.PartePrueba" />
+    <EntitySet Name="Piezas" EntityType="HornosHaltingModel.Pieza" />
+    <EntitySet Name="Pruebas" EntityType="HornosHaltingModel.Prueba" />
+    <EntitySet Name="PruebaPiezas" EntityType="HornosHaltingModel.PruebaPieza" />
+    <EntitySet Name="Sensors" EntityType="HornosHaltingModel.Sensor" />
+    <EntitySet Name="TipoSensors" EntityType="HornosHaltingModel.TipoSensor" />
+    <EntitySet Name="Usuarios" EntityType="HornosHaltingModel.Usuario" />
   </EntityContainer>
   <EntityType Name="Ciclo">
     <Key>
       <PropertyRef Name="Horno" />
       <PropertyRef Name="No_Ciclo" />
     </Key>
-    <Property Name="Horno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Horno" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="No_Ciclo" Type="Int32" Nullable="false" />
-    <Property Name="PK_Usuario" Type="Int32" Nullable="false" />
     <Property Name="Fecha" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Hora" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="vacio" Type="Int32" />
-    <NavigationProperty Name="Muestras" Relationship="MuestrasHornosModel.FK_CicloMuestra" FromRole="Ciclo" ToRole="Muestra" />
-    <NavigationProperty Name="Lotes" Relationship="MuestrasHornosModel.FK_LoteCiclo" FromRole="Ciclo" ToRole="Lote" />
-    <NavigationProperty Name="ParteCicloes" Relationship="MuestrasHornosModel.FK_ParteCiclo" FromRole="Ciclo" ToRole="ParteCiclo" />
-    <NavigationProperty Name="Usuario" Relationship="MuestrasHornosModel.FK_UsuarioCiclo" FromRole="Ciclo" ToRole="Usuario" />
+    <Property Name="Empleado" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Liberado" Type="Int32" />
   </EntityType>
   <EntityType Name="Defecto">
     <Key>
-      <PropertyRef Name="PK_Defecto" />
+      <PropertyRef Name="No_Defecto" />
     </Key>
-    <Property Name="PK_Defecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="No_Defecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
-    <Property Name="Activo" Type="Int32" />
-    <NavigationProperty Name="Piezas" Relationship="MuestrasHornosModel.FK_Defecto" FromRole="Defecto" ToRole="Pieza" />
-  </EntityType>
-  <EntityType Name="inicio">
-    <Key>
-      <PropertyRef Name="dia" />
-      <PropertyRef Name="mes" />
-      <PropertyRef Name="ano" />
-    </Key>
-    <Property Name="dia" Type="Int32" Nullable="false" />
-    <Property Name="mes" Type="Int32" Nullable="false" />
-    <Property Name="ano" Type="Int32" Nullable="false" />
-    <Property Name="posicion" Type="Int32" />
-  </EntityType>
-  <EntityType Name="Lote">
-    <Key>
-      <PropertyRef Name="PK_Lote" />
-    </Key>
-    <Property Name="PK_Lote" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Horno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="No_Ciclo" Type="Int32" Nullable="false" />
-    <Property Name="PK_Usuario" Type="Int32" Nullable="false" />
-    <Property Name="FechaAlta" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Ciclo" Relationship="MuestrasHornosModel.FK_LoteCiclo" FromRole="Lote" ToRole="Ciclo" />
-    <NavigationProperty Name="Piezas" Relationship="MuestrasHornosModel.FK_Lote" FromRole="Lote" ToRole="Pieza" />
-    <NavigationProperty Name="Usuario" Relationship="MuestrasHornosModel.FK_LotesUsuario" FromRole="Lote" ToRole="Usuario" />
   </EntityType>
   <EntityType Name="Muestra">
     <Key>
-      <PropertyRef Name="PK_Muestra" />
-      <PropertyRef Name="PK_Sensor" />
+      <PropertyRef Name="No_Muestra" />
     </Key>
-    <Property Name="PK_Muestra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PK_Sensor" Type="Int32" Nullable="false" />
-    <Property Name="Horno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="No_Muestra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Horno" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="No_Ciclo" Type="Int32" Nullable="false" />
+    <Property Name="Sensor" Type="Int32" Nullable="false" />
     <Property Name="Hora" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-    <Property Name="Dato" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Ciclo" Relationship="MuestrasHornosModel.FK_CicloMuestra" FromRole="Muestra" ToRole="Ciclo" />
-    <NavigationProperty Name="Sensore" Relationship="MuestrasHornosModel.FK_Sensor" FromRole="Muestra" ToRole="Sensore" />
+    <Property Name="Dato" Type="Int32" />
+  </EntityType>
+  <EntityType Name="NumeroParte">
+    <Key>
+      <PropertyRef Name="No_Parte" />
+    </Key>
+    <Property Name="No_Parte" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Detalles" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FechaAlta" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioAlta" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="ParteCiclo">
     <Key>
+      <PropertyRef Name="No_Parte" />
       <PropertyRef Name="Horno" />
       <PropertyRef Name="No_Ciclo" />
+    </Key>
+    <Property Name="No_Parte" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Horno" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="No_Ciclo" Type="Int32" Nullable="false" />
+    <Property Name="AoB" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="CantidadPiezasEntrantes" Type="Int32" />
+    <Property Name="CantidadPiezasRebraze" Type="Int32" />
+  </EntityType>
+  <EntityType Name="PartePrueba">
+    <Key>
+      <PropertyRef Name="No_Prueba" />
       <PropertyRef Name="No_Parte" />
     </Key>
-    <Property Name="Horno" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="No_Ciclo" Type="Int32" Nullable="false" />
+    <Property Name="No_Prueba" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="No_Parte" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Piezas_Entrantes" Type="Int32" />
-    <Property Name="Piezas_Rebraze" Type="Int32" />
-    <Property Name="Piezas_Malas" Type="Int32" />
-    <NavigationProperty Name="Ciclo" Relationship="MuestrasHornosModel.FK_ParteCiclo" FromRole="ParteCiclo" ToRole="Ciclo" />
+    <Property Name="Comentarios" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Pieza">
     <Key>
-      <PropertyRef Name="No_Serie" />
-      <PropertyRef Name="No_Parte" />
+      <PropertyRef Name="Horno" />
+      <PropertyRef Name="No_Ciclo" />
+      <PropertyRef Name="PosicionHorno" />
     </Key>
-    <Property Name="Lote" Type="Int32" Nullable="false" />
-    <Property Name="No_Serie" Type="Int32" Nullable="false" />
-    <Property Name="No_Parte" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="PK_Defecto" Type="Int32" />
-    <Property Name="Aprobada" Type="Int32" />
+    <Property Name="Horno" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="No_Ciclo" Type="Int32" Nullable="false" />
+    <Property Name="PosicionHorno" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="No_Parte" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="Rebraze" Type="Int32" />
-    <Property Name="Reparo" Type="Int32" />
-    <Property Name="Serie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Defecto" Relationship="MuestrasHornosModel.FK_Defecto" FromRole="Pieza" ToRole="Defecto" />
-    <NavigationProperty Name="Lote1" Relationship="MuestrasHornosModel.FK_Lote" FromRole="Pieza" ToRole="Lote" />
-  </EntityType>
-  <EntityType Name="PruebaPieza">
-    <Key>
-      <PropertyRef Name="PK_PruebaP" />
-    </Key>
-    <Property Name="PK_PruebaP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="PK_Prueba" Type="Int32" Nullable="false" />
-    <Property Name="FechaPrueba" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="FechaCaptura" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Aprobada" Type="Int32" Nullable="false" />
-    <Property Name="Defecto" Type="Int32" />
-    <Property Name="No_Serie" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Prueba" Relationship="MuestrasHornosModel.FK_Prueba" FromRole="PruebaPieza" ToRole="Prueba" />
+    <Property Name="FechaAlta" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="UsuarioAlta" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="anoMes" Type="String" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="PosicionSerieFinal" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="Pais" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Prueba">
     <Key>
-      <PropertyRef Name="PK_Prueba" />
+      <PropertyRef Name="No_Prueba" />
     </Key>
-    <Property Name="PK_Prueba" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="No_Prueba" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Activo" Type="Int32" />
-    <NavigationProperty Name="PruebaPiezas" Relationship="MuestrasHornosModel.FK_Prueba" FromRole="Prueba" ToRole="PruebaPieza" />
+    <Property Name="Descripcion" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
   </EntityType>
-  <EntityType Name="Sensore">
+  <EntityType Name="PruebaPieza">
     <Key>
-      <PropertyRef Name="PK_Sensor" />
+      <PropertyRef Name="Horno" />
+      <PropertyRef Name="No_Ciclo" />
+      <PropertyRef Name="PosicionHorno" />
+      <PropertyRef Name="Prueba" />
     </Key>
-    <Property Name="PK_Sensor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Horno" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="No_Ciclo" Type="Int32" Nullable="false" />
+    <Property Name="PosicionHorno" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
+    <Property Name="Prueba" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="ResultadoPrueba" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Defecto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="FechaPrueba" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Sello1" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Sello2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="ObservacionesPrueba" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+    <Property Name="FirmaInspector" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="ObservacionesInspector" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Sensor">
+    <Key>
+      <PropertyRef Name="No_Sensor" />
+    </Key>
+    <Property Name="No_Sensor" Type="Int32" Nullable="false" />
     <Property Name="Nombre" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="PK_Tipo" Type="Int32" Nullable="false" />
-    <Property Name="Estado" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Muestras" Relationship="MuestrasHornosModel.FK_Sensor" FromRole="Sensore" ToRole="Muestra" />
-    <NavigationProperty Name="TipoSensor" Relationship="MuestrasHornosModel.FK_tipoSensor" FromRole="Sensore" ToRole="TipoSensor" />
+    <Property Name="Tipo" Type="Int32" Nullable="false" />
+    <Property Name="Activo" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="TipoSensor">
     <Key>
-      <PropertyRef Name="PK_TipoSensor" />
+      <PropertyRef Name="No_TipoSensor" />
     </Key>
-    <Property Name="PK_TipoSensor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Magnitud" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="No_TipoSensor" Type="Int32" Nullable="false" />
+    <Property Name="Unidad" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="Descripcion" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Sensores" Relationship="MuestrasHornosModel.FK_tipoSensor" FromRole="TipoSensor" ToRole="Sensore" />
   </EntityType>
   <EntityType Name="Usuario">
     <Key>
-      <PropertyRef Name="PK_Usuario" />
+      <PropertyRef Name="No_Empleado" />
     </Key>
-    <Property Name="PK_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="No_Empleado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="No_Empleado" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="aPaterno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="aMaterno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Sello" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
     <Property Name="Turno" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
     <Property Name="Nivel" Type="Int32" Nullable="false" />
-    <Property Name="Contraseña" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
-    <Property Name="Activo" Type="Int32" />
-    <NavigationProperty Name="Ciclos" Relationship="MuestrasHornosModel.FK_UsuarioCiclo" FromRole="Usuario" ToRole="Ciclo" />
-    <NavigationProperty Name="Lotes" Relationship="MuestrasHornosModel.FK_LotesUsuario" FromRole="Usuario" ToRole="Lote" />
+    <Property Name="Activo" Type="Int32" Nullable="false" />
+    <Property Name="Contraseña" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
   </EntityType>
-  <Association Name="FK_CicloMuestra">
-    <End Type="MuestrasHornosModel.Ciclo" Role="Ciclo" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.Muestra" Role="Muestra" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ciclo">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Principal>
-      <Dependent Role="Muestra">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LoteCiclo">
-    <End Type="MuestrasHornosModel.Ciclo" Role="Ciclo" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.Lote" Role="Lote" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ciclo">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Principal>
-      <Dependent Role="Lote">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_ParteCiclo">
-    <End Type="MuestrasHornosModel.Ciclo" Role="Ciclo" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.ParteCiclo" Role="ParteCiclo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Ciclo">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Principal>
-      <Dependent Role="ParteCiclo">
-        <PropertyRef Name="Horno" />
-        <PropertyRef Name="No_Ciclo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UsuarioCiclo">
-    <End Type="MuestrasHornosModel.Usuario" Role="Usuario" Multiplicity="1" />
-    <End Type="MuestrasHornosModel.Ciclo" Role="Ciclo" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="PK_Usuario" />
-      </Principal>
-      <Dependent Role="Ciclo">
-        <PropertyRef Name="PK_Usuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Defecto">
-    <End Type="MuestrasHornosModel.Defecto" Role="Defecto" Multiplicity="0..1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.Pieza" Role="Pieza" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Defecto">
-        <PropertyRef Name="PK_Defecto" />
-      </Principal>
-      <Dependent Role="Pieza">
-        <PropertyRef Name="PK_Defecto" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Lote">
-    <End Type="MuestrasHornosModel.Lote" Role="Lote" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.Pieza" Role="Pieza" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Lote">
-        <PropertyRef Name="PK_Lote" />
-      </Principal>
-      <Dependent Role="Pieza">
-        <PropertyRef Name="Lote" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_LotesUsuario">
-    <End Type="MuestrasHornosModel.Usuario" Role="Usuario" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.Lote" Role="Lote" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Usuario">
-        <PropertyRef Name="PK_Usuario" />
-      </Principal>
-      <Dependent Role="Lote">
-        <PropertyRef Name="PK_Usuario" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Sensor">
-    <End Type="MuestrasHornosModel.Sensore" Role="Sensore" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.Muestra" Role="Muestra" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Sensore">
-        <PropertyRef Name="PK_Sensor" />
-      </Principal>
-      <Dependent Role="Muestra">
-        <PropertyRef Name="PK_Sensor" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Prueba">
-    <End Type="MuestrasHornosModel.Prueba" Role="Prueba" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.PruebaPieza" Role="PruebaPieza" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Prueba">
-        <PropertyRef Name="PK_Prueba" />
-      </Principal>
-      <Dependent Role="PruebaPieza">
-        <PropertyRef Name="PK_Prueba" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_tipoSensor">
-    <End Type="MuestrasHornosModel.TipoSensor" Role="TipoSensor" Multiplicity="1">
-      <OnDelete Action="Cascade" />
-    </End>
-    <End Type="MuestrasHornosModel.Sensore" Role="Sensore" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TipoSensor">
-        <PropertyRef Name="PK_TipoSensor" />
-      </Principal>
-      <Dependent Role="Sensore">
-        <PropertyRef Name="PK_Tipo" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>
