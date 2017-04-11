@@ -57,8 +57,8 @@
     <Compile Include="Ciclo.cs">
       <DependentUpon>ModeloBaseDatos.tt</DependentUpon>
     </Compile>
-    <Compile Include="cLote.cs" />
     <Compile Include="cMuestra.cs" />
+    <Compile Include="cNumeroParte.cs" />
     <Compile Include="cParteCiclo.cs" />
     <Compile Include="cPieza.cs" />
     <Compile Include="cPrueba.cs" />

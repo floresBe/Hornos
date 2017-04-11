@@ -72,7 +72,6 @@ namespace Servicio
                 MessageBox.Show("Error al acceder a la base de datos.");
             }
         }
-
     }
    
 }
