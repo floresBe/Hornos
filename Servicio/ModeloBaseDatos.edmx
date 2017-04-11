@@ -97,14 +97,14 @@
             <PropertyRef Name="Horno" />
             <PropertyRef Name="No_Ciclo" />
             <PropertyRef Name="PosicionHorno" />
-            <PropertyRef Name="No_Prueba" />
+            <PropertyRef Name="Prueba" />
           </Key>
           <Property Name="Horno" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="No_Ciclo" Type="int" Nullable="false" />
           <Property Name="PosicionHorno" Type="varchar" MaxLength="2" Nullable="false" />
-          <Property Name="No_Prueba" Type="int" Nullable="false" />
+          <Property Name="Prueba" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="ResultadoPrueba" Type="varchar" MaxLength="10" Nullable="false" />
-          <Property Name="Defecto" Type="int" />
+          <Property Name="Defecto" Type="varchar" MaxLength="20" />
           <Property Name="FechaPrueba" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="Sello1" Type="varchar" MaxLength="3" />
           <Property Name="Sello2" Type="varchar" MaxLength="3" />
@@ -267,14 +267,14 @@
             <PropertyRef Name="Horno" />
             <PropertyRef Name="No_Ciclo" />
             <PropertyRef Name="PosicionHorno" />
-            <PropertyRef Name="No_Prueba" />
+            <PropertyRef Name="Prueba" />
           </Key>
           <Property Name="Horno" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="No_Ciclo" Type="Int32" Nullable="false" />
           <Property Name="PosicionHorno" Type="String" Nullable="false" MaxLength="2" FixedLength="false" Unicode="false" />
-          <Property Name="No_Prueba" Type="Int32" Nullable="false" />
+          <Property Name="Prueba" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="ResultadoPrueba" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Defecto" Type="Int32" />
+          <Property Name="Defecto" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="FechaPrueba" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="Sello1" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Sello2" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
@@ -419,7 +419,7 @@
                 <ScalarProperty Name="FechaPrueba" ColumnName="FechaPrueba" />
                 <ScalarProperty Name="Defecto" ColumnName="Defecto" />
                 <ScalarProperty Name="ResultadoPrueba" ColumnName="ResultadoPrueba" />
-                <ScalarProperty Name="No_Prueba" ColumnName="No_Prueba" />
+                <ScalarProperty Name="Prueba" ColumnName="Prueba" />
                 <ScalarProperty Name="PosicionHorno" ColumnName="PosicionHorno" />
                 <ScalarProperty Name="No_Ciclo" ColumnName="No_Ciclo" />
                 <ScalarProperty Name="Horno" ColumnName="Horno" />

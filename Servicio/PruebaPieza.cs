@@ -17,9 +17,9 @@ namespace Servicio
         public string Horno { get; set; }
         public int No_Ciclo { get; set; }
         public string PosicionHorno { get; set; }
-        public int No_Prueba { get; set; }
+        public string Prueba { get; set; }
         public string ResultadoPrueba { get; set; }
-        public Nullable<int> Defecto { get; set; }
+        public string Defecto { get; set; }
         public string FechaPrueba { get; set; }
         public string Sello1 { get; set; }
         public string Sello2 { get; set; }

@@ -9,16 +9,16 @@ namespace Servicio
 {
     class cTipoSensor
     {
-        public int Insertar(string magnitud)
+        public int Insertar(string unidad)
         {
-            using (var entidad = new MuestrasHornosEntities())
+            using (var entidad = new HornosHaltingEntities())
             {
                 TipoSensor sensor = null;
                 try
                 {
                     sensor = new TipoSensor
                     {
-                        Magnitud = magnitud
+                        Unidad = unidad
                     };
                     entidad.TipoSensors.Add(sensor);
                     entidad.SaveChanges();
@@ -27,7 +27,7 @@ namespace Servicio
                 {
                     MessageBox.Show("Error al accedeer a la base de datos: " + e);
                 }
-                return sensor.PK_TipoSensor;
+                return sensor.No_TipoSensor;
             }
         }
     }
