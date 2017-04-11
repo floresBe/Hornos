@@ -11,7 +11,7 @@ namespace Servicio
     {
         public int Insertar(string nombre, string descripcion)
         {
-            using (var entidad = new MuestrasHornosEntities())
+            using (var entidad = new HornosHaltingEntities())
             {
                 Defecto defecto = null;
                 try
@@ -21,14 +21,14 @@ namespace Servicio
                         Nombre = nombre,
                         Descripcion = descripcion
                     };
-                    entidad.Defectos.Add(defecto);
+                    entidad.Defectoes.Add(defecto);
                     entidad.SaveChanges();
                 }
                 catch (Exception)
                 {
                     MessageBox.Show("Error al accedeer a la base de datos.");
                 }
-                return defecto.PK_Defecto;
+                return defecto.No_Defecto;
             }
         }
         public List<string> ObtenerTodos()
@@ -36,10 +36,10 @@ namespace Servicio
             List<string> listaRetorno = null;
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Defectos
-                                   select c.PK_Defecto + " " + c.Nombre;
+                    var consulta = from c in entidad.Defectoes
+                                   select c.Nombre;
                     listaRetorno = consulta.ToList();
                 }
 

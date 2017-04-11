@@ -17,17 +17,17 @@ namespace Servicio
         /// <returns></returns>
         public int Insertar(string nomSensor, int tipoSensor)
         {
-            using (var entidad = new MuestrasHornosEntities())
+            using (var entidad = new HornosHaltingEntities())
             {
-                Sensore sensor = null;
+                Sensor sensor = null;
                 try
                 {
-                    sensor = new Sensore
+                    sensor = new Sensor
                     {
                         Nombre = nomSensor,
-                        PK_Tipo = tipoSensor
+                        Tipo = tipoSensor
                     };
-                    entidad.Sensores.Add(sensor);
+                    entidad.Sensors.Add(sensor);
 
                     entidad.SaveChanges();
                 }
@@ -35,7 +35,7 @@ namespace Servicio
                 {
                     Console.WriteLine(e);
                 }
-                return sensor.PK_Sensor;
+                return sensor.No_Sensor;
             }
         }
         /// <summary>
@@ -47,10 +47,10 @@ namespace Servicio
             var lista = new List<string>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Sensores
-                                   orderby c.PK_Sensor
+                    var consulta = from c in entidad.Sensors
+                                   orderby c.No_Sensor
                                    select c;
                     foreach (var item in consulta.ToList())
                     {
@@ -73,14 +73,14 @@ namespace Servicio
             List<int> lista = new List<int>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Sensores
-                                   orderby c.PK_Sensor
+                    var consulta = from c in entidad.Sensors
+                                   orderby c.No_Sensor
                                    select c;
                     foreach (var item in consulta.ToList())
                     {
-                        lista.Add(item.PK_Sensor);
+                        lista.Add(item.No_Sensor);
                     }
                 }
             }
@@ -97,20 +97,19 @@ namespace Servicio
         /// <param name="estado">Estado nuevo</param>
         public void CambiarEstado(int pk, int estado)
         {
-            var lista = new List<Sensore>();
-            using (var entidad = new MuestrasHornosEntities())
+            var lista = new List<Sensor>();
+            using (var entidad = new HornosHaltingEntities())
             {
                 try
                 {
-                    var consulta = from c in entidad.Sensores
-                                   where c.PK_Sensor == pk
+                    var consulta = from c in entidad.Sensors
+                                   where c.No_Sensor == pk
                                    select c;
                     lista = consulta.ToList();
                     foreach (var item in lista)
                     {
-                        item.Estado = estado;
+                        item.Activo = estado;
                     }
-
                     entidad.SaveChanges();
                 }
                 catch (Exception e)
@@ -127,18 +126,18 @@ namespace Servicio
         public int ObtenerEstado(int pk)
         {
             int estado = -1;
-            var lista = new List<Sensore>();
+            var lista = new List<Sensor>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Sensores
-                                   where c.PK_Sensor == pk
+                    var consulta = from c in entidad.Sensors
+                                   where c.No_Sensor == pk
                                    select c;
                     lista = consulta.ToList();
                     foreach (var item in lista)
                     {
-                        estado = item.Estado;
+                        estado = item.Activo;
                     }
                 }
             }
@@ -156,18 +155,18 @@ namespace Servicio
         public int ObtenerPK(string nombre)
         {
             int estado = -1;
-            var lista = new List<Sensore>();
+            var lista = new List<Sensor>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Sensores
+                    var consulta = from c in entidad.Sensors
                                    where c.Nombre == nombre
                                    select c;
                     lista = consulta.ToList();
                     foreach (var item in lista)
                     {
-                        estado = item.PK_Sensor;
+                        estado = item.No_Sensor;
                     }
                 }
             }
@@ -183,14 +182,14 @@ namespace Servicio
         /// <returns></returns>
         public List<string> ObtenerActivos()
         {
-            var lista = new List<Sensore>();
+            var lista = new List<Sensor>();
             List<string> lista2 = new List<string>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Sensores
-                                   where c.Estado == 1
+                    var consulta = from c in entidad.Sensors
+                                   where c.Activo == 1
                                    select c;
                     lista = consulta.ToList();
                     foreach (var item in lista)
@@ -211,19 +210,19 @@ namespace Servicio
         /// <returns></returns>
         public List<int> ObtenerPKActivos()
         {
-            var lista = new List<Sensore>();
+            var lista = new List<Sensor>();
             List<int> lista2 = new List<int>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from c in entidad.Sensores
-                                   where c.Estado == 1
+                    var consulta = from c in entidad.Sensors
+                                   where c.Activo == 1
                                    select c;
                     lista = consulta.ToList();
                     foreach (var item in lista)
                     {
-                        lista2.Add(item.PK_Sensor);
+                        lista2.Add(item.No_Sensor);
                     }
                 }
             }
@@ -241,18 +240,18 @@ namespace Servicio
         public int ObtenerTipo(string nombre)
         {
             int tipo = 0;
-            var lista = new List<Sensore>();
+            var lista = new List<Sensor>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
-                    var consulta = from sensor in entidad.Sensores
+                    var consulta = from sensor in entidad.Sensors
                                    where sensor.Nombre == nombre
                                    select sensor;
                     lista = consulta.ToList();
                     foreach (var item in lista)
                     {
-                        tipo = item.PK_Tipo;
+                        tipo = item.Tipo;
                     }
                 }
             }
