@@ -14,54 +14,56 @@ namespace Servicio
         /// </summary>
         /// <param name="noSerie">Numero serial de la pieza</param>
         /// <param name="defecto">Tipo de defecto</param>
-        public int Insertar(int noSerie, int lote, int defecto, int aprobada, int rebraze)
+        public int Insertar(string horno, int noCiclo, string posicionHorno, string noParte, int rebraze, string empleado, string fecha)
         {
             Pieza pieza = null;
-
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     pieza = new Pieza
                     {
-                        No_Serie = noSerie,
-                        Lote = lote,
-                        PK_Defecto = defecto,
-                        Aprobada = aprobada,
-                        Rebraze = rebraze
-
+                        Horno = horno,
+                        No_Ciclo = noCiclo,
+                        PosicionHorno = posicionHorno,
+                        No_Parte = noParte,
+                        Rebraze = rebraze,
+                        UsuarioAlta = empleado,
+                        FechaAlta = fecha
                     };
                     entidad.Piezas.Add(pieza);
                     entidad.SaveChanges();
                 }
-
             }
             catch (Exception)
             {
                 MessageBox.Show("Error al acceder a la base de datos.");
+                return 0;
             }
-
-            return pieza.No_Serie;
+            return 1;
         }
-        /// <summary>
-        /// Regresa una lista de piezas del lote ingresado por parametro
-        /// </summary>
-        /// <param name="lote">Llave principal del lote</param>
-        /// <returns></returns>
-        public List<string> obtenerPiezasDeLote(int lote)
+
+        public void Aprobar(string horno, int noCiclo, string posicionHorno, string anoMes, string posicionSerie)
         {
-            var lista = new List<string>();
+            List<Pieza> piezas = new List<Pieza>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.Piezas
-                                   join d in entidad.Lotes on c.Lote equals d.PK_Lote
+                                   where c.Horno.Contains(horno)
+                                   where c.No_Ciclo == noCiclo
+                                   where c.PosicionHorno == posicionHorno
                                    select c;
-                    var listaPiezas = consulta.ToList<Pieza>();
-                    foreach (var item in listaPiezas)
+                    piezas = consulta.ToList();
+                    if(piezas.Count > 0)
                     {
-                        lista.Add(item.No_Serie.ToString());
+                        foreach (var item in piezas)
+                        {
+                            item.anoMes = anoMes;
+                            item.PosicionSerieFinal = posicionSerie;
+                        }
+                        entidad.SaveChanges();
                     }
                 }
             }
@@ -69,31 +71,8 @@ namespace Servicio
             {
                 MessageBox.Show("Error al acceder a la base de datos.");
             }
-            return lista;
         }
-        public int obtenerPKdeSerie(int serie)
-        {
-            int pieza = 0;
 
-            try
-            {
-                using (var entidad = new MuestrasHornosEntities())
-                {
-                    var consulta = from c in entidad.Piezas
-                                   where c.No_Serie == serie
-                                   select c;
-                    var listaPiezas = consulta.ToList<Pieza>();
-                    foreach (var item in listaPiezas)
-                    {
-                        pieza = item.No_Serie;
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show("Error al acceder a la base de datos: " + e);
-            }
-            return pieza;
-        }
     }
+   
 }
