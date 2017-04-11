@@ -16,26 +16,25 @@ namespace Servicio
         /// <param name="pkCiclo">Llave principal del ciclo</param>
         /// <param name="hora">Hora de la muestra</param>
         /// <param name="dato">Dato</param>
-        public void Insertar(int pkSensor, string horno, int noCiclo, string hora, string dato)
+        public void Insertar(int sensor, string horno, int noCiclo, string hora, int dato)
         {
-            using (var entidad = new MuestrasHornosEntities())
+            using (var entidad = new HornosHaltingEntities())
             {
                 try
                 {
                     entidad.Muestras.Add(new Muestra
                     {
-                        PK_Sensor = pkSensor,
+                        Sensor = sensor,
                         Horno = horno,
                         No_Ciclo = noCiclo,
                         Hora = hora,
                         Dato = dato,
                     });
-
                     entidad.SaveChanges();
                 }
                 catch (Exception)
                 {
-                    //MessageBox.Show("Error al acceder a la base de datos.");
+                    MessageBox.Show("Error al acceder a la base de datos.");
                 }
             }
         }
@@ -49,14 +48,14 @@ namespace Servicio
             var lista = new List<string>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.Muestras
-                                   join d in entidad.Sensores on c.PK_Sensor equals d.PK_Sensor
-                                   join e in entidad.TipoSensors on d.PK_Tipo equals e.PK_TipoSensor
+                                   join d in entidad.Sensors on c.Sensor equals d.No_Sensor
+                                   join e in entidad.TipoSensors on d.Tipo equals e.No_TipoSensor
                                    where c.Horno == horno
                                    where c.No_Ciclo == noCiclo
-                                   orderby c.PK_Sensor
+                                   orderby c.Sensor
                                    select new { d.Nombre, c.Hora, c.Dato, e.Descripcion };
                     var listaMuestras = consulta.ToList();
                     foreach (var item in listaMuestras)
@@ -85,12 +84,12 @@ namespace Servicio
             var lista = new List<string>();
             try
             {
-                using (var entidad = new MuestrasHornosEntities())
+                using (var entidad = new HornosHaltingEntities())
                 {
                     var consulta = from c in entidad.Muestras
                                    where c.Horno == horno
                                    where c.No_Ciclo == noCiclo
-                                   where c.PK_Sensor == sensor
+                                   where c.Sensor == sensor
                                    orderby c.Hora
                                    select c;
                     var listaMuestras = consulta.ToList<Muestra>();

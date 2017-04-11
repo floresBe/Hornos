@@ -19,6 +19,6 @@ namespace Servicio
         public int No_Ciclo { get; set; }
         public int Sensor { get; set; }
         public string Hora { get; set; }
-        public Nullable<double> Dato { get; set; }
+        public Nullable<int> Dato { get; set; }
     }
 }
